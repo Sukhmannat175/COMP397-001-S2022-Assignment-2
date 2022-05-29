@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Charlie/[Scenes]/GameMainMenu.unity
+    guid: 9432c7343faaab342b6282e644ae1785
+  - enabled: 1
+    path: Assets/Charlie/[Scenes]/GameOver.unity
+    guid: 6ffb1a4ea06b76d4bbfc4d9fd21ee984
+  - enabled: 1
+    path: Assets/Charlie/[Scenes]/InGame.unity
+    guid: b001565eb06c23b45ab79cd64e0641a0
+  - enabled: 1
+    path: Assets/Charlie/[Scenes]/OptionsMenu.unity
+    guid: 8c912343daccf604c87ad5092b35c246
   m_configObjects: {}
