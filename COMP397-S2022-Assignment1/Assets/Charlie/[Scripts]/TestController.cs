@@ -5,10 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class TestController : MonoBehaviour
 {
+
+    public GameObject inGameMenu;
+    private bool menuActive;
     // Start is called before the first frame update
     void Start()
     {
-        
+        menuActive = false;
+        inGameMenu.SetActive(menuActive);
     }
 
     // Update is called once per frame
@@ -17,6 +21,13 @@ public class TestController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene("GameOver");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            menuActive = !menuActive;
+            inGameMenu.SetActive(menuActive);
+
         }
     }
 }
