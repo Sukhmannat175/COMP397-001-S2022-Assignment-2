@@ -1,3 +1,9 @@
+// MenuController.cs
+// Charlie Han Bi - 301176547
+// 05/29/2022
+// Load Main Menu
+// Initial Script
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
