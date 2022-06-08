@@ -6,17 +6,16 @@ public class TowerPlacer : MonoBehaviour
 {
 
     [SerializeField] GameObject crossbowTower;
-    [SerializeField] GameObject towerPrefab;
+    [SerializeField] GameObject crossbowTowerPreview;
 
 
     GameObject towerPreview;
-    [SerializeField] bool isShowing = false;
+    [SerializeField] bool isPreview = false;
 
     public Vector3 screenPos;
     public Vector3 worldPos;
 
-    public LayerMask ground;
-    public LayerMask invalidObjects;
+    public LayerMask ground = 1<<7;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +27,7 @@ public class TowerPlacer : MonoBehaviour
     void Update()
     {
         
-        if (isShowing)
+        if (isPreview)
         {
             screenPos = Input.mousePosition;
 
@@ -45,39 +44,34 @@ public class TowerPlacer : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 if (towerPreview.GetComponent<TowerPreview>().GetIsValidPosition())
-                {
-                    
-                    BuyTower();
+                {    
+                    PlaceTower();
                     Destroy(towerPreview);
                 }
-
             }
 
             if (Input.GetMouseButtonDown(1))
             {
                 Destroy(towerPreview.gameObject);
-                isShowing = false;
+                isPreview = false;
             }
         }
     }
 
-    public void BuyTower()
+    public void PreviewTower()
     {
-
-        isShowing = false;
-        GameObject tower = Instantiate(crossbowTower, worldPos, Quaternion.identity);
-
-
+        if (!isPreview)
+        {
+            isPreview = true;
+            towerPreview = Instantiate(crossbowTowerPreview);
+        }
     }
 
     public void PlaceTower()
     {
-        if (!isShowing)
-        {
-            isShowing = true;
-            towerPreview = Instantiate(towerPrefab);
-        }
 
+        isPreview = false;
+        GameObject tower = Instantiate(crossbowTower, worldPos, Quaternion.identity);
     }
 
 

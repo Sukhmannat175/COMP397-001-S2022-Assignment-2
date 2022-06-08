@@ -46,7 +46,7 @@ public class Tower : MonoBehaviour
 
     //for testing
     public List<GameObject> targets = new List<GameObject> { }; //list of all enemies in range
-    [SerializeField] private bool isWaiting = false; //used to flag tower cooldown in Coroutine
+    [SerializeField] private bool isFiring = false; //used to flag tower cooldown in Coroutine
     [SerializeField] private GameObject currentTarget = null;
 
 
@@ -54,7 +54,7 @@ public class Tower : MonoBehaviour
     void Update()
     {
         UpdateCurrentTarget();
-        if(isWaiting == false && currentTarget != null)
+        if(isFiring == false && currentTarget != null)
         {
             StartCoroutine(Shoot());
         }
@@ -64,12 +64,12 @@ public class Tower : MonoBehaviour
     private IEnumerator Shoot()
     {
 
-        isWaiting = true; //stops the coroutine from being called again
+        isFiring = true; //stops the coroutine from being called again
         ShootProjectile(currentTarget);
 
         yield return new WaitForSeconds(shotDelay);
 
-        isWaiting = false; // releases the coroutine to be called
+        isFiring = false; // releases the coroutine to be called
 
     }
 

@@ -1701,6 +1701,8 @@ MonoBehaviour:
   initialStone: 500
   initialWood: 100
   inventoryDisplay: {fileID: 3113378981593903211}
+  crossbowTower: {fileID: 3260323772641981898, guid: 9f8847e5884da1f4ca180650bb68b5ce, type: 3}
+  crossbowTowerPreview: {fileID: 3260323772641981898, guid: e38885ee8597f11488933977a467821f, type: 3}
   goldOnHand: 0
   stoneOnHand: 0
   woodOnHand: 0

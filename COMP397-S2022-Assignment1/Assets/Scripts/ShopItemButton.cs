@@ -38,7 +38,8 @@ public class ShopItemButton : MonoBehaviour
     void OnButtonClick()
     {
         shopItemDisplay.UpdateDisplay(towerName, towerDescription, goldNeeded, stoneNeeded, woodNeeded);
-        InventoryManager.instance.BuildTower(goldNeeded, stoneNeeded, woodNeeded);
+        InventoryManager.instance.BuyTower(goldNeeded, stoneNeeded, woodNeeded);
+        FindObjectOfType<TowerPlacer>().PreviewTower();
     }
 
     public void UpdateDisplay()
