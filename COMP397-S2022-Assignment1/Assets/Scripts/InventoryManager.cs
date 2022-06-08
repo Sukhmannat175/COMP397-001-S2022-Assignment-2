@@ -16,6 +16,10 @@ public class InventoryManager : MonoBehaviour
 
     [SerializeField] private InventoryDisplay inventoryDisplay;
 
+    [SerializeField] private GameObject CrossbowTower;
+    [SerializeField] private GameObject BombTower;
+    [SerializeField] private GameObject ResourceTower;
+
     [Header("Debug")]
     [SerializeField] private int goldOnHand;
     [SerializeField] private int stoneOnHand;
@@ -64,6 +68,8 @@ public class InventoryManager : MonoBehaviour
                 UpdateDisplay();
             }
             // TODO, place the tower on the tile
+            
+            
         }
     }
 

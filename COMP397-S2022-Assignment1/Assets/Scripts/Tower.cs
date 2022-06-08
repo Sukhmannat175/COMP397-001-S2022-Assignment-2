@@ -1,4 +1,4 @@
-/*
+/*Tower.cs
  *Created by: Han Bi 301176547
  *Script used for tower behaviour
  *Last update: June 8, 2022
@@ -28,18 +28,18 @@ public class Tower : MonoBehaviour
     private float shotDelay;
 
 
-    [Header("Tower Cost:")]
-    [SerializeField]
-    [Tooltip("Gold Cost")]
-    int gold = 0;
+    //[Header("Tower Cost:")]
+    //[SerializeField]
+    //[Tooltip("Gold Cost")]
+    //int gold = 0;
 
-    [SerializeField]
-    [Tooltip("Wood Cost")]
-    int wood = 0;
+    //[SerializeField]
+    //[Tooltip("Wood Cost")]
+    //int wood = 0;
 
-    [SerializeField]
-    [Tooltip("Stone Cost")]
-    int stone = 0;
+    //[SerializeField]
+    //[Tooltip("Stone Cost")]
+    //int stone = 0;
     
 
 

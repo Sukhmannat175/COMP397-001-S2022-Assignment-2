@@ -1,4 +1,4 @@
-/*
+/*TowerRange.cs
  *Created by: Han Bi 301176547
  *Script used for tower behaviour
  *This is a sphere collisionBox that detect all enemies within range

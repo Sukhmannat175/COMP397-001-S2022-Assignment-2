@@ -1,4 +1,5 @@
-/*
+/*Enemy.cs
+ * Created by: Han Bi 301176547
  * Abstract Enemy Class for all enemies
  * Currently just added mechanics to allow proper tower targeting
  */
