@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5517717378147942392
+--- !u!1 &2348246176117693513
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,53 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7505817544251098457}
-  - component: {fileID: 2541758349579413103}
+  - component: {fileID: 2348246176117693515}
+  - component: {fileID: 2348246176117693512}
   m_Layer: 0
-  m_Name: MenuController
+  m_Name: KeyBindingManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7505817544251098457
+--- !u!4 &2348246176117693515
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5517717378147942392}
+  m_GameObject: {fileID: 2348246176117693513}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.50794595, y: 0.063661724, z: 0.2004216}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2541758349579413103
+--- !u!114 &2348246176117693512
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5517717378147942392}
+  m_GameObject: {fileID: 2348246176117693513}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d30b7ae556d92544fa369790caebf962, type: 3}
+  m_Script: {fileID: 11500000, guid: f41e76ee91026214b84cd212bf0da223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultUp: 119
+  defaultLeft: 97
+  defaultDown: 115
+  defaultRight: 100
+  invertedLeft: 100
+  invertedRight: 97
+  invertedUp: 115
+  invertedDown: 119
+  up: 0
+  left: 0
+  down: 0
+  right: 0
+  selectedNormalXAxis: 1
+  selectedNormalYAxis: 1
