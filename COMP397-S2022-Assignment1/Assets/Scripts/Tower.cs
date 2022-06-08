@@ -1,7 +1,7 @@
 /*
  *Created by: Han Bi 301176547
  *Script used for tower behaviour
- *Last update: June 7, 2022
+ *Last update: June 8, 2022
  */
 
 using System.Collections;
@@ -26,9 +26,26 @@ public class Tower : MonoBehaviour
     [SerializeField]
     [Tooltip("The time tower will wait before firing again")]
     private float shotDelay;
+
+
+    [Header("Tower Cost:")]
+    [SerializeField]
+    [Tooltip("Gold Cost")]
+    int gold = 0;
+
+    [SerializeField]
+    [Tooltip("Wood Cost")]
+    int wood = 0;
+
+    [SerializeField]
+    [Tooltip("Stone Cost")]
+    int stone = 0;
     
+
+
+
     //for testing
-    [SerializeField] private List<GameObject> targets = new List<GameObject> {}; //list of all enemies in range
+    public List<GameObject> targets = new List<GameObject> { }; //list of all enemies in range
     [SerializeField] private bool isWaiting = false; //used to flag tower cooldown in Coroutine
     [SerializeField] private GameObject currentTarget = null;
 
@@ -36,8 +53,6 @@ public class Tower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        UpdateCurrentTarget();
 
         if(isWaiting == false && currentTarget != null)
         {
@@ -50,7 +65,6 @@ public class Tower : MonoBehaviour
     {
 
         isWaiting = true; //stops the coroutine from being called again
-
         ShootProjectile(currentTarget);
 
         yield return new WaitForSeconds(shotDelay);
@@ -63,42 +77,71 @@ public class Tower : MonoBehaviour
     {
         GameObject proj = Instantiate(projectile, projectileSpawn.transform); //creates the projectile at the spawn location
 
-        proj.GetComponent<Projectile>().SetTarget(target); //sets the target for the project to the passed through value
+        proj.GetComponent<Projectile>().SetTarget(target); //sets the target for the projectile
         
     }
 
-    public GameObject GetFirstTarget()
+    public GameObject GetFirstEnemy()
     {
+        GameObject firstEnemy;
 
-        while (targets.Count > 0 && targets[0] == null) //if some enemies get unexpectedly destroyed while in range, remove them from list
+        //if some enemies get unexpectedly destroyed while in range, remove them from list
+        if(targets.Count > 0)
         {
-            targets.RemoveAt(0);
+            for(int i = 0; i < targets.Count; i++)
+            {
+                if(targets[i] == null)
+                {
+                    targets.Remove(targets[i]);
+                    i--;
+                }
+            }
         }
 
-        try
+        if(targets.Count == 0)
         {
-            return targets[0];
+            try
+            {
+                return targets[0];
+            }
+            catch
+            {
+                return null;
+            }
         }
-        catch
+        else
         {
-            return null;
+            firstEnemy = targets[0];
+            for (int i = 1; i < targets.Count; i++)
+            {
+                if (targets[i].GetComponent<Enemy>().GetDistanceTravelled() > firstEnemy.GetComponent<Enemy>().GetDistanceTravelled())
+                {
+                    firstEnemy = targets[i];
+                }
+            }
         }
+
+        return firstEnemy;
+
+
     }
 
     public void AddToTargets(GameObject target) //adds a gameobject to target list
     {
         targets.Add(target);
+        UpdateCurrentTarget();
     }
 
     public void RemoveFromTargets(GameObject target) //removes a gameobject from target list
     {
 
         targets.Remove(target);
+        UpdateCurrentTarget();
         
     }
 
     public void UpdateCurrentTarget() //sets currentTarget to first Target
     {
-        currentTarget = GetFirstTarget();
+        currentTarget = GetFirstEnemy();
     }
 }

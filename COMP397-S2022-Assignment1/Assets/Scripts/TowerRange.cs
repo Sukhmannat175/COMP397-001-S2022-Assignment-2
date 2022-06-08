@@ -11,6 +11,7 @@ using UnityEngine;
 
 public class TowerRange : MonoBehaviour
 {
+    [SerializeField][Tooltip("Please make sure this object is parented to a tower script")]
     Tower parentTower;
     
     // Start is called before the first frame update
@@ -25,12 +26,16 @@ public class TowerRange : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
 
         if (other.CompareTag("Enemy"))
         {
-            parentTower.AddToTargets(other.gameObject);
+            if (!parentTower.targets.Contains(other.gameObject))
+            {
+                parentTower.AddToTargets(other.gameObject);
+            }
+            
         }
         
     }

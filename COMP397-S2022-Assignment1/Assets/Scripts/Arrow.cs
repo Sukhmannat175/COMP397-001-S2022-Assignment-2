@@ -23,7 +23,7 @@ public class Arrow : Projectile
     void Start()
     {
 
-        target = GetComponentInParent<Tower>().GetFirstTarget();
+        target = GetComponentInParent<Tower>().GetFirstEnemy();
         enemyPos = target.transform.position;
 
 
