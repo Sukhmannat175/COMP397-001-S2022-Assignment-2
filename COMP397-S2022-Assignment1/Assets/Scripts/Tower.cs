@@ -53,7 +53,8 @@ public class Tower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        UpdateCurrentTarget();
+        
         if(isWaiting == false && currentTarget != null)
         {
             StartCoroutine(Shoot());
