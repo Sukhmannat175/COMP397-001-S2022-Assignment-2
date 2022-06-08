@@ -54,6 +54,7 @@ public class Tower : MonoBehaviour
     void Update()
     {
         UpdateCurrentTarget();
+        
         if(isWaiting == false && currentTarget != null)
         {
             StartCoroutine(Shoot());
