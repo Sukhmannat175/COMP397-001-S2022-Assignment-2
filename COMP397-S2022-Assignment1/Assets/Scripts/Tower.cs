@@ -40,6 +40,11 @@ public class Tower : MonoBehaviour
     [SerializeField]
     [Tooltip("Stone Cost")]
     int stone = 0;
+
+    [Header("Audio")]
+    [SerializeField]
+    [Tooltip("SFX Source")]
+    public AudioClip shootSound;
     
 
 
@@ -66,8 +71,8 @@ public class Tower : MonoBehaviour
     {
 
         isWaiting = true; //stops the coroutine from being called again
+        SoundManager.instance.PlaySFX(shootSound);
         ShootProjectile(currentTarget);
-
         yield return new WaitForSeconds(shotDelay);
 
         isWaiting = false; // releases the coroutine to be called
