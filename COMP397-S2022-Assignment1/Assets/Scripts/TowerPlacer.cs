@@ -17,6 +17,12 @@ public class TowerPlacer : MonoBehaviour
 
     public LayerMask ground = 1<<7;
 
+    Tower.TowerType currentType;
+
+    int goldCost;
+    int stoneCost;
+    int woodCost;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +35,7 @@ public class TowerPlacer : MonoBehaviour
         
         if (isPreview)
         {
+
             screenPos = Input.mousePosition;
 
             Ray ray = Camera.main.ScreenPointToRay(screenPos);
@@ -41,38 +48,67 @@ public class TowerPlacer : MonoBehaviour
 
             towerPreview.transform.position = worldPos;
 
-            if (Input.GetMouseButtonDown(0))
+            if (towerPreview.GetComponent<TowerPreview>().GetIsValidPosition() && InventoryManager.instance.EnoughResources(goldCost, woodCost, stoneCost))
             {
-                if (towerPreview.GetComponent<TowerPreview>().GetIsValidPosition())
-                {    
-                    PlaceTower();
-                    Destroy(towerPreview);
+                towerPreview.GetComponent<TowerPreview>().ChangeRangeColor(new Color(1, 1, 1, 0.4f));
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    InventoryManager.instance.BuyTower(goldCost, woodCost, stoneCost);
+                    PlaceTower(currentType);
+                    
                 }
             }
-
+            else
+            {
+                towerPreview.GetComponent<TowerPreview>().ChangeRangeColor(new Color(1, 0, 0, 0.4f));
+            }
+                
             if (Input.GetMouseButtonDown(1))
             {
-                Destroy(towerPreview.gameObject);
-                isPreview = false;
+                CancelBuy();
             }
         }
     }
 
-    public void PreviewTower()
+    public void PreviewTower(Tower.TowerType towerType, int goldNeeded, int stoneNeeded, int woodNeeded)
     {
-        if (!isPreview)
+        //if already showing tower, won't show another one until user cancels
+        if(towerType == Tower.TowerType.CrossbowTower)
         {
-            isPreview = true;
-            towerPreview = Instantiate(crossbowTowerPreview);
+
+            if(!isPreview)
+            {
+                currentType = towerType;
+                goldCost = goldNeeded;
+                stoneCost = stoneNeeded;
+                woodCost = woodNeeded;
+
+                isPreview = true;
+                towerPreview = Instantiate(crossbowTowerPreview);
+            }
         }
+
     }
 
-    public void PlaceTower()
+    public void PlaceTower(Tower.TowerType towerType)
     {
+        if(towerType == Tower.TowerType.CrossbowTower)
+        {
+            isPreview = false;
+            GameObject tower = Instantiate(crossbowTower, worldPos, Quaternion.identity);
+        
+        }
+        Destroy(towerPreview);
 
-        isPreview = false;
-        GameObject tower = Instantiate(crossbowTower, worldPos, Quaternion.identity);
+    }
+
+    public void CancelBuy()
+    {
+        Destroy(towerPreview.gameObject);
+        isPreview = false; 
     }
 
 
 }
+

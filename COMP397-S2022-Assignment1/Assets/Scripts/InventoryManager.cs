@@ -60,18 +60,22 @@ public class InventoryManager : MonoBehaviour
 
     public void BuyTower(int gold, int stone, int wood)
     {
-        if (freeToBuild || (goldOnHand >= gold && stoneOnHand >= stone && woodOnHand >= wood))
+        if (!freeToBuild)
         {
-
-            if (!freeToBuild)
-            {
-                goldOnHand -= gold;
-                stoneOnHand -= stone;
-                woodOnHand -= wood;
-                UpdateDisplay();
-            }
-
+            goldOnHand -= gold;
+            stoneOnHand -= stone;
+            woodOnHand -= wood;
+            UpdateDisplay();
         }
+    }
+
+    public bool EnoughResources(int gold, int stone, int wood)
+    {
+        if(freeToBuild || (goldOnHand >= gold && stoneOnHand >= stone && woodOnHand >= wood))
+        {
+            return true;
+        }
+        else { return false; }
     }
 
 
