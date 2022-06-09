@@ -31,11 +31,7 @@ public class TowerRange : MonoBehaviour
 
         if (other.CompareTag("Enemy"))
         {
-            if (!parentTower.targets.Contains(other.gameObject))
-            {
-                parentTower.AddToTargets(other.gameObject);
-            }
-            
+            parentTower.AddToTargets(other.gameObject);
         }
         
     }
