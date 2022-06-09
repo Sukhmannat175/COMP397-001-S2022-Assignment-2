@@ -54,6 +54,7 @@ MonoBehaviour:
   gold: 0
   wood: 0
   stone: 0
+  shootSound: {fileID: 8300000, guid: 7097b80e8ee8b1c4ebb02bc153897723, type: 3}
   targets: []
   isWaiting: 0
   currentTarget: {fileID: 0}
