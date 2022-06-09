@@ -17,6 +17,10 @@ public class CrossbowTower : Tower
     [Tooltip("The location the Projectile will shoot from")]
     protected GameObject projectileSpawn;
 
+    [SerializeField]
+    [Tooltip("Audio Source for shooting")]
+    AudioClip shootSound;
+
     private List<GameObject> targets  = new List<GameObject>();
 
     protected GameObject currentTarget = null;
@@ -40,10 +44,10 @@ public class CrossbowTower : Tower
     {
 
         coolingDown = true; //stops the coroutine from being called again
+        SoundManager.instance.PlaySFX(shootSound);
         ShootProjectile(currentTarget);
 
         yield return new WaitForSeconds(actionDelay);
-
         coolingDown = false; // releases the coroutine to be called
 
     }
