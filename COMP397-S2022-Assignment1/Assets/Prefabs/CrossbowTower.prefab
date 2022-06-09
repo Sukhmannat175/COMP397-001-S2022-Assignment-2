@@ -61,12 +61,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c582795be6452f46bed392414959265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actionDelay: 1
   attackZone: {fileID: 3260323774302551585}
   projectile: {fileID: 3439487239067927562, guid: fe5c4c8b36e4d8f4090fe2d78875e123, type: 3}
   projectileSpawn: {fileID: 3260323774470202576}
-  shotDelay: 1
-  isFiring: 0
-  currentTarget: {fileID: 0}
+  coolingDown: 0
 --- !u!1 &3260323774302551585
 GameObject:
   m_ObjectHideFlags: 0

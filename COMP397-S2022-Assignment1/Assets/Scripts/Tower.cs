@@ -10,6 +10,12 @@ using UnityEngine;
 
 public abstract class Tower : MonoBehaviour
 {
+    public enum TowerType
+    {
+        CrossbowTower,
+        BombTower,
+        ResourceTower
+    }
 
     [SerializeField]
     [Tooltip("The time tower will wait before firing again")]
@@ -27,6 +33,7 @@ public abstract class Tower : MonoBehaviour
     public virtual void RemoveFromTargets(GameObject gameObject) { }
 
 
+    public abstract int GetTowerType();
 
  
 

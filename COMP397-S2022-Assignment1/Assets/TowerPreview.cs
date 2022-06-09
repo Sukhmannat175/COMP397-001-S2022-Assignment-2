@@ -9,9 +9,12 @@ public class TowerPreview : MonoBehaviour
     [SerializeField] LayerMask invalidObjects;
     [SerializeField] Collider[] hitColliders;
     [SerializeField] bool isValidPosition = false;
+
+    TowerPlacer towerPlacer;
+
     private void Start()
     {
-        
+
     }
 
     private void FixedUpdate()
@@ -21,14 +24,14 @@ public class TowerPreview : MonoBehaviour
 
     private void Update()
     {
-        if (isValidPosition)
-        {
-            ChangeRangeColor(new Color(1, 1, 1, 0.4f));
-        }
-        else
-        {
-            ChangeRangeColor(new Color(1, 0, 0, 0.4f));
-        }
+        //if (isValidPosition)
+        //{
+        //    ChangeRangeColor(new Color(1, 1, 1, 0.4f));
+        //}
+        //else
+        //{
+        //    ChangeRangeColor(new Color(1, 0, 0, 0.4f));
+        //}
     }
     public void ChangeRangeColor(Color colour)
     {
@@ -54,16 +57,18 @@ public class TowerPreview : MonoBehaviour
             return true;
         }
 
-    }
 
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
-        //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
-        Gizmos.DrawWireCube(new Vector3(transform.position.x, transform.position.y+1.835f, transform.position.z + 0.03f), new Vector3(3.75f/4, 14.71f/4, 3.75f/4));
     }
+
+    //void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
+    //    //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
+    //    Gizmos.DrawWireCube(new Vector3(transform.position.x, transform.position.y+1.835f, transform.position.z + 0.03f), new Vector3(3.75f/4, 14.71f/4, 3.75f/4));
+    //}
+
 
     public bool GetIsValidPosition()
     {

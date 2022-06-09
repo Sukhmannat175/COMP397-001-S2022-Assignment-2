@@ -119,6 +119,13 @@ public class CrossbowTower : Tower
         currentTarget = GetFirstEnemy();
     }
 
+    public override int GetTowerType()
+    {
+        return (int)TowerType.CrossbowTower;
+    }
+
+
+
 
 
 
