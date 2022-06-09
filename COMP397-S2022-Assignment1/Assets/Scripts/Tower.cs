@@ -54,6 +54,7 @@ public class Tower : MonoBehaviour
 
     //for testing
     public List<GameObject> targets = new List<GameObject> { }; //list of all enemies in range
+    [SerializeField] private bool isWaiting = false;
     [SerializeField] private bool isFiring = false; //used to flag tower cooldown in Coroutine
     [SerializeField] private GameObject currentTarget = null;
 
