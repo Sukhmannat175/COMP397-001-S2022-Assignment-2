@@ -12,6 +12,8 @@ public class TowerPlacer : MonoBehaviour
     GameObject towerPreview;
     [SerializeField] bool isPreview = false;
 
+    [SerializeField] AudioClip placeSound;
+
     public Vector3 screenPos;
     public Vector3 worldPos;
 
@@ -96,6 +98,7 @@ public class TowerPlacer : MonoBehaviour
         if(towerType == Tower.TowerType.CrossbowTower)
         {
             isPreview = false;
+            SoundManager.instance.PlaySFX(placeSound);
             GameObject tower = Instantiate(crossbowTower, worldPos, Quaternion.identity);
         
         }
