@@ -1,4 +1,4 @@
-/*
+/*Projectile.cs
  *Created by: Han Bi 301176547
  *Abstract class for different projectiles
  *Last update: June 7, 2022

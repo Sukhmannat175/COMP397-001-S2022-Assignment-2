@@ -3,6 +3,7 @@
 // 06/06/2022
 // Inventory Manager
 // Initial Script
+// Added tower preview + purchase script
 
 using UnityEngine;
 
@@ -15,6 +16,10 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private int initialWood;
 
     [SerializeField] private InventoryDisplay inventoryDisplay;
+
+    [SerializeField] private GameObject crossbowTower;
+    [SerializeField] GameObject crossbowTowerPreview;
+
 
     [Header("Debug")]
     [SerializeField] private int goldOnHand;
@@ -37,6 +42,7 @@ public class InventoryManager : MonoBehaviour
         UpdateDisplay();
     }
 
+
     private void ResetInitialResources()
     {
         goldOnHand = initialGold;
@@ -52,10 +58,11 @@ public class InventoryManager : MonoBehaviour
         UpdateDisplay();
     }
 
-    public void BuildTower(int gold, int stone, int wood)
+    public void BuyTower(int gold, int stone, int wood)
     {
         if (freeToBuild || (goldOnHand >= gold && stoneOnHand >= stone && woodOnHand >= wood))
         {
+
             if (!freeToBuild)
             {
                 goldOnHand -= gold;
@@ -63,9 +70,10 @@ public class InventoryManager : MonoBehaviour
                 woodOnHand -= wood;
                 UpdateDisplay();
             }
-            // TODO, place the tower on the tile
+
         }
     }
+
 
     public void UpdateDisplay()
     {

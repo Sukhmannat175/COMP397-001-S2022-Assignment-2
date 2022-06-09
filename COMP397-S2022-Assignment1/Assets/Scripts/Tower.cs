@@ -1,4 +1,4 @@
-/*
+/*Tower.cs
  *Created by: Han Bi 301176547
  *Script used for tower behaviour
  *Last update: June 8, 2022
@@ -28,25 +28,25 @@ public class Tower : MonoBehaviour
     private float shotDelay;
 
 
-    [Header("Tower Cost:")]
-    [SerializeField]
-    [Tooltip("Gold Cost")]
-    int gold = 0;
+    //[Header("Tower Cost:")]
+    //[SerializeField]
+    //[Tooltip("Gold Cost")]
+    //int gold = 0;
 
-    [SerializeField]
-    [Tooltip("Wood Cost")]
-    int wood = 0;
+    //[SerializeField]
+    //[Tooltip("Wood Cost")]
+    //int wood = 0;
 
-    [SerializeField]
-    [Tooltip("Stone Cost")]
-    int stone = 0;
+    //[SerializeField]
+    //[Tooltip("Stone Cost")]
+    //int stone = 0;
     
 
 
 
     //for testing
     public List<GameObject> targets = new List<GameObject> { }; //list of all enemies in range
-    [SerializeField] private bool isWaiting = false; //used to flag tower cooldown in Coroutine
+    [SerializeField] private bool isFiring = false; //used to flag tower cooldown in Coroutine
     [SerializeField] private GameObject currentTarget = null;
 
 
@@ -55,7 +55,8 @@ public class Tower : MonoBehaviour
     {
         UpdateCurrentTarget();
         
-        if(isWaiting == false && currentTarget != null)
+        if(isFiring == false && currentTarget != null)
+
         {
             StartCoroutine(Shoot());
         }
@@ -65,12 +66,12 @@ public class Tower : MonoBehaviour
     private IEnumerator Shoot()
     {
 
-        isWaiting = true; //stops the coroutine from being called again
+        isFiring = true; //stops the coroutine from being called again
         ShootProjectile(currentTarget);
 
         yield return new WaitForSeconds(shotDelay);
 
-        isWaiting = false; // releases the coroutine to be called
+        isFiring = false; // releases the coroutine to be called
 
     }
 
