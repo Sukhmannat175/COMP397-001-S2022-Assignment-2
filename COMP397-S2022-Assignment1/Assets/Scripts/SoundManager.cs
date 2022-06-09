@@ -14,6 +14,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] AudioSource musicAudioSource;
     [SerializeField] AudioSource buttonAudioSource;
+    [SerializeField] AudioSource sfxAudioSource;
 
     [Header("Debug")]
     [SerializeField] private float musicVolume = 1;
@@ -50,6 +51,11 @@ public class SoundManager : MonoBehaviour
     public void PlayButtonSfx()
     {
         buttonAudioSource.Play();
+    }
+
+    public void PlaySFX(AudioClip clip)
+    {
+        sfxAudioSource.PlayOneShot(clip); 
     }
 
     public void SetVolume(float value, SoundType type)
