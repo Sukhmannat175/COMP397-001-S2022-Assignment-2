@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class GruntGolemController : Enemy
 {
-    [SerializeField] private Transform[] wayPoints;
+    public Transform[] wayPoints;
 
     private NavMeshAgent navMeshAgent;
     private int path = 0;
