@@ -23,7 +23,7 @@ public class Arrow : Projectile
     void Start()
     {
 
-        target = GetComponentInParent<Tower>().GetFirstEnemy();
+        target = GetComponentInParent<CrossbowTower>().GetFirstEnemy();
         enemyPos = target.transform.position;
 
 
@@ -31,7 +31,8 @@ public class Arrow : Projectile
 
     private void Update()
     {
-         float step = projectileSpeed * Time.deltaTime;
+        float step = projectileSpeed * Time.deltaTime;
+
 
         if (!targetGone)
         {
@@ -45,7 +46,11 @@ public class Arrow : Projectile
             }
         }
 
+        Vector3 targetDirection = enemyPos - transform.position;
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, step, 0.01f);
+        transform.rotation = Quaternion.LookRotation(newDirection);
         transform.position = Vector3.MoveTowards(transform.position, enemyPos, step);
+
         if (Vector3.Distance(transform.position, enemyPos)< 0.001f)
         {
             Destroy(gameObject);

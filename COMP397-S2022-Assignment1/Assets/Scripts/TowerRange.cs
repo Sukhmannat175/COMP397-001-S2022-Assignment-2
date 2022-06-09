@@ -1,4 +1,4 @@
-/*
+/*TowerRange.cs
  *Created by: Han Bi 301176547
  *Script used for tower behaviour
  *This is a sphere collisionBox that detect all enemies within range
@@ -31,11 +31,7 @@ public class TowerRange : MonoBehaviour
 
         if (other.CompareTag("Enemy"))
         {
-            if (!parentTower.targets.Contains(other.gameObject))
-            {
-                parentTower.AddToTargets(other.gameObject);
-            }
-            
+            parentTower.AddToTargets(other.gameObject);
         }
         
     }

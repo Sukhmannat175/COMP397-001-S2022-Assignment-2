@@ -21,9 +21,9 @@ public class ShopItemDisplay : MonoBehaviour
         defaultDisplayButton.UpdateDisplay();
     }
 
-    public void UpdateDisplay(string name, string description, int gold, int stone, int wood)
+    public void UpdateDisplay(Tower.TowerType name, string description, int gold, int stone, int wood)
     {
-        nameLabel.text = name;
+        nameLabel.text = name.ToString();
         descriptionLabel.text = description;
         goldLabel.text = gold.ToString();
         stoneLabel.text = stone.ToString();
