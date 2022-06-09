@@ -16,19 +16,17 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         //For targeting to work, WE NEED TO SET SPEED TO WHATEVER THE ENEMY'S CURRENT SPEED IS
-        speed = 10f;
+        speed = 3.5f;
     }
 
     // Update is called once per frame
     void Update()
     {
-
         distanceTravelled += speed * Time.deltaTime;
     }
 
     public float GetDistanceTravelled()
     {
-
         return distanceTravelled;
     }
 

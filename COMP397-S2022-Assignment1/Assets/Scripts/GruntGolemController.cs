@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class GruntGolemController : MonoBehaviour
+public class GruntGolemController : Enemy
 {
     [SerializeField] private Transform[] wayPoints;
 
@@ -14,6 +14,7 @@ public class GruntGolemController : MonoBehaviour
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        SetSpeed(navMeshAgent.speed);
     }
 
     // Update is called once per frame
