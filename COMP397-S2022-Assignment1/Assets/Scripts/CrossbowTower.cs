@@ -17,10 +17,15 @@ public class CrossbowTower : Tower
     [Tooltip("The location the Projectile will shoot from")]
     protected GameObject projectileSpawn;
 
-    private List<GameObject> targets  = new List<GameObject>();
+    [SerializeField]
+    private List<GameObject> targets;
 
     protected GameObject currentTarget = null;
 
+    private void Start()
+    {
+        targets = new List<GameObject>();
+    }
 
     //for testing
     [SerializeField] private bool coolingDown = false; //used to flag tower cooldown in Coroutine
