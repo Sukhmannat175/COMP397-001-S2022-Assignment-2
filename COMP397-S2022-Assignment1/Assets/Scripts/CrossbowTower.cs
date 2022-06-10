@@ -25,6 +25,10 @@ public class CrossbowTower : Tower
 
     protected GameObject currentTarget = null;
 
+    private void Start()
+    {
+        targets = new List<GameObject>();
+    }
 
     //for testing
     [SerializeField] private bool coolingDown = false; //used to flag tower cooldown in Coroutine
