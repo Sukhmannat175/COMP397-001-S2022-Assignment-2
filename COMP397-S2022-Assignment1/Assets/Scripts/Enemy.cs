@@ -8,19 +8,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     private float speed;
-    private float distanceTravelled;
+    [SerializeField] private float distanceTravelled;
     // Start is called before the first frame update
     void Start()
-    {
-        //For targeting to work, WE NEED TO SET SPEED TO WHATEVER THE ENEMY'S CURRENT SPEED IS
-        speed = 3.5f;
+    {       
+        
     }
 
     // Update is called once per frame
     void Update()
+    {
+        
+    }
+
+    public void UpdateDistanceTravelled()
     {
         distanceTravelled += speed * Time.deltaTime;
     }

@@ -21,6 +21,8 @@ public class GruntGolemController : Enemy
     void Update()
     {
         Walk(wayPoints[path]);
+
+        UpdateDistanceTravelled();
     }
 
     public void Walk(Transform position)
