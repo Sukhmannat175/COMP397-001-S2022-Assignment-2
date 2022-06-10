@@ -29,29 +29,25 @@ public class PlayerCameraController : MonoBehaviour
     {
         // Movement based on KeyBinding Manager
         if (Input.GetKey(keyBindingManager.Up))
-        {
-            Debug.Log("Up Key Pressed!");
+        {            
             cameraTransform.position = new Vector3(cameraTransform.position.x, 
                                                     cameraTransform.position.y,
                                                     cameraTransform.position.z + (1 * cameraSpeed * Time.deltaTime));
         }
         if (Input.GetKey(keyBindingManager.Down))
-        {
-            Debug.Log("Down Key Pressed!");
+        {            
             cameraTransform.position = new Vector3(cameraTransform.position.x,
                                                     cameraTransform.position.y,
                                                     cameraTransform.position.z + (-1 * cameraSpeed * Time.deltaTime));
         }
         if (Input.GetKey(keyBindingManager.Left))
         {
-            Debug.Log("Left Key Pressed!");
             cameraTransform.position = new Vector3(cameraTransform.position.x + (-1 * cameraSpeed * Time.deltaTime),
                                                     cameraTransform.position.y,
                                                     cameraTransform.position.z);
         }
         if (Input.GetKey(keyBindingManager.Right))
         {
-            Debug.Log("Right Key Pressed!");
             cameraTransform.position = new Vector3(cameraTransform.position.x + (1 * cameraSpeed * Time.deltaTime),
                                                     cameraTransform.position.y,
                                                     cameraTransform.position.z);
