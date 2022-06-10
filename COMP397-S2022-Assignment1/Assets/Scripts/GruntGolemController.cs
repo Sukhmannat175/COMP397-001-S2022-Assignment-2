@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class GruntGolemController : Enemy
 {
-    public Transform[] wayPoints;
+    public Transform[] wayPoints = { };
 
     private NavMeshAgent navMeshAgent;
     private int path = 0;
@@ -21,6 +21,8 @@ public class GruntGolemController : Enemy
     void Update()
     {
         Walk(wayPoints[path]);
+
+        UpdateDistanceTravelled();
     }
 
     public void Walk(Transform position)

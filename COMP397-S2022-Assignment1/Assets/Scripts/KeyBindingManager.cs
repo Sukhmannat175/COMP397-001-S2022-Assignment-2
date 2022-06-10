@@ -38,7 +38,7 @@ public class KeyBindingManager : MonoBehaviour
     public KeyCode Up { get { return up; } }
     public KeyCode Left { get { return left; } }
     public KeyCode Down { get { return down; } }
-    public KeyCode rRight { get { return right; } }
+    public KeyCode Right { get { return right; } }
     public bool SelectedNormalXAxis { get { return selectedNormalXAxis; } }
     public bool SelectedNormalYAxis { get { return selectedNormalYAxis; } }
 
