@@ -18,6 +18,7 @@ public class Arrow : Projectile
     Vector3 enemyPos;
 
     [SerializeField] bool targetGone = false;
+    [SerializeField] AudioClip enemyDeathSound;
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +62,7 @@ public class Arrow : Projectile
     {
         if (other.CompareTag("Enemy"))
         {
+            SoundManager.instance.PlaySFX(enemyDeathSound);
             Destroy(gameObject);
         }
     }

@@ -65,6 +65,7 @@ MonoBehaviour:
   attackZone: {fileID: 3260323774302551585}
   projectile: {fileID: 3439487239067927562, guid: fe5c4c8b36e4d8f4090fe2d78875e123, type: 3}
   projectileSpawn: {fileID: 3260323774470202576}
+  shootSound: {fileID: 8300000, guid: 7097b80e8ee8b1c4ebb02bc153897723, type: 3}
   coolingDown: 0
 --- !u!1 &3260323774302551585
 GameObject:
