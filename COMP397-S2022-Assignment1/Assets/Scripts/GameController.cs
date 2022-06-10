@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
             for (int i = 0; i < 20; i++)
             {
                 yield return new WaitForSeconds(1);
-                Instantiate(gruntGolem, gruntGolemSpawn.localPosition, gruntGolem.transform.localRotation);
+                Instantiate(gruntGolem, gruntGolemSpawn.position, gruntGolem.transform.rotation);
             }
             spawn = false;
         }
