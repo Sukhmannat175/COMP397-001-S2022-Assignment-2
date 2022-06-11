@@ -197,6 +197,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1936844583}
     m_Modifications:
+    - target: {fileID: 36353944383157386, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 36353944383157386, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 36353944383157386, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 36353944383157386, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 601794836137587414, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
       propertyPath: m_Text
       value: Load Game
@@ -293,9 +309,61 @@ PrefabInstance:
       propertyPath: saveText
       value: Save Game
       objectReference: {fileID: 0}
+    - target: {fileID: 3617203594237397213, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617203594237397213, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617203594237397213, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617203594237397213, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4902539668678367066, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4902539668678367066, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4902539668678367066, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4902539668678367066, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214672760643229917, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5535618102543552774, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
       propertyPath: m_Text
       value: New Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 6006293753418633287, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6006293753418633287, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6006293753418633287, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6006293753418633287, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7883328465176380647, guid: 3ef41b1411455bb4e90f64bbb1ecf0a6, type: 3}
       propertyPath: m_Name
