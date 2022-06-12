@@ -1,8 +1,10 @@
-/*  Filename:       SoundManager.cs
- *  Author:         Yuk Yee Wong (301234795)
-                    Marcus Ngooi (301147411)
- *  Last Update:    June 12, 2022
- *  Description:    Manages sound.
+/*  Filename:           SoundManager.cs
+ *  Author:             Yuk Yee Wong (301234795)
+ *                      Marcus Ngooi (301147411)
+ *  Last Update:        June 12, 2022
+ *  Description:        Manages sound.
+ *  Revision History:   June 6, 2022 (Yuk Yee Wong): Initial script.
+ *                      June 12, 2022 (Marcus Ngooi): Added Start function to reduce volume to 0.5 on start starting line 46. 
  */
 
 using UnityEngine;

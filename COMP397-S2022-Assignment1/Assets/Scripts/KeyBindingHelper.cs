@@ -1,8 +1,9 @@
-// KeyBindingHelper.cs
-// Yuk Yee Wong - 301234795
-// 06/06/2022
-// Key Binding Helper
-// Initial Script
+/*  Filename:           KeyBindingHelper.cs
+ *  Author:             Yuk Yee Wong (301234795)
+ *  Last Update:        June 6, 2022
+ *  Description:        Key Binding Helper.
+ *  Revision History:   June 6, 2022 (Yuk Yee Wong): Initial script.
+ */
 
 using System.Text;
 using UnityEngine;

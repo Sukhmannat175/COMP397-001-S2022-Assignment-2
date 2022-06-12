@@ -1,7 +1,8 @@
-/*  Filename:       GameDifficultyManager.cs
- *  Author:         Marcus Ngooi (301147411)
- *  Last Update:    June 11, 2022
- *  Description:    Keeps track of game difficulty selected.
+/*  Filename:           GameDifficultyManager.cs
+ *  Author:             Marcus Ngooi (301147411)
+ *  Last Update:        June 11, 2022
+ *  Description:        Keeps track of game difficulty selected.
+ *  Revision History:   June 11, 2022 (Marcus Ngooi): Initial script.
  */
 
 using System.Collections;

@@ -1,8 +1,8 @@
-/*
- *Created by: Han Bi 301176547
- *Child class of the Projectile class
- *Use for arrow tower projectiles
- *Last update: June 7, 2022
+/*  Filename:           Arrow.cs
+ *  Author:             Han Bi (301176547)
+ *  Last Update:        June 7, 2022
+ *  Description:        Use for arrow tower projectiles.
+ *  Revision History:   June 7, 2022 (Han Bi): Initial script.
  */
 
 using System.Collections;

@@ -1,8 +1,9 @@
-// CollapseButton.cs
-// Yuk Yee Wong - 301234795
-// 06/06/2022
-// Collapse Button
-// Initial Script
+/*  Filename:           CollapseButton.cs
+ *  Author:             Yuk Yee Wong (301234795)
+ *  Last Update:        June 6, 2022
+ *  Description:        Collapse Button.
+ *  Revision History:   June 6, 2022 (Yuk Yee Wong): Initial script.
+ */
 
 using UnityEngine;
 

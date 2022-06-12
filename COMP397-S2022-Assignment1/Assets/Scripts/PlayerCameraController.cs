@@ -1,7 +1,8 @@
-/*  Filename:       PlayerCameraController.cs
- *  Author:         Marcus Ngooi (301147411)
- *  Last Update:    June 9, 2022
- *  Description:    Allows player to move the camera around to see different parts of the map.
+/*  Filename:           PlayerCameraController.cs
+ *  Author:             Marcus Ngooi (301147411)
+ *  Last Update:        June 9, 2022
+ *  Description:        Button Sound Helper.
+ *  Revision History:   June 9, 2022 (Marcus Ngooi): Allows player to move the camera around to see different parts of the level.
  */
 
 using System.Collections;

@@ -1,7 +1,8 @@
-/*Tower.cs
- *Created by: Han Bi 301176547
- *base abstract class for all towers
- *Last update: June 8, 2022
+/*  Filename:           Tower.cs
+ *  Author:             Han Bi (301176547)
+ *  Last Update:        June 8, 2022
+ *  Description:        Base abstract class for all towers.
+ *  Revision History:   June 8, 2022 (Han Bi): Initial script.
  */
 
 using System.Collections;

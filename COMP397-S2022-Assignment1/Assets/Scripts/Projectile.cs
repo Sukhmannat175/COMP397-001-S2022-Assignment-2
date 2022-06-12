@@ -1,7 +1,8 @@
-/*Projectile.cs
- *Created by: Han Bi 301176547
- *Abstract class for different projectiles
- *Last update: June 7, 2022
+/*  Filename:           Projectile.cs
+ *  Author:             Han Bi (301176547)
+ *  Last Update:        June 7, 2022
+ *  Description:        Abstract class for different projectiles.
+ *  Revision History:   June 7, 2022 (Han Bi): Initial script.
  */
 
 using System.Collections;

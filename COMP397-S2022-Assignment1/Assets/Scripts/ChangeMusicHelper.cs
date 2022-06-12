@@ -1,8 +1,9 @@
-// ChangeMusicHelper.cs
-// Yuk Yee Wong - 301234795
-// 06/06/2022
-// Change Music Helper
-// Initial Script
+/*  Filename:           ChangeMusicHelper.cs
+ *  Author:             Yuk Yee Wong (301234795)
+ *  Last Update:        June 6, 2022
+ *  Description:        Change Music Helper.
+ *  Revision History:   June 6, 2022 (Yuk Yee Wong): Initial script.
+ */
 
 using System.Collections;
 using System.Collections.Generic;

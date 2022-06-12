@@ -1,9 +1,9 @@
-// InventoryManager.cs
-// Yuk Yee Wong - 301234795
-// 06/06/2022
-// Inventory Manager
-// Initial Script
-// Added tower preview + purchase script
+/*  Filename:           InventoryManager.cs
+ *  Author:             Yuk Yee Wong (301234795)
+ *  Last Update:        June 6, 2022
+ *  Description:        Inventory Manager.
+ *  Revision History:   June 6, 2022 (Yuk Yee Wong): Initial script including tower preview and purchase script.
+ */
 
 using UnityEngine;
 

@@ -1,3 +1,10 @@
+/*  Filename:           GruntGolemController.cs
+ *  Author:             Sukhmannat Singh (301168420)
+ *  Last Update:        June 11, 2022
+ *  Description:        Controls grunt golem.
+ *  Revision History:   June 11, 2022 (Sukhmannat Singh): Initial script.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

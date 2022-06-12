@@ -1,8 +1,9 @@
-// ToggleHelper.cs
-// Yuk Yee Wong - 301234795
-// 06/06/2022
-// Toggle Helper
-// Initial Script
+/*  Filename:           ToggleHelper.cs
+ *  Author:             Yuk Yee Wong (301234795)
+ *  Last Update:        June 6, 2022
+ *  Description:        Toggle Helper.
+ *  Revision History:   June 6, 2022 (Yuk Yee Wong): Initial script.
+ */
 
 using UnityEngine;
 

@@ -1,8 +1,10 @@
-/*  Filename:       HUDController.cs
- *  Author:         Yuk Yee Wong (301234795)
-                    Marcus Ngooi (301147411)
- *  Last Update:    June 11, 2022
- *  Description:    Toggles pause screen.
+/*  Filename:           HUDController.cs
+ *  Author:             Yuk Yee Wong (301234795)
+                        Marcus Ngooi (301147411)
+ *  Last Update:        June 11, 2022
+ *  Description:        Toggles pause screen.
+ *  Revision History:   June 6, 2022 (Yuk Yee Wong): Intitial Script.
+ *                      June 11, 2022 (Marcus Ngooi): Added change music logic on line 25.
  */
 
 using System.Collections;

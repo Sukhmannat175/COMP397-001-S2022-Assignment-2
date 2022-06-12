@@ -1,7 +1,8 @@
-/*  Filename:       HealthBarController.cs
- *  Author:         Marcus Ngooi (301147411)
- *  Last Update:    June 11, 2022
- *  Description:    Controls player's health bar.
+/*  Filename:           HealthBarController.cs
+ *  Author:             Marcus Ngooi (301147411)
+ *  Last Update:        June 11, 2022
+ *  Description:        Controls player's health bar.
+ *  Revision History:   June 11, 2022 (Marcus Ngooi): Initial script.
  */
 
 using System.Collections;

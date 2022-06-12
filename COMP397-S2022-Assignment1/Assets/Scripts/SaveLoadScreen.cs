@@ -1,8 +1,9 @@
-// SaveLoadScreen.cs
-// Yuk Yee Wong - 301234795
-// 06/09/2022
-// Save LoadS Screen
-// Initial Script
+/*  Filename:           SaveLoadScreen.cs
+ *  Author:             Yuk Yee Wong (301234795)
+ *  Last Update:        June 9, 2022
+ *  Description:        Save LoadS Screen.
+ *  Revision History:   June 9, 2022 (Yuk Yee Wong): Initial script.
+ */
 
 using System.Collections;
 using System.Collections.Generic;

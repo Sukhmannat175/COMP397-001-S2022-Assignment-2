@@ -1,7 +1,8 @@
-/*  Filename:       ToggleGameDifficulty.cs
- *  Author:         Marcus Ngooi (301147411)
- *  Last Update:    June 11, 2022
- *  Description:    Communictes with GameDifficultyManager based on selections in options screen.
+/*  Filename:           ToggleGameDifficulty.cs
+ *  Author:             Marcus Ngooi (301147411)
+ *  Last Update:        June 11, 2022
+ *  Description:        Communictes with GameDifficultyManager based on selections in options screen.
+ *  Revision History:   June 11, 2022 (Marcus Ngooi): Initial script.
  */
 
 using System.Collections;

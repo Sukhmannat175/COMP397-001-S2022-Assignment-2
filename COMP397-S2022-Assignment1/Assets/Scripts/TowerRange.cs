@@ -1,8 +1,8 @@
-/*TowerRange.cs
- *Created by: Han Bi 301176547
- *Script used for tower behaviour
- *This is a sphere collisionBox that detect all enemies within range
- *Last update: June 7, 2022
+/*  Filename:           TowerRange.cs
+ *  Author:             Han Bi (301176547)
+ *  Last Update:        June 7, 2022
+ *  Description:        Script used for tower behaviour. This is a sphere collisionBox that detect all enemies within range.
+ *  Revision History:   June 7, 2022 (Han Bi): Initial script.
  */
 
 using System.Collections;

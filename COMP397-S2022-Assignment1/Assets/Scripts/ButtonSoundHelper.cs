@@ -1,8 +1,9 @@
-// ButtonSoundHelper.cs
-// Yuk Yee Wong - 301234795
-// 06/06/2022
-// Button Sound Helper
-// Initial Script
+/*  Filename:           ButtonSoundHelper.cs
+ *  Author:             Yuk Yee Wong (301234795)
+ *  Last Update:        June 6, 2022
+ *  Description:        Button Sound Helper.
+ *  Revision History:   June 6, 2022 (Yuk Yee Wong): Initial script.
+ */
 
 using UnityEngine;
 

@@ -1,8 +1,9 @@
-// ShopItemDisplay.cs
-// Yuk Yee Wong - 301234795
-// 06/06/2022
-// Shop Item Display
-// Initial Script
+/*  Filename:           ShopItemDisplay.cs
+ *  Author:             Yuk Yee Wong (301234795)
+ *  Last Update:        June 6, 2022
+ *  Description:        Shop Item Display.
+ *  Revision History:   June 6, 2022 (Yuk Yee Wong): Initial script.
+ */
 
 using UnityEngine;
 using UnityEngine.UI;

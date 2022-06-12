@@ -1,7 +1,8 @@
-/*  Filename:       MiniMapController.cs
- *  Author:         Marcus Ngooi (301147411)
- *  Last Update:    June 11, 2022
- *  Description:    Makes minimap camera follow player camera.
+/*  Filename:           MiniMapController.cs
+ *  Author:             Marcus Ngooi (301147411)
+ *  Last Update:        June 11, 2022
+ *  Description:        Makes minimap camera follow player camera.
+ *  Revision History:   June 11, 2022 (Marcus Ngooi): Initial script.
  */
 
 using System.Collections;
