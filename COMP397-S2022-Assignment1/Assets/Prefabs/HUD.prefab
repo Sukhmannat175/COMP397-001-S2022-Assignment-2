@@ -3807,7 +3807,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthValue: 10
-  healthLbl: {fileID: 0}
 --- !u!224 &6194972701161581305 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5502234197803816847, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}

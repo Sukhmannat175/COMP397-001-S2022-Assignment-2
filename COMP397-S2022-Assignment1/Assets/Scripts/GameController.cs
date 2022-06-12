@@ -78,4 +78,10 @@ public class GameController : MonoBehaviour
         gameOverScreen.SetActive(true);
         Time.timeScale = 0;
     }
+
+    public void GameOverBackToGameplay()
+    {
+        gameOverScreen.SetActive(false);
+        Time.timeScale = 1;
+    }
 }
