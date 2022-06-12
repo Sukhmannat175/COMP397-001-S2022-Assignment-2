@@ -19,7 +19,7 @@ public class Arrow : Projectile
 
     [SerializeField] bool targetGone = false;
     [SerializeField] AudioClip enemyDeathSound;
-
+    [SerializeField] GruntGolemController gruntGolemController;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +63,7 @@ public class Arrow : Projectile
         if (other.CompareTag("Enemy"))
         {
             SoundManager.instance.PlaySFX(enemyDeathSound);
+            gruntGolemController.TakeEnemyDamage(1);
             Destroy(gameObject);
         }
     }
