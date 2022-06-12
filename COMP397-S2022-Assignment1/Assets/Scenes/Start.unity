@@ -642,6 +642,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1653472456270869032, guid: 827f1451c60c3fe49b8cdcc409ca3c3f, type: 3}
+      propertyPath: sfxVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1653472456270869032, guid: 827f1451c60c3fe49b8cdcc409ca3c3f, type: 3}
+      propertyPath: musicVolume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1653472456270869033, guid: 827f1451c60c3fe49b8cdcc409ca3c3f, type: 3}
       propertyPath: m_RootOrder
       value: 4
