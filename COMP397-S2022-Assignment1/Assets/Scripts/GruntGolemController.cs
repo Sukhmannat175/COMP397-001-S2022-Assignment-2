@@ -7,7 +7,7 @@ public class GruntGolemController : Enemy
 {
     public Transform[] wayPoints = { };
     public HealthBarController healthBarController;
-
+    
     private NavMeshAgent navMeshAgent;
     private int path = 0;
     private int health = 5;
@@ -25,11 +25,6 @@ public class GruntGolemController : Enemy
         Walk(wayPoints[path]);
 
         UpdateDistanceTravelled();
-
-        if (this.health == 0)
-        {
-            Destroy(this.gameObject);
-        }
     }
 
     public void Walk(Transform position)
@@ -42,9 +37,11 @@ public class GruntGolemController : Enemy
                 if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude == 0f)
                 {
                     this.path += 1;
+                    Debug.Log(path);
                     if (path == 7)
                     {
                         healthBarController.TakeDamage(1);
+                        GameController.instance.totalEnemiesDead += 1;
                         Destroy(this.gameObject);
                     }
                 }
@@ -55,5 +52,20 @@ public class GruntGolemController : Enemy
     public void TakeEnemyDamage(int dmg)
     {
         health -= dmg;
+        if (health == 0)
+        {
+            GameController.instance.score += 10;
+            GameController.instance.enemiesKilled += 1;
+            GameController.instance.totalEnemiesDead += 1;
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Projectile"))
+        {            
+            TakeEnemyDamage(1);
+        }
     }
 }

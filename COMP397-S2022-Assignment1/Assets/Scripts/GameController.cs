@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -14,11 +15,17 @@ public class GameController : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private GameObject hpBar;
+    [SerializeField] private Text finalScore;
+    [SerializeField] private Text finalEnemiesKilled;
 
     public static GameController instance;
+    [HideInInspector] public int score = 0;
+    [HideInInspector] public int enemiesKilled = 0;
+    [HideInInspector] public int totalEnemiesDead = 0;
 
     private bool spawn = true;
-
+    
     private IEnumerator Spawn()
     {
         while (spawn)
@@ -54,12 +61,20 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < gruntGolemController.wayPoints.Length; i++)
         {
             gruntGolemController.wayPoints[i] = WayPoints.transform.GetChild(i);
+            gruntGolemController.healthBarController = hpBar.GetComponent<HealthBarController>();
+        }
+
+        if (totalEnemiesDead == 20)
+        {
+            GameOver();
         }
     }
 
     // Methods
     public void GameOver()
     {
+        finalScore.text = score.ToString();
+        finalEnemiesKilled.text = enemiesKilled.ToString(); 
         gameOverScreen.SetActive(true);
         Time.timeScale = 0;
     }
