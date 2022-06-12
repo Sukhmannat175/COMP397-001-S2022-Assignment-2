@@ -17,8 +17,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource sfxAudioSource;
 
     [Header("Debug")]
-    [SerializeField] private float musicVolume = 1;
-    [SerializeField] private float sfxVolume = 1;
+    [SerializeField] private float musicVolume = 0.5f;
+    [SerializeField] private float sfxVolume = 0.5f;
 
     public const string MusicParameter = "MusicVol";
     public const string SfxParameter = "SfxVol";
@@ -38,6 +38,12 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        SetVolume(0.5f, SoundType.MUSIC);
+        SetVolume(0.5f, SoundType.SFX);
     }
 
     public void ChangeMusic(AudioClip clip)
