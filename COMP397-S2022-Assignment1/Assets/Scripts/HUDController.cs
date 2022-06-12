@@ -20,6 +20,7 @@ public class HUDController : MonoBehaviour
             if (pauseScreen.gameObject.activeInHierarchy)
             {
                 pauseScreen.Close();
+                SoundManager.instance.ChangeMusic(GetComponent<ChangeMusicHelper>().clip);
             }    
             else
             {

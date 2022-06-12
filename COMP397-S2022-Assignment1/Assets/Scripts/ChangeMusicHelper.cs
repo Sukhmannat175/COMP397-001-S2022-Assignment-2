@@ -10,7 +10,7 @@ using UnityEngine;
 
 public class ChangeMusicHelper : MonoBehaviour
 {
-    [SerializeField] AudioClip clip;
+    [SerializeField] public AudioClip clip;
 
     private void OnEnable()
     {
