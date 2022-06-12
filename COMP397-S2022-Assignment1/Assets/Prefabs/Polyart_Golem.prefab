@@ -426,6 +426,8 @@ MonoBehaviour:
   - {fileID: 0}
   healthBarController: {fileID: 0}
   child: {fileID: 3598328542102288817}
+  deathSound: {fileID: 8300000, guid: f2c6c9b84f33c8b45bad6727c1051469, type: 3}
+  playerSound: {fileID: 8300000, guid: 7ab3073a65d6f03479af749e1239ca78, type: 3}
 --- !u!136 &6918927713761669298
 CapsuleCollider:
   m_ObjectHideFlags: 0

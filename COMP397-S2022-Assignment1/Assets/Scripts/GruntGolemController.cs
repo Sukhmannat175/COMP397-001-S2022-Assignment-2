@@ -13,6 +13,9 @@ public class GruntGolemController : Enemy
     private int path = 0;
     private int health = 5;
 
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip playerSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +46,7 @@ public class GruntGolemController : Enemy
                     {
                         healthBarController.TakeDamage(1);
                         GameController.instance.totalEnemiesDead += 1;
+                        SoundManager.instance.PlaySFX(playerSound);
                         Destroy(this.gameObject);
                     }
                 }
@@ -58,6 +62,7 @@ public class GruntGolemController : Enemy
             GameController.instance.score += 10;
             GameController.instance.enemiesKilled += 1;
             GameController.instance.totalEnemiesDead += 1;
+            SoundManager.instance.PlaySFX(deathSound);
             Destroy(this.gameObject);
         }
     }
