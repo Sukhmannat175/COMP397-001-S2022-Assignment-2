@@ -39,7 +39,6 @@ public class GruntGolemController : Enemy
                 if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude == 0f)
                 {
                     this.path += 1;
-                    Debug.Log(path);
                     if (path == 7)
                     {
                         healthBarController.TakeDamage(1);
