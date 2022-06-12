@@ -425,6 +425,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   healthBarController: {fileID: 0}
+  child: {fileID: 3598328542102288817}
 --- !u!136 &6918927713761669298
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1126,7 +1127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5502234197803816847, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.01
+      value: 0.035
       objectReference: {fileID: 0}
     - target: {fileID: 5502234197803816847, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
       propertyPath: m_LocalScale.z
@@ -1166,7 +1167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5502234197803816847, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -45.47
+      value: -45.35
       objectReference: {fileID: 0}
     - target: {fileID: 5502234197803816847, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

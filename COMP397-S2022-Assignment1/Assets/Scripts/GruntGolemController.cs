@@ -7,7 +7,8 @@ public class GruntGolemController : Enemy
 {
     public Transform[] wayPoints = { };
     public HealthBarController healthBarController;
-    
+    public Transform child;
+
     private NavMeshAgent navMeshAgent;
     private int path = 0;
     private int health = 5;
@@ -23,7 +24,8 @@ public class GruntGolemController : Enemy
     void Update()
     {
         Walk(wayPoints[path]);
-
+        child.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+        
         UpdateDistanceTravelled();
     }
 
