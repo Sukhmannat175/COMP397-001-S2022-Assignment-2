@@ -1,8 +1,9 @@
-// SoundManager.cs
-// Yuk Yee Wong - 301234795
-// 06/06/2022
-// Sound manager
-// Initial Script
+/*  Filename:       SoundManager.cs
+ *  Author:         Yuk Yee Wong (301234795)
+                    Marcus Ngooi (301147411)
+ *  Last Update:    June 12, 2022
+ *  Description:    Manages sound.
+ */
 
 using UnityEngine;
 using UnityEngine.Audio;

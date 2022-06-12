@@ -1,6 +1,6 @@
 /*  Filename:       HUDController.cs
- *  Author:         Marcus Ngooi (301147411)
-                    Yuk Yee Wong (301234795)
+ *  Author:         Yuk Yee Wong (301234795)
+                    Marcus Ngooi (301147411)
  *  Last Update:    June 11, 2022
  *  Description:    Toggles pause screen.
  */
