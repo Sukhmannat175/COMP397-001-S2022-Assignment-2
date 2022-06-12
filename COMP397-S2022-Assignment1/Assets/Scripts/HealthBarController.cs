@@ -34,12 +34,7 @@ public class HealthBarController : MonoBehaviour
         {
             startingHealthValue = healthValue;
             bar.value = healthValue;
-        }
-
-        if (healthValue == 0)
-        {
-            GameController.instance.GameOver();
-        }
+        }        
 
         // For testing
         if (Input.GetKeyDown(KeyCode.K))
@@ -52,5 +47,10 @@ public class HealthBarController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         healthValue -= damage;
+
+        if (healthValue == 0)
+        {
+            GameController.instance.GameOver();
+        }
     }
 }

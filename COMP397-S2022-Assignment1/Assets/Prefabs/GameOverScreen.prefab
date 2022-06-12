@@ -1094,42 +1094,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2011211074454331176}
     m_Modifications:
-    - target: {fileID: 2830842710565374784, guid: a61bf22eb21c9b847b01089b26223c69, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2830842710565374784, guid: a61bf22eb21c9b847b01089b26223c69, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2830842710565374784, guid: a61bf22eb21c9b847b01089b26223c69, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 5865949427637116744}
-    - target: {fileID: 2830842710565374784, guid: a61bf22eb21c9b847b01089b26223c69, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2830842710565374784, guid: a61bf22eb21c9b847b01089b26223c69, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: LoadScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 2830842710565374784, guid: a61bf22eb21c9b847b01089b26223c69, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: LoadSceneHelper, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2830842710565374784, guid: a61bf22eb21c9b847b01089b26223c69, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4005925036652082233, guid: a61bf22eb21c9b847b01089b26223c69, type: 3}
-      propertyPath: m_Name
-      value: Lbl_Resume
-      objectReference: {fileID: 0}
-    - target: {fileID: 4110812599140155057, guid: a61bf22eb21c9b847b01089b26223c69, type: 3}
-      propertyPath: m_Text
-      value: Resume
-      objectReference: {fileID: 0}
     - target: {fileID: 6762418612732852853, guid: a61bf22eb21c9b847b01089b26223c69, type: 3}
       propertyPath: m_Name
       value: Btn_Resume
@@ -1225,24 +1189,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8457719053040098109, guid: a61bf22eb21c9b847b01089b26223c69, type: 3}
   m_PrefabInstance: {fileID: 4365218207326411589}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7011173550978261296 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6762418612732852853, guid: a61bf22eb21c9b847b01089b26223c69, type: 3}
-  m_PrefabInstance: {fileID: 4365218207326411589}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5865949427637116744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7011173550978261296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16e3f9a6218a8b042a72a5d790695029, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: Main
 --- !u!1001 &4583901423446142070
 PrefabInstance:
   m_ObjectHideFlags: 0

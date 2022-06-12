@@ -25,7 +25,8 @@ public class GameController : MonoBehaviour
     [HideInInspector] public int totalEnemiesDead = 0;
 
     private bool spawn = true;
-    
+    private bool gameOver = false;
+
     private IEnumerator Spawn()
     {
         while (spawn)
@@ -64,7 +65,7 @@ public class GameController : MonoBehaviour
             gruntGolemController.healthBarController = hpBar.GetComponent<HealthBarController>();
         }
 
-        if (totalEnemiesDead == 20)
+        if (totalEnemiesDead == 20 && gameOver == true)
         {
             GameOver();
         }
@@ -74,13 +75,15 @@ public class GameController : MonoBehaviour
     public void GameOver()
     {
         finalScore.text = score.ToString();
-        finalEnemiesKilled.text = enemiesKilled.ToString(); 
+        finalEnemiesKilled.text = enemiesKilled.ToString();
+        gameOver = true;
         gameOverScreen.SetActive(true);
         Time.timeScale = 0;
     }
 
     public void GameOverBackToGameplay()
     {
+        gameOver = false;
         gameOverScreen.SetActive(false);
         Time.timeScale = 1;
     }
