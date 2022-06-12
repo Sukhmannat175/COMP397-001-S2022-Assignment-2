@@ -1,3 +1,9 @@
+/*  Filename:       MiniMapController.cs
+ *  Author:         Marcus Ngooi (301147411)
+ *  Last Update:    June 11, 2022
+ *  Description:    Makes minimap camera follow player camera.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
