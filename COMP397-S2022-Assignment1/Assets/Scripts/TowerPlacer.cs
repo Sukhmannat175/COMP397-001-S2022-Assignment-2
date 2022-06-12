@@ -50,13 +50,13 @@ public class TowerPlacer : MonoBehaviour
 
             towerPreview.transform.position = worldPos;
 
-            if (towerPreview.GetComponent<TowerPreview>().GetIsValidPosition() && InventoryManager.instance.EnoughResources(goldCost, woodCost, stoneCost))
+            if (towerPreview.GetComponent<TowerPreview>().GetIsValidPosition() && InventoryManager.instance.EnoughResources(goldCost, stoneCost, woodCost))
             {
                 towerPreview.GetComponent<TowerPreview>().ChangeRangeColor(new Color(1, 1, 1, 0.4f));
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    InventoryManager.instance.BuyTower(goldCost, woodCost, stoneCost);
+                    InventoryManager.instance.BuyTower(goldCost, stoneCost, woodCost);
                     PlaceTower(currentType);
                     
                 }
