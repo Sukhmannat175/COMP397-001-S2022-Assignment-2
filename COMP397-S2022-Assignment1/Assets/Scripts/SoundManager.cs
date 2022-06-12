@@ -1,8 +1,9 @@
-// SoundManager.cs
-// Yuk Yee Wong - 301234795
-// 06/06/2022
-// Sound manager
-// Initial Script
+/*  Filename:       SoundManager.cs
+ *  Author:         Yuk Yee Wong (301234795)
+                    Marcus Ngooi (301147411)
+ *  Last Update:    June 12, 2022
+ *  Description:    Manages sound.
+ */
 
 using UnityEngine;
 using UnityEngine.Audio;
@@ -17,8 +18,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource sfxAudioSource;
 
     [Header("Debug")]
-    [SerializeField] private float musicVolume = 1;
-    [SerializeField] private float sfxVolume = 1;
+    [SerializeField] private float musicVolume = 0.5f;
+    [SerializeField] private float sfxVolume = 0.5f;
 
     public const string MusicParameter = "MusicVol";
     public const string SfxParameter = "SfxVol";
@@ -38,6 +39,12 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        SetVolume(0.5f, SoundType.MUSIC);
+        SetVolume(0.5f, SoundType.SFX);
     }
 
     public void ChangeMusic(AudioClip clip)

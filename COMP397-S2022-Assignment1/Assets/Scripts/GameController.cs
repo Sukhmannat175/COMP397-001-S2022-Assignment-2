@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour
     [HideInInspector] public int totalEnemiesDead = 0;
 
     private bool spawn = true;
-    private bool gameOver = false;
+    private bool gameOver = true;
 
     private IEnumerator Spawn()
     {
@@ -76,7 +76,6 @@ public class GameController : MonoBehaviour
     {
         finalScore.text = score.ToString();
         finalEnemiesKilled.text = enemiesKilled.ToString();
-        gameOver = true;
         gameOverScreen.SetActive(true);
         Time.timeScale = 0;
     }
