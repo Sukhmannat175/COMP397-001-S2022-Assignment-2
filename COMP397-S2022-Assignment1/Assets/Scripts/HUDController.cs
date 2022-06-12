@@ -1,9 +1,9 @@
-// HUDController.cs
-// Yuk Yee Wong - 301234795
-// 05/29/2022
-// Toggle Pause Screen
-// Initial Script
-
+/*  Filename:       HUDController.cs
+ *  Author:         Marcus Ngooi (301147411)
+                    Yuk Yee Wong (301234795)
+ *  Last Update:    June 11, 2022
+ *  Description:    Toggles pause screen.
+ */
 
 using System.Collections;
 using System.Collections.Generic;
