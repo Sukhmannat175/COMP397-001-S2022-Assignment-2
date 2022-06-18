@@ -3,41 +3,42 @@
  *  Last Update:        June 7, 2022
  *  Description:        Abstract Enemy Class for all enemies.
  *  Revision History:   June 7, 2022 (Han Bi): Initial script which currently has mechanics to allow proper tower targeting.
+ *                      June 18, 2022 (Yuk Yee Wong): Add Enemy Type, State, Start, Update and 5 abstract methods.
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    private float speed;
-    [SerializeField] private float distanceTravelled;
-    // Start is called before the first frame update
-    void Start()
-    {       
-        
-    }
-
-    // Update is called once per frame
-    void Update()
+    public enum EnemyType
     {
-        
+        NONE = 0,
+        GRUNTGOLEM = 1,
+        STONEMONSTER = 2,
+        RESOURCESTEALER = 3
     }
-
-    public void UpdateDistanceTravelled()
+    public enum State
     {
-        distanceTravelled += speed * Time.deltaTime;
+        WALK = 0,
+        ATTACK = 1,
     }
 
-    public float GetDistanceTravelled()
+    private void Start()
     {
-        return distanceTravelled;
+        EnemyStartBehaviour();
     }
 
-    protected void SetSpeed(float speed)
+    private void Update()
     {
-        this.speed = speed;
+        EnemyUpdateBehaviour();
     }
 
+    public abstract void SetWayPoints(Transform wayPointsContainer);
+
+    public abstract float GetDistanceTravelled();
+    public abstract void EnemyStartBehaviour();
+
+    public abstract void EnemyUpdateBehaviour();
+
+    public abstract void Walk(Transform position);
 }
