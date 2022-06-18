@@ -14,6 +14,7 @@ public class TowerPlacer : MonoBehaviour
 
     [SerializeField] GameObject crossbowTower;
     [SerializeField] GameObject crossbowTowerPreview;
+    [SerializeField] private Transform towerContainer;
 
 
     GameObject towerPreview;
@@ -94,7 +95,7 @@ public class TowerPlacer : MonoBehaviour
                 woodCost = woodNeeded;
 
                 isPreview = true;
-                towerPreview = Instantiate(crossbowTowerPreview);
+                towerPreview = Instantiate(crossbowTowerPreview, towerContainer);
             }
         }
 
@@ -106,7 +107,7 @@ public class TowerPlacer : MonoBehaviour
         {
             isPreview = false;
             SoundManager.instance.PlaySFX(placeSound);
-            GameObject tower = Instantiate(crossbowTower, worldPos, Quaternion.identity);
+            GameObject tower = Instantiate(crossbowTower, worldPos, Quaternion.identity, towerContainer);
         
         }
         Destroy(towerPreview);

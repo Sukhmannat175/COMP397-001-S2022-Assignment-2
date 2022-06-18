@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4959384515723908328}
   m_Layer: 0
   m_Name: PreviewCrossbowTower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,10 +49,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TowerRange: {fileID: 3260323774302551585}
-  alpha: 3.78
   invalidObjects:
     serializedVersion: 2
     m_Bits: 1792
+  hitColliders: []
+  isValidPosition: 0
 --- !u!65 &4959384515723908328
 BoxCollider:
   m_ObjectHideFlags: 0
