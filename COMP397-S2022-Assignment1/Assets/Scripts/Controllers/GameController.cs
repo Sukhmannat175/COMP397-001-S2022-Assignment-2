@@ -12,40 +12,41 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    [Header("Controllers")]
-    [SerializeField] private GruntGolemController gruntGolemController;
+    [System.Serializable]
+    public class EnemyWave
+    {
+        public List<Enemy.EnemyType> types;
+    }
+
+    [Header("Enemy Waves")]
+    [SerializeField] private Text waveLabel;
+    [SerializeField] private string waveLabelFormat;
+    [SerializeField] private List<EnemyWave> waves;
+    [SerializeField] private float waveInterval = 10f;
+    [SerializeField] private float spawnInterval = 1f;
 
     [Header("Enemies")]
-    [SerializeField] private GameObject gruntGolem;
-    [SerializeField] private GameObject WayPoints;
-    [SerializeField] private Transform gruntGolemSpawn;
+    [SerializeField] private Enemy gruntGolemPrefab;
+    [SerializeField] private Enemy stoneMonsterPrefab;
+    [SerializeField] private Transform wayPointsContainer;
+    [SerializeField] private Transform enemySpawnPoint;
+    [SerializeField] private Transform enemyContainer;
 
     [Header("UI")]
-    [SerializeField] private GameObject gameOverScreen;
-    [SerializeField] private GameObject hpBar;
+    [SerializeField] private GameOverScreen gameOverScreen;
+    [SerializeField] private PlayerHealthBarController playerHpBarController;
     [SerializeField] private Text finalScore;
     [SerializeField] private Text finalEnemiesKilled;
 
+    [Header("Debug")]
+    [SerializeField] private int currentWave;
+    [SerializeField] private int score = 0;
+    [SerializeField] private int enemiesKilled = 0;
+    [Tooltip("Include those killed by towers and self-destructed when reached the end of the path")]
+    [SerializeField] private int totalEnemiesDead = 0;
+    [SerializeField] private int totalEnemiesInTheLevel;
+
     public static GameController instance;
-    [HideInInspector] public int score = 0;
-    [HideInInspector] public int enemiesKilled = 0;
-    [HideInInspector] public int totalEnemiesDead = 0;
-
-    private bool spawn = true;
-    private bool gameOver = true;
-
-    private IEnumerator Spawn()
-    {
-        while (spawn)
-        {
-            for (int i = 0; i < 20; i++)
-            {
-                yield return new WaitForSeconds(1);
-                Instantiate(gruntGolem, gruntGolemSpawn.position, gruntGolem.transform.rotation);
-            }
-            spawn = false;
-        }
-    }
 
     private void Awake()
     {
@@ -55,42 +56,89 @@ public class GameController : MonoBehaviour
             Destroy(gameObject);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Time.timeScale = 1;
-        gruntGolemController = gruntGolem.GetComponent<GruntGolemController>();
+        CalculateTotalEnemiesInTheLevel();
         StartCoroutine(Spawn());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void CalculateTotalEnemiesInTheLevel()
     {
-        for (int i = 0; i < gruntGolemController.wayPoints.Length; i++)
+        totalEnemiesInTheLevel = 0;
+        foreach (EnemyWave wave in waves)
         {
-            gruntGolemController.wayPoints[i] = WayPoints.transform.GetChild(i);
-            gruntGolemController.healthBarController = hpBar.GetComponent<HealthBarController>();
-        }
-
-        if (totalEnemiesDead == 20 && gameOver == true)
-        {
-            GameOver();
+            totalEnemiesInTheLevel += wave.types.Count;
         }
     }
 
-    // Methods
+    private void UpdateWaveLabel()
+    {
+        waveLabel.text = string.Format(waveLabelFormat, currentWave, waves.Count);
+    }
+
+    private IEnumerator Spawn()
+    {
+        foreach (EnemyWave wave in waves)
+        {
+            currentWave++;
+            UpdateWaveLabel();
+
+            foreach (Enemy.EnemyType type in wave.types)
+            {
+                yield return new WaitForSeconds(spawnInterval);
+
+                Enemy enemy = null;
+
+                switch (type)
+                {
+                    case Enemy.EnemyType.GRUNTGOLEM:
+                        enemy = Instantiate(gruntGolemPrefab, enemySpawnPoint.position, gruntGolemPrefab.transform.rotation, enemyContainer);
+                        break;
+                    case Enemy.EnemyType.STONEMONSTER:
+                        enemy = Instantiate(stoneMonsterPrefab, enemySpawnPoint.position, stoneMonsterPrefab.transform.rotation, enemyContainer);
+                        break;
+                    case Enemy.EnemyType.RESOURCESTEALER:
+                        // TODO
+                        break;
+                    default:
+                        Debug.LogError(type + " is not yet defined in spawn method");
+                        break;
+                }
+
+                if (enemy != null)
+                    enemy.SetWayPoints(wayPointsContainer);
+            }
+
+            yield return new WaitForSeconds(waveInterval);
+        }
+    }
+
+    public void KillEnemey(int score)
+    {
+        this.score += score;
+        enemiesKilled += 1; 
+        AddTotalEnemiesDead();
+    }
+
+    public void AddTotalEnemiesDead()
+    {
+        totalEnemiesDead += 1;
+        CheckGameState();
+    }
+
+    public void CheckGameState()
+    {
+        if (totalEnemiesInTheLevel == totalEnemiesDead)
+        {
+            gameOverScreen.Open(GameOverScreen.GameEndState.VICTORY, score, enemiesKilled);
+        }
+    }
+
     public void GameOver()
     {
         finalScore.text = score.ToString();
         finalEnemiesKilled.text = enemiesKilled.ToString();
-        gameOverScreen.SetActive(true);
-        Time.timeScale = 0;
-    }
-
-    public void GameOverBackToGameplay()
-    {
-        gameOver = false;
-        gameOverScreen.SetActive(false);
-        Time.timeScale = 1;
+        gameOverScreen.Open(GameOverScreen.GameEndState.GAMEOVER, score, enemiesKilled);
     }
 }
