@@ -16,8 +16,12 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] AudioSource musicAudioSource;
-    [SerializeField] AudioSource buttonAudioSource;
     [SerializeField] AudioSource sfxAudioSource;
+    [SerializeField] AudioSource buttonAudioSource;
+    [SerializeField] AudioSource enemyDeathAudioSource;
+    [SerializeField] AudioSource collectResourcesAudioSource;
+    [SerializeField] AudioSource towerDestroyAudioSource;
+    [SerializeField] AudioSource playerDamageAudioSource;
 
     [Header("Debug")]
     [SerializeField] private float musicVolume = 0.5f;
@@ -60,6 +64,26 @@ public class SoundManager : MonoBehaviour
     public void PlayButtonSfx()
     {
         buttonAudioSource.Play();
+    }
+
+    public void PlayEnemyDeathSfx()
+    {
+        enemyDeathAudioSource.Play();
+    }
+
+    public void PlayCollectResourcesSfx()
+    {
+        collectResourcesAudioSource.Play();
+    }
+
+    public void PlayTowerDestroySfx()
+    {
+        towerDestroyAudioSource.Play();
+    }
+
+    public void PlayPlayerDamageSfx()
+    {
+        playerDamageAudioSource.Play();
     }
 
     public void PlaySFX(AudioClip clip)
