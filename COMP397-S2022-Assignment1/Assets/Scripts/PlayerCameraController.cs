@@ -20,8 +20,8 @@ public class PlayerCameraController : MonoBehaviour
     void Start()
     {
         cameraTransform = GetComponent<Transform>();
-        //keyBindingManager = GameObject.Find("KeyBindingManager").GetComponent<KeyBindingManager>();
-        keyBindingManager = FindObjectOfType<KeyBindingManager>().GetComponent<KeyBindingManager>();
+        keyBindingManager = GameObject.Find("KeyBindingManager").GetComponent<KeyBindingManager>();
+
         Debug.Log(keyBindingManager);
     }
 
