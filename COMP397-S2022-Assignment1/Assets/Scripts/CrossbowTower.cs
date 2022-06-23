@@ -21,9 +21,11 @@ public class CrossbowTower : Tower
     [Tooltip("Audio Source for shooting")]
     AudioClip shootSound;
 
+
     private List<GameObject> targets  = new List<GameObject>();
 
     protected GameObject currentTarget = null;
+
 
     private void Start()
     {
@@ -131,7 +133,6 @@ public class CrossbowTower : Tower
     {
         return (int)TowerType.CrossbowTower;
     }
-
 
 
 
