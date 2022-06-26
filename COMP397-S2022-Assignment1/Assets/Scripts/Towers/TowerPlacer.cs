@@ -1,8 +1,10 @@
 /*  Filename:           TowerPlacer.cs
  *  Author:             Han Bi (301176547)
- *  Last Update:        June 7, 2022
+ *                      Marcus Ngooi (301147411)
+ *  Last Update:        June 26, 2022
  *  Description:        For placing towers.
  *  Revision History:   June 7, 2022 (Han Bi): Initial script.
+ *                      June 26, 2022 (Marcus Ngooi): Adding resource tower to TowerPlacer.
  */
 
 using System.Collections;
@@ -11,10 +13,12 @@ using UnityEngine;
 
 public class TowerPlacer : MonoBehaviour
 {
-
     [SerializeField] GameObject crossbowTower;
     [SerializeField] GameObject crossbowTowerPreview;
+    [SerializeField] private Transform towerContainer;
 
+    [SerializeField] GameObject resourceTower;
+    [SerializeField] GameObject resourceTowerPreview;
 
     GameObject towerPreview;
     [SerializeField] bool isPreview = false;
@@ -31,12 +35,6 @@ public class TowerPlacer : MonoBehaviour
     int goldCost;
     int stoneCost;
     int woodCost;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -64,8 +62,8 @@ public class TowerPlacer : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     InventoryManager.instance.BuyTower(goldCost, stoneCost, woodCost);
-                    PlaceTower(currentType);
-                    
+                    StartCoroutine(PlaceTower(currentType));
+
                 }
             }
             else
@@ -85,7 +83,6 @@ public class TowerPlacer : MonoBehaviour
         //if already showing tower, won't show another one until user cancels
         if(towerType == Tower.TowerType.CrossbowTower)
         {
-
             if(!isPreview)
             {
                 currentType = towerType;
@@ -94,23 +91,45 @@ public class TowerPlacer : MonoBehaviour
                 woodCost = woodNeeded;
 
                 isPreview = true;
-                towerPreview = Instantiate(crossbowTowerPreview);
+                towerPreview = Instantiate(crossbowTowerPreview, towerContainer);
             }
         }
+        if (towerType == Tower.TowerType.ResourceTower)
+        {
+            if (!isPreview)
+            {
+                currentType = towerType;
+                goldCost = goldNeeded;
+                stoneCost = stoneNeeded;
+                woodCost = woodNeeded;
 
+                isPreview = true;
+                towerPreview = Instantiate(resourceTowerPreview);
+            }
+        }
     }
 
-    public void PlaceTower(Tower.TowerType towerType)
+    public IEnumerator PlaceTower(Tower.TowerType towerType)
     {
-        if(towerType == Tower.TowerType.CrossbowTower)
+        if (towerType == Tower.TowerType.CrossbowTower)
         {
             isPreview = false;
             SoundManager.instance.PlaySFX(placeSound);
             GameObject tower = Instantiate(crossbowTower, worldPos, Quaternion.identity);
-        
+            yield return new WaitForSeconds(tower.GetComponent<Tower>().GetBuildTime());
+
+            if (tower.GetComponent<Tower>().getIsBuilding()) //if tower is set to is building (ie. the player hasn't spent money to buy the tower)
+            {
+                tower.GetComponent<Tower>().CompleteBuilding();
+            }
+        }
+        if (towerType == Tower.TowerType.ResourceTower)
+        {
+            isPreview = false;
+            SoundManager.instance.PlaySFX(placeSound);
+            GameObject tower = Instantiate(resourceTower, worldPos, Quaternion.identity);
         }
         Destroy(towerPreview);
-
     }
 
     public void CancelBuy()

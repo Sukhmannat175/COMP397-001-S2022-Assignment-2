@@ -199,6 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5502234197803816847}
   - component: {fileID: 733464912275620386}
+  - component: {fileID: 3286374405252737953}
   m_Layer: 5
   m_Name: HpBar
   m_TagString: Untagged
@@ -268,7 +269,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 7386875298927102504}
   m_HandleRect: {fileID: 0}
@@ -280,6 +281,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3286374405252737953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6756639382651629083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 010484011ea5ce5408326c82db13de4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpSlider: {fileID: 733464912275620386}
 --- !u!1 &7429871393344429001
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,7 +32,7 @@ public class CrossbowTower : Tower
 
     protected GameObject currentTarget = null;
 
-    private void Start()
+    protected override void TowerStartBehaviour()
     {
         targets = new List<GameObject>();
     }
@@ -40,7 +40,7 @@ public class CrossbowTower : Tower
     //for testing
     [SerializeField] private bool coolingDown = false; //used to flag tower cooldown in Coroutine
     
-    protected override void TowerBehaviour()
+    protected override void TowerUpdateBehaviour()
     {
         UpdateCurrentTarget();
 

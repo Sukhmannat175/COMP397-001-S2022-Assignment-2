@@ -1,8 +1,10 @@
 /*  Filename:           InventoryManager.cs
  *  Author:             Yuk Yee Wong (301234795)
- *  Last Update:        June 6, 2022
+ *                      Marcus Ngooi (301147411)
+ *  Last Update:        June 25, 2022
  *  Description:        Inventory Manager.
  *  Revision History:   June 6, 2022 (Yuk Yee Wong): Initial script including tower preview and purchase script.
+ *                      June 25, 2022 (Marcus Ngooi): Added resource tower logic on lines 25-26.
  */
 
 using UnityEngine;
@@ -20,6 +22,8 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private GameObject crossbowTower;
     [SerializeField] GameObject crossbowTowerPreview;
 
+    [SerializeField] private GameObject resourceTower;
+    [SerializeField] GameObject resourceTowerPreview;
 
     [Header("Debug")]
     [SerializeField] private int goldOnHand;
@@ -52,6 +56,11 @@ public class InventoryManager : MonoBehaviour
 
     public void CollectResources(int gold, int stone, int wood)
     {
+        if (gold > 0 || stone > 0 || wood > 0)
+        {
+            SoundManager.instance.PlayCollectResourcesSfx();
+        }
+
         goldOnHand += gold;
         stoneOnHand += stone;
         woodOnHand += wood;
@@ -78,6 +87,16 @@ public class InventoryManager : MonoBehaviour
         else { return false; }
     }
 
+    public void DecreaseResources(int gold, int stone, int wood)
+    {
+        if (!freeToBuild)
+        {
+            goldOnHand -= gold;
+            stoneOnHand -= stone;
+            woodOnHand -= wood;
+            UpdateDisplay();
+        }
+    }
 
     public void UpdateDisplay()
     {
