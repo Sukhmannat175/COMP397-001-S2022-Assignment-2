@@ -161,7 +161,7 @@ public class TowerPlacer : MonoBehaviour
         {
             isPreview = false;
             SoundManager.instance.PlaySFX(placeSound);
-            GameObject tower = Instantiate(crossbowTower, worldPos, Quaternion.identity);
+            GameObject tower = Instantiate(cannonTower, worldPos, Quaternion.identity);
             tower.GetComponent<Tower>().StartBuilding();
             yield return new WaitForSeconds(tower.GetComponent<Tower>().GetBuildTime());
 
