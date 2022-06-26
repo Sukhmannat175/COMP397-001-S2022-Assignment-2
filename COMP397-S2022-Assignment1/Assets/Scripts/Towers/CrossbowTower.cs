@@ -39,9 +39,10 @@ public class CrossbowTower : Tower
 
         if (string.IsNullOrEmpty(towerData.towerId))
         {
-            towerData.towerId = "ResourseTower" + Random.Range(0, int.MaxValue).ToString();
+            towerData.towerId = "CrossbowTower" + Random.Range(0, int.MaxValue).ToString();
             towerData.towerType = TowerType.CrossbowTower;
             GameController.instance.current.towers.Add(towerData);
+            Debug.Log("CCT");
         }
     }
 

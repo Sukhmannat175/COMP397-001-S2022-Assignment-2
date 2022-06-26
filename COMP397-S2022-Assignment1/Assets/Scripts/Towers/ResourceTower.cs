@@ -35,9 +35,10 @@ public class ResourceTower : Tower
     {
         if (string.IsNullOrEmpty(towerData.towerId))
         {
-            towerData.towerId = this.GetTowerType().ToString() + Random.Range(0, int.MaxValue).ToString();
+            towerData.towerId = "ResourceTower" + Random.Range(0, int.MaxValue).ToString();
             towerData.towerType = TowerType.ResourceTower;
             GameController.instance.current.towers.Add(towerData);
+            Debug.Log("RT");
         }
     }
 
