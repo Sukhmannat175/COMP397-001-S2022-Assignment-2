@@ -52,6 +52,11 @@ public class InventoryManager : MonoBehaviour
 
     public void CollectResources(int gold, int stone, int wood)
     {
+        if (gold > 0 || stone > 0 || wood > 0)
+        {
+            SoundManager.instance.PlayCollectResourcesSfx();
+        }
+
         goldOnHand += gold;
         stoneOnHand += stone;
         woodOnHand += wood;
@@ -78,6 +83,16 @@ public class InventoryManager : MonoBehaviour
         else { return false; }
     }
 
+    public void DecreaseResources(int gold, int stone, int wood)
+    {
+        if (!freeToBuild)
+        {
+            goldOnHand -= gold;
+            stoneOnHand -= stone;
+            woodOnHand -= wood;
+            UpdateDisplay();
+        }
+    }
 
     public void UpdateDisplay()
     {
