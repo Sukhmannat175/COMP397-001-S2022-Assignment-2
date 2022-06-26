@@ -39,6 +39,9 @@ public abstract class Tower : MonoBehaviour
     [Tooltip("The time tower will wait before firing again")]
     protected float actionDelay;
 
+    //health
+    Health health;
+
     public enum TowerType
     {
         CrossbowTower,
@@ -48,8 +51,10 @@ public abstract class Tower : MonoBehaviour
 
     private void Start()
     {
-        healthDisplay.Init(maxHealthValue);
+        //healthDisplay.Init(maxHealthValue);
+        isBuilding = true;
         TowerStartBehaviour();
+        health = GetComponent<Health>();
     }
 
     protected abstract void TowerStartBehaviour();
@@ -57,19 +62,39 @@ public abstract class Tower : MonoBehaviour
 
     private void Update()
     {
-        TowerUpdateBehaviour();
+        if (!isBuilding)
+        {
+            TowerUpdateBehaviour();
+        }
+    }
+
+    private void LateUpdate()
+    {
+        completeBuildButton.transform.position = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * btnPositionOffset);
     }
 
     protected abstract void TowerUpdateBehaviour();
 
     public void TakeDamage(int damage)
     {
-        healthDisplay.TakeDamage(damage);
-        if (healthDisplay.CurrentHealthValue == 0)
+        //healthDisplay.TakeDamage(damage);
+        //if (healthDisplay.CurrentHealthValue == 0)
+        //{
+        //    SoundManager.instance.PlayTowerDestroySfx();
+        //    Destroy(gameObject);
+        //}
+        if (!isBuilding)
         {
-            SoundManager.instance.PlayTowerDestroySfx();
-            Destroy(gameObject);
+            health.ChangeHealth(damage);
+            if (health.currentHealth <= 0)
+            {
+                SoundManager.instance.PlayTowerDestroySfx();
+                Destroy(gameObject);
+            }
+
         }
+        
+        
     }
 
     public virtual void AddToTargets(GameObject gameObject) { }
@@ -82,6 +107,7 @@ public abstract class Tower : MonoBehaviour
     {
         return BUILD_TIME;
     }
+
 
     public void setIsBuilding(bool isBuilding)
     {

@@ -305,6 +305,8 @@ MonoBehaviour:
   instantCompleteGoldCost: 50
   instantCompleteStoneCost: 0
   instantCompleteWoodCost: 0
+  maxHealthValue: 0
+  healthDisplay: {fileID: 0}
   actionDelay: 1
   attackZone: {fileID: 3260323774302551585}
   projectile: {fileID: 3439487239067927562, guid: fe5c4c8b36e4d8f4090fe2d78875e123, type: 3}
@@ -320,7 +322,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3260323772641981898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ab0bf08e3874424da69a1680c08a2a2, type: 3}
+  m_Script: {fileID: 11500000, guid: a8c1e1e50ed592848b625c6658c70459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
