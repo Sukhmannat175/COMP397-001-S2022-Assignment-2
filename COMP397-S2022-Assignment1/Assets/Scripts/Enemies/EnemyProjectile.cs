@@ -25,11 +25,16 @@ public class EnemyProjectile : MonoBehaviour
         {
             if (other.CompareTag(targetTag))
             {
+                
                 Tower tower = other.GetComponent<Tower>();
+               
+                
                 if (tower != null)
                 {
+                    Debug.Log("attacking tower");
                     tower.TakeDamage(damage);
                     audioSource.Play();
+
                 }
             }
         }
