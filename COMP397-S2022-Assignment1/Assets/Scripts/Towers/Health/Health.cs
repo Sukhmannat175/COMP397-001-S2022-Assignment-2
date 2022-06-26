@@ -1,3 +1,12 @@
+/*  Filename:           Tower.cs
+ *  Author:             Han Bi (301176547)
+ *  Last Update:        June 26, 2022
+ *  Description:        Health Script
+ *  Revision History:   June 26, 2022 (Han Bi): Initial script.                  
+ */
+
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +18,8 @@ public class Health : MonoBehaviour
     public static event Action<Health> OnHealthRemoved = delegate { };
 
     [SerializeField]
-    float maxHealth = 100;    
-    public float currentHealth { get; private set; }
+    float maxHealth = 100;
+    public float currentHealth;
 
 
     private float buildingTime = 0;

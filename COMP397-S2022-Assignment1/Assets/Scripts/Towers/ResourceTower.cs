@@ -15,11 +15,12 @@ public class ResourceTower : Tower
 {
     [SerializeField] private bool coolingDown = false;
     [SerializeField] private AudioClip collectSound;
-    
+    public TowerType type;
+
+    [HideInInspector] public TowerData towerData;
     private IEnumerator Collect()
     {
         coolingDown = true;
-        SoundManager.instance.PlaySFX(collectSound);
         InventoryManager.instance.CollectResources(0, 10, 5);
         yield return new WaitForSeconds(actionDelay);
         coolingDown = false;
@@ -31,7 +32,12 @@ public class ResourceTower : Tower
 
     protected override void TowerStartBehaviour()
     {
-        
+        if (string.IsNullOrEmpty(towerData.towerId))
+        {
+            towerData.towerId = this.GetTowerType().ToString() + Random.Range(0, int.MaxValue).ToString();
+            towerData.towerType = TowerType.ResourceTower;
+            SaveData.current.towers.Add(towerData);            
+        }
     }
 
     protected override void TowerUpdateBehaviour()
@@ -40,5 +46,8 @@ public class ResourceTower : Tower
         {
             StartCoroutine(Collect());
         }
+
+        towerData.towerPosition = transform.position;
+        towerData.towerRotation = transform.rotation;
     }
 }

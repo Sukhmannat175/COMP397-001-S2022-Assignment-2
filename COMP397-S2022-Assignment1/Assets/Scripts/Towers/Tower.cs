@@ -1,8 +1,9 @@
 /*  Filename:           Tower.cs
  *  Author:             Han Bi (301176547)
- *  Last Update:        June 8, 2022
+ *  Last Update:        June 26, 2022
  *  Description:        Base abstract class for all towers.
  *  Revision History:   June 8, 2022 (Han Bi): Initial script.
+ *                      June 26, 2022 (Han Bi): Added tower building time functionality
  */
 
 using System.Collections;
@@ -39,7 +40,6 @@ public abstract class Tower : MonoBehaviour
     [Tooltip("The time tower will wait before firing again")]
     protected float actionDelay;
 
-    //health
     Health health;
 
     public enum TowerType
@@ -54,7 +54,7 @@ public abstract class Tower : MonoBehaviour
         //healthDisplay.Init(maxHealthValue);
         isBuilding = true;
         TowerStartBehaviour();
-        health = GetComponent<Health>();
+        health = GetComponent<Health>();        
     }
 
     protected abstract void TowerStartBehaviour();
@@ -66,6 +66,12 @@ public abstract class Tower : MonoBehaviour
         {
             TowerUpdateBehaviour();
         }
+        //Debug only
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            TakeDamage(-1);
+        }
+
     }
 
     private void LateUpdate()
@@ -83,17 +89,17 @@ public abstract class Tower : MonoBehaviour
         //    SoundManager.instance.PlayTowerDestroySfx();
         //    Destroy(gameObject);
         //}
+
         if (!isBuilding)
         {
-            health.ChangeHealth(damage);
+            health.ChangeHealth(-damage);
+
             if (health.currentHealth <= 0)
             {
                 SoundManager.instance.PlayTowerDestroySfx();
                 Destroy(gameObject);
             }
-
         }
-        
         
     }
 

@@ -6,6 +6,7 @@ using UnityEngine;
 public class SaveData
 {
     private static SaveData _current;
+
     public static SaveData current
     {
         get
@@ -16,7 +17,16 @@ public class SaveData
             }
             return _current;
         }
+        set
+        {
+            if (value != null)
+            {
+                _current = value;
+            }
+        }
     }
 
-    public PlayerProfile profile;
+    public List<TowerData> towers;
+
+    public List<EnemyData> enemies;
 }

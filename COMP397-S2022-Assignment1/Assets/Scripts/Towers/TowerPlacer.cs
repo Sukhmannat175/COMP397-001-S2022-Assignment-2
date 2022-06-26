@@ -127,26 +127,10 @@ public class TowerPlacer : MonoBehaviour
 
     public IEnumerator PlaceTower(Tower.TowerType towerType)
     {
+
+        Destroy(towerPreview);
+
         if (towerType == Tower.TowerType.CrossbowTower)
-        {
-            isPreview = false;
-            SoundManager.instance.PlaySFX(placeSound);
-            GameObject tower = Instantiate(crossbowTower, worldPos, Quaternion.identity);
-            yield return new WaitForSeconds(tower.GetComponent<Tower>().GetBuildTime());
-
-            if (tower.GetComponent<Tower>().getIsBuilding()) //if tower is set to is building (ie. the player hasn't spent money to buy the tower)
-            {
-                tower.GetComponent<Tower>().CompleteBuilding();
-            }
-        }
-        if (towerType == Tower.TowerType.ResourceTower)
-        {
-            isPreview = false;
-            SoundManager.instance.PlaySFX(placeSound);
-            GameObject tower = Instantiate(resourceTower, worldPos, Quaternion.identity);
-        }
-
-        if (towerType == Tower.TowerType.CannonTower)
         {
             isPreview = false;
             SoundManager.instance.PlaySFX(placeSound);
@@ -159,7 +143,33 @@ public class TowerPlacer : MonoBehaviour
                 tower.GetComponent<Tower>().CompleteBuilding();
             }
         }
-        Destroy(towerPreview);
+        if (towerType == Tower.TowerType.ResourceTower)
+        {
+            isPreview = false;
+            SoundManager.instance.PlaySFX(placeSound);
+            GameObject tower = Instantiate(resourceTower, worldPos, Quaternion.identity);
+            tower.GetComponent<Tower>().StartBuilding();
+            yield return new WaitForSeconds(tower.GetComponent<Tower>().GetBuildTime());
+
+            if (tower.GetComponent<Tower>().getIsBuilding()) //if tower is set to is building (ie. the player hasn't spent money to buy the tower)
+            {
+                tower.GetComponent<Tower>().CompleteBuilding();
+            }
+        }
+
+        if (towerType == Tower.TowerType.CannonTower)
+        {
+            isPreview = false;
+            SoundManager.instance.PlaySFX(placeSound);
+            GameObject tower = Instantiate(cannonTower, worldPos, Quaternion.identity);
+            tower.GetComponent<Tower>().StartBuilding();
+            yield return new WaitForSeconds(tower.GetComponent<Tower>().GetBuildTime());
+
+            if (tower.GetComponent<Tower>().getIsBuilding()) //if tower is set to is building (ie. the player hasn't spent money to buy the tower)
+            {
+                tower.GetComponent<Tower>().CompleteBuilding();
+            }
+        }
     }
 
     public void CancelBuy()

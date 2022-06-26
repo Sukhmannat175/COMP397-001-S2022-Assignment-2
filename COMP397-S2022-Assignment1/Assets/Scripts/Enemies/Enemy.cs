@@ -36,6 +36,7 @@ public abstract class Enemy : MonoBehaviour
     public abstract void SetWayPoints(Transform wayPointsContainer);
 
     public abstract float GetDistanceTravelled();
+
     public abstract void EnemyStartBehaviour();
 
     public abstract void EnemyUpdateBehaviour();
