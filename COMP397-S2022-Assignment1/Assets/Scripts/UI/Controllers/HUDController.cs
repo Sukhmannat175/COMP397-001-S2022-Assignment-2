@@ -14,6 +14,7 @@ using UnityEngine;
 public class HUDController : MonoBehaviour
 {
     [SerializeField] private PauseScreen pauseScreen;
+    [SerializeField] private PauseScreen saveLoadScreen;
 
     private void Update()
     {
@@ -27,6 +28,18 @@ public class HUDController : MonoBehaviour
             else
             {
                 pauseScreen.Open();
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            if (saveLoadScreen.gameObject.activeInHierarchy)
+            {
+                saveLoadScreen.Close();
+                SoundManager.instance.ChangeMusic(GetComponent<ChangeMusicHelper>().clip);
+            }
+            else
+            {
+                saveLoadScreen.Open();
             }
         }
 
