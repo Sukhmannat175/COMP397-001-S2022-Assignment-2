@@ -141,4 +141,22 @@ public class GameController : MonoBehaviour
         finalEnemiesKilled.text = enemiesKilled.ToString();
         gameOverScreen.Open(GameOverScreen.GameEndState.GAMEOVER, score, enemiesKilled);
     }
+
+    public void OnSave()
+    {
+        SerializationController.Save("Save", SaveData.current);
+    }
+
+    public void OnLoad()
+    {
+        /*SaveData current = SaveData.current;
+        TowerPlacer placer =  new TowerPlacer();
+        current = (SaveData)SerializationController.Load(Application.persistentDataPath + "/saves/Save.save");
+
+        for (int i = 0; i < SaveData.current.towers.Count; i++)
+        {
+            TowerData currentTower = current.towers[i];
+            placer.PlaceTower();
+        }*/
+    }
 }

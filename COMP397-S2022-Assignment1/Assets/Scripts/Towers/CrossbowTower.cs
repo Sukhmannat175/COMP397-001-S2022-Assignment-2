@@ -28,6 +28,8 @@ public class CrossbowTower : Tower
     [Tooltip("Audio Source for shooting")]
     AudioClip shootSound;
 
+    public TowerData towerData;
+    public SaveData current;
     private List<GameObject> targets  = new List<GameObject>();
 
     protected GameObject currentTarget = null;
@@ -35,6 +37,14 @@ public class CrossbowTower : Tower
     protected override void TowerStartBehaviour()
     {
         targets = new List<GameObject>();
+
+        if (string.IsNullOrEmpty(towerData.towerId))
+        {
+            towerData.towerId = "ResourseTower" + Random.Range(0, int.MaxValue).ToString();
+            towerData.towerType = TowerType.ResourceTower;
+            current.towers.Add(towerData);
+            Debug.Log(current.towers[0]);
+        }
     }
 
     //for testing
@@ -48,6 +58,9 @@ public class CrossbowTower : Tower
         {
             StartCoroutine(Shoot());
         }
+
+        towerData.towerPosition = transform.position;
+        towerData.towerPosition = transform.position;
     }
 
 

@@ -161,9 +161,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba86dbe0ea4b0434ca664236e9b3bacf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBuilding: 0
+  BUILD_TIME: 0
+  completeBuildButton: {fileID: 0}
+  btnPositionOffset: 0
+  instantCompleteGoldCost: 50
+  instantCompleteStoneCost: 0
+  instantCompleteWoodCost: 0
+  maxHealthValue: 0
+  healthDisplay: {fileID: 0}
   actionDelay: 1
   coolingDown: 0
   collectSound: {fileID: 0}
+  type: 2
+  towerData:
+    towerId: 
+    towerType: 0
+    towerPosition: {x: 0, y: 0, z: 0}
+    towerRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1001 &570626411896034178
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -39,7 +39,6 @@ public abstract class Tower : MonoBehaviour
     [Tooltip("The time tower will wait before firing again")]
     protected float actionDelay;
 
-    //health
     Health health;
 
     public enum TowerType
@@ -54,7 +53,7 @@ public abstract class Tower : MonoBehaviour
         //healthDisplay.Init(maxHealthValue);
         isBuilding = true;
         TowerStartBehaviour();
-        health = GetComponent<Health>();
+        health = GetComponent<Health>();        
     }
 
     protected abstract void TowerStartBehaviour();
