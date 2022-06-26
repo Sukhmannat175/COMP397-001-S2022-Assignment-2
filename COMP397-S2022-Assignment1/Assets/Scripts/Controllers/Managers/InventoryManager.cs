@@ -25,6 +25,9 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private GameObject resourceTower;
     [SerializeField] GameObject resourceTowerPreview;
 
+    [SerializeField] private GameObject cannonTower;
+    [SerializeField] GameObject cannonTowerPreview;
+
     [Header("Debug")]
     [SerializeField] private int goldOnHand;
     [SerializeField] private int stoneOnHand;

@@ -15894,6 +15894,8 @@ MonoBehaviour:
   crossbowTowerPreview: {fileID: 3260323772641981898, guid: e38885ee8597f11488933977a467821f, type: 3}
   resourceTower: {fileID: 0}
   resourceTowerPreview: {fileID: 0}
+  cannonTower: {fileID: 0}
+  cannonTowerPreview: {fileID: 0}
   goldOnHand: 0
   stoneOnHand: 0
   woodOnHand: 0
@@ -26363,11 +26365,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5639b2c661b4a0341a42bed69eab96f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &659595106 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1ce09998b07d3e34ba45f58e54665a09, type: 3}
-  m_PrefabInstance: {fileID: 1687159230}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &659298404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26381,6 +26378,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarPrefab: {fileID: 2316432186565039736, guid: ece331523d283654c88708cd0c02db33, type: 3}
+--- !u!1 &659595106 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1ce09998b07d3e34ba45f58e54665a09, type: 3}
+  m_PrefabInstance: {fileID: 1687159230}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &659965882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33649,6 +33651,8 @@ MonoBehaviour:
   towerContainer: {fileID: 58421336}
   resourceTower: {fileID: 3260323772641981898, guid: c2b6da968f0d230449dcb6b032114969, type: 3}
   resourceTowerPreview: {fileID: 3260323772641981898, guid: 57d5bdd27d4580e48b2b1cc6fe73418e, type: 3}
+  cannonTower: {fileID: 1645810273052523551, guid: 3051f8e8528f9eb4daf425fbf45d95f5, type: 3}
+  cannonTowerPreview: {fileID: 5641309601765881537, guid: 2d8b6a4f770f4554aaca2c5e85250c74, type: 3}
   isPreview: 0
   placeSound: {fileID: 8300000, guid: 5e14f9c2e242e76458e2b9a9a72aacfa, type: 3}
   screenPos: {x: 0, y: 0, z: 0}
