@@ -1,25 +1,39 @@
 /*  Filename:           ResourceTower.cs
  *  Author:             Han Bi (301176547)
- *  Last Update:        June 7, 2022
+ *                      Marcus Ngooi (301147411)
+ *  Last Update:        June 25, 2022
  *  Description:        Use for resource tower.
  *  Revision History:   June 7, 2022 (Han Bi): Initial script.
+ *                      June 25, 2022 (Marcus Ngooi): Added logic for collector tower.
  */
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceTower : MonoBehaviour
+public class ResourceTower : Tower
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private bool coolingDown = false;
+    [SerializeField] private AudioClip collectSound;
+    
+    private IEnumerator Collect()
     {
-        
+        coolingDown = true;
+        SoundManager.instance.PlaySFX(collectSound);
+        InventoryManager.instance.CollectResources(0, 10, 5);
+        yield return new WaitForSeconds(actionDelay);
+        coolingDown = false;
+    }
+    public override int GetTowerType()
+    {
+        return (int)TowerType.ResourceTower;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void TowerBehaviour()
     {
-        
+        if (coolingDown == false)
+        {
+            StartCoroutine(Collect());
+        }
     }
 }

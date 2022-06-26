@@ -1,8 +1,10 @@
 /*  Filename:           TowerPlacer.cs
  *  Author:             Han Bi (301176547)
- *  Last Update:        June 7, 2022
+ *                      Marcus Ngooi (301147411)
+ *  Last Update:        June 26, 2022
  *  Description:        For placing towers.
  *  Revision History:   June 7, 2022 (Han Bi): Initial script.
+ *                      June 26, 2022 (Marcus Ngooi): Adding resource tower to TowerPlacer.
  */
 
 using System.Collections;
@@ -11,10 +13,11 @@ using UnityEngine;
 
 public class TowerPlacer : MonoBehaviour
 {
-
     [SerializeField] GameObject crossbowTower;
     [SerializeField] GameObject crossbowTowerPreview;
 
+    [SerializeField] GameObject resourceTower;
+    [SerializeField] GameObject resourceTowerPreview;
 
     GameObject towerPreview;
     [SerializeField] bool isPreview = false;
@@ -31,12 +34,6 @@ public class TowerPlacer : MonoBehaviour
     int goldCost;
     int stoneCost;
     int woodCost;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -85,7 +82,6 @@ public class TowerPlacer : MonoBehaviour
         //if already showing tower, won't show another one until user cancels
         if(towerType == Tower.TowerType.CrossbowTower)
         {
-
             if(!isPreview)
             {
                 currentType = towerType;
@@ -97,7 +93,19 @@ public class TowerPlacer : MonoBehaviour
                 towerPreview = Instantiate(crossbowTowerPreview);
             }
         }
+        if (towerType == Tower.TowerType.ResourceTower)
+        {
+            if (!isPreview)
+            {
+                currentType = towerType;
+                goldCost = goldNeeded;
+                stoneCost = stoneNeeded;
+                woodCost = woodNeeded;
 
+                isPreview = true;
+                towerPreview = Instantiate(resourceTowerPreview);
+            }
+        }
     }
 
     public void PlaceTower(Tower.TowerType towerType)
@@ -107,10 +115,14 @@ public class TowerPlacer : MonoBehaviour
             isPreview = false;
             SoundManager.instance.PlaySFX(placeSound);
             GameObject tower = Instantiate(crossbowTower, worldPos, Quaternion.identity);
-        
+        }
+        if (towerType == Tower.TowerType.ResourceTower)
+        {
+            isPreview = false;
+            SoundManager.instance.PlaySFX(placeSound);
+            GameObject tower = Instantiate(resourceTower, worldPos, Quaternion.identity);
         }
         Destroy(towerPreview);
-
     }
 
     public void CancelBuy()
