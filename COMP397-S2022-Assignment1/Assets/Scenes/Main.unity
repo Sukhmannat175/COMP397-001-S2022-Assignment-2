@@ -24548,6 +24548,10 @@ PrefabInstance:
       propertyPath: clip
       value: 
       objectReference: {fileID: 8300000, guid: 30ba78f8f04be9b4f825975e4293290f, type: 3}
+    - target: {fileID: 1627065023742429633, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
+      propertyPath: saveLoadScreen
+      value: 
+      objectReference: {fileID: 659298400}
     - target: {fileID: 1646416125929908401, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -25148,6 +25152,10 @@ PrefabInstance:
       propertyPath: towerName
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5135295162327116829, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
+      propertyPath: woodNeeded
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5153209734583187419, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -25265,9 +25273,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3260323772641981898, guid: 9f8847e5884da1f4ca180650bb68b5ce, type: 3}
     - target: {fileID: 5830657164629419098, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
+      propertyPath: resourceTower
+      value: 
+      objectReference: {fileID: 3260323772641981898, guid: c2b6da968f0d230449dcb6b032114969, type: 3}
+    - target: {fileID: 5830657164629419098, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
       propertyPath: CrossbowTowerModel
       value: 
       objectReference: {fileID: 3260323772641981898, guid: e38885ee8597f11488933977a467821f, type: 3}
+    - target: {fileID: 5830657164629419098, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
+      propertyPath: resourceTowerPreview
+      value: 
+      objectReference: {fileID: 3260323772641981898, guid: 57d5bdd27d4580e48b2b1cc6fe73418e, type: 3}
     - target: {fileID: 6194972701161581305, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -25750,7 +25766,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6252359859429550714, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
   m_PrefabInstance: {fileID: 659298398}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2034238325}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6bf5652503c1dd4dbea262642a8f95c, type: 3}
@@ -32723,6 +32739,8 @@ MonoBehaviour:
   crossbowTower: {fileID: 3260323772641981898, guid: 9f8847e5884da1f4ca180650bb68b5ce, type: 3}
   crossbowTowerPreview: {fileID: 3260323772641981898, guid: e38885ee8597f11488933977a467821f, type: 3}
   towerContainer: {fileID: 58421336}
+  resourceTower: {fileID: 3260323772641981898, guid: c2b6da968f0d230449dcb6b032114969, type: 3}
+  resourceTowerPreview: {fileID: 3260323772641981898, guid: 57d5bdd27d4580e48b2b1cc6fe73418e, type: 3}
   isPreview: 0
   placeSound: {fileID: 8300000, guid: 5e14f9c2e242e76458e2b9a9a72aacfa, type: 3}
   screenPos: {x: 0, y: 0, z: 0}
@@ -78330,6 +78348,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6716346510261606082, guid: 9a6a5629a38e6b34d859ed53bfcde983, type: 3}
   m_PrefabInstance: {fileID: 454715573}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2034238325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6252359859429550712, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
+  m_PrefabInstance: {fileID: 659298398}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2034238329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034238325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d2dc4cee268834e8c74919fe8280c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 6a877cc7c46002e40b21ee8b72e4eacf, type: 3}
 --- !u!4 &2035672292 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6716346510261606082, guid: 9a6a5629a38e6b34d859ed53bfcde983, type: 3}
