@@ -52,6 +52,11 @@ public class InventoryManager : MonoBehaviour
 
     public void CollectResources(int gold, int stone, int wood)
     {
+        if (gold > 0 || stone > 0 || wood > 0)
+        {
+            SoundManager.instance.PlayCollectResourcesSfx();
+        }
+
         goldOnHand += gold;
         stoneOnHand += stone;
         woodOnHand += wood;

@@ -18,27 +18,44 @@ public abstract class Tower : MonoBehaviour
         ResourceTower
     }
 
+    [SerializeField] protected int maxHealthValue;
+    [SerializeField] protected HealthDisplay healthDisplay;
+
     [SerializeField]
     [Tooltip("The time tower will wait before firing again")]
     protected float actionDelay;
 
-    protected abstract void TowerBehaviour();
+    private void Start()
+    {
+        healthDisplay.Init(maxHealthValue);
+        TowerStartBehaviour();
+    }
+
+    protected abstract void TowerStartBehaviour();
+
 
     private void Update()
     {
-        TowerBehaviour();
+        TowerUpdateBehaviour();
+    }
+
+    protected abstract void TowerUpdateBehaviour();
+
+    public void TakeDamage(int damage)
+    {
+        healthDisplay.TakeDamage(damage);
+        if (healthDisplay.CurrentHealthValue == 0)
+        {
+            SoundManager.instance.PlayTowerDestroySfx();
+            Destroy(gameObject);
+        }
     }
 
     public virtual void AddToTargets(GameObject gameObject) { }
 
     public virtual void RemoveFromTargets(GameObject gameObject) { }
 
-
     public abstract int GetTowerType();
-
- 
-
-
 }
 
 

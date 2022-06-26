@@ -415,7 +415,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 428653884b8b15a44a6b46788db828d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceTravelled: 0
+  healthDisplay: {fileID: 5777982512202237343}
+  maxHealth: 5
+  goldPerHead: 30
+  type: 1
+  enemyDamage: 1
+  playerDamage: 1
+  scorePerEnemyKilled: 10
+  deathSound: {fileID: 8300000, guid: f2c6c9b84f33c8b45bad6727c1051469, type: 3}
+  playerSound: {fileID: 8300000, guid: 7ab3073a65d6f03479af749e1239ca78, type: 3}
+  path: 0
   wayPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -424,10 +433,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  healthBarController: {fileID: 0}
-  child: {fileID: 3598328542102288817}
-  deathSound: {fileID: 8300000, guid: f2c6c9b84f33c8b45bad6727c1051469, type: 3}
-  playerSound: {fileID: 8300000, guid: 7ab3073a65d6f03479af749e1239ca78, type: 3}
+  speed: 0
+  distanceTravelled: 0
 --- !u!136 &6918927713761669298
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -940,7 +947,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &381565872681936101
 MonoBehaviour:
@@ -1202,3 +1209,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5502234197803816847, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
   m_PrefabInstance: {fileID: 9057873990202011198}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5777982512202237343 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3286374405252737953, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
+  m_PrefabInstance: {fileID: 9057873990202011198}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 010484011ea5ce5408326c82db13de4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

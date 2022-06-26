@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 7198464692785057917}
   m_Layer: 10
   m_Name: CrossbowTower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,6 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c582795be6452f46bed392414959265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealthValue: 100
+  healthDisplay: {fileID: 3058165899711395875}
+  towerDestroyedSound: {fileID: 8300000, guid: 549b48c6b7251e345a91274eecaa548c, type: 3}
   actionDelay: 1
   attackZone: {fileID: 3260323774302551585}
   projectile: {fileID: 3439487239067927562, guid: fe5c4c8b36e4d8f4090fe2d78875e123, type: 3}
@@ -319,6 +322,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2441306284681418015}
     m_Modifications:
+    - target: {fileID: 733464912275620386, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 733464912275620386, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5502234197803816847, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -429,6 +440,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
+--- !u!114 &3058165899711395875 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3286374405252737953, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
+  m_PrefabInstance: {fileID: 570626411896034178}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 010484011ea5ce5408326c82db13de4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5454027833781158925 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5502234197803816847, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
