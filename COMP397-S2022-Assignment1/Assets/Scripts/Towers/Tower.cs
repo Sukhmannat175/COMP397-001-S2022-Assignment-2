@@ -92,6 +92,7 @@ public abstract class Tower : MonoBehaviour
 
         if (!isBuilding)
         {
+            health = GetComponent<Health>();
             health.ChangeHealth(-damage);
 
             if (health.currentHealth <= 0)

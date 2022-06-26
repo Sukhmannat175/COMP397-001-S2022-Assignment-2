@@ -45,7 +45,7 @@ public class CannonBall : Projectile
 
         if (Vector3.Distance(transform.position, enemyPos) < 0.001f)
         {
-             Debug.Log("Attempt to destory this gameobject()");
+
             SplashDamageOccur();
             Destroy(gameObject);
         }
@@ -56,7 +56,7 @@ public class CannonBall : Projectile
         Collider[] colliders = Physics.OverlapSphere(transform.position, cannonBallRange);
         foreach (Collider collider in colliders)
         {
-            Debug.Log("Enemies's colliders located");
+
             if (collider.gameObject.CompareTag("Enemy"))
             {
                 //  StartSplashDamage();
@@ -70,7 +70,7 @@ public class CannonBall : Projectile
     {
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("Calling SplashDamageOccur()");
+
             SoundManager.instance.PlaySFX(enemyDeathSound);
             SplashDamageOccur();
         }
