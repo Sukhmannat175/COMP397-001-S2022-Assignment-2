@@ -111,8 +111,6 @@ public class TowerPlacer : MonoBehaviour
 
     public IEnumerator PlaceTower(Tower.TowerType towerType)
     {
-        GameObject tower;
-
         if (towerType == Tower.TowerType.CrossbowTower)
         {
             isPreview = false;

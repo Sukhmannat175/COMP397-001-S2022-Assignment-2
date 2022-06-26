@@ -29,7 +29,12 @@ public class ResourceTower : Tower
         return (int)TowerType.ResourceTower;
     }
 
-    protected override void TowerBehaviour()
+    protected override void TowerStartBehaviour()
+    {
+        
+    }
+
+    protected override void TowerUpdateBehaviour()
     {
         if (coolingDown == false)
         {
