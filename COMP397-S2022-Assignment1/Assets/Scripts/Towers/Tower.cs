@@ -45,7 +45,7 @@ public abstract class Tower : MonoBehaviour
     public enum TowerType
     {
         CrossbowTower,
-        BombTower,
+        CannonTower,
         ResourceTower
     }
 

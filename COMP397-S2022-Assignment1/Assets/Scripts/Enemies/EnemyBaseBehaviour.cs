@@ -37,7 +37,7 @@ public abstract class EnemyBaseBehaviour : Enemy
         this.speed = speed;
     }
 
-    private void TakeEnemyDamage(int damage)
+    public void TakeEnemyDamage(int damage)
     {
         healthDisplay.TakeDamage(damage);
 

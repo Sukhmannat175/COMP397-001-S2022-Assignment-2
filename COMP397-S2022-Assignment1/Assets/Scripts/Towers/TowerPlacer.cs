@@ -20,6 +20,9 @@ public class TowerPlacer : MonoBehaviour
     [SerializeField] GameObject resourceTower;
     [SerializeField] GameObject resourceTowerPreview;
 
+    [SerializeField] GameObject cannonTower;
+    [SerializeField] GameObject cannonTowerPreview;
+
     GameObject towerPreview;
     [SerializeField] bool isPreview = false;
 
@@ -107,6 +110,19 @@ public class TowerPlacer : MonoBehaviour
                 towerPreview = Instantiate(resourceTowerPreview);
             }
         }
+        if (towerType == Tower.TowerType.CannonTower)
+        {
+            if (!isPreview)
+            {
+                currentType = towerType;
+                goldCost = goldNeeded;
+                stoneCost = stoneNeeded;
+                woodCost = woodNeeded;
+
+                isPreview = true;
+                towerPreview = Instantiate(cannonTowerPreview, towerContainer);
+            }
+        }
     }
 
     public IEnumerator PlaceTower(Tower.TowerType towerType)
@@ -141,7 +157,20 @@ public class TowerPlacer : MonoBehaviour
             }
         }
 
-        
+        if (towerType == Tower.TowerType.CannonTower)
+        {
+            isPreview = false;
+            SoundManager.instance.PlaySFX(placeSound);
+            GameObject tower = Instantiate(crossbowTower, worldPos, Quaternion.identity);
+            tower.GetComponent<Tower>().StartBuilding();
+            yield return new WaitForSeconds(tower.GetComponent<Tower>().GetBuildTime());
+
+            if (tower.GetComponent<Tower>().getIsBuilding()) //if tower is set to is building (ie. the player hasn't spent money to buy the tower)
+            {
+                tower.GetComponent<Tower>().CompleteBuilding();
+            }
+        }
+        Destroy(towerPreview);
     }
 
     public void CancelBuy()
