@@ -109,7 +109,7 @@ public class TowerPlacer : MonoBehaviour
                 woodCost = woodNeeded;
 
                 isPreview = true;
-                towerPreview = Instantiate(resourceTowerPreview);
+                towerPreview = Instantiate(resourceTowerPreview, towerContainer);
             }
         }
         if (towerType == Tower.TowerType.CannonTower)
