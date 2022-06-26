@@ -1,3 +1,10 @@
+/*  Filename:           Cannonball.cs
+ *  Author:             Ikamjot Hundal (301134374)
+ *  Last Update:        June 26, 2022
+ *  Description:        Use for CannonTower's projectiles.
+ *  Revision History:   June 26, 2022 (Ikamjot Hundal): Initial script.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

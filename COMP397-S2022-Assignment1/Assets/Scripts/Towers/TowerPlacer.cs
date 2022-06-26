@@ -1,10 +1,12 @@
 /*  Filename:           TowerPlacer.cs
  *  Author:             Han Bi (301176547)
  *                      Marcus Ngooi (301147411)
+ *                      Ikamjot Hundal (301134374)
  *  Last Update:        June 26, 2022
  *  Description:        For placing towers.
  *  Revision History:   June 7, 2022 (Han Bi): Initial script.
  *                      June 26, 2022 (Marcus Ngooi): Adding resource tower to TowerPlacer.
+ *                      June 26, 2022 (Ikamjot Hundal): Adding CannonBall tower to TowerPlacer.
  */
 
 using System.Collections;
