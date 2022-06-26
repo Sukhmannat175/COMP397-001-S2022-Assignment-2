@@ -170,7 +170,6 @@ public class TowerPlacer : MonoBehaviour
                 tower.GetComponent<Tower>().CompleteBuilding();
             }
         }
-        Destroy(towerPreview);
     }
 
     public void CancelBuy()
