@@ -28,8 +28,7 @@ public class CrossbowTower : Tower
     [Tooltip("Audio Source for shooting")]
     AudioClip shootSound;
 
-    public TowerData towerData;
-    public SaveData current;
+    [HideInInspector] public TowerData towerData;
     private List<GameObject> targets  = new List<GameObject>();
 
     protected GameObject currentTarget = null;

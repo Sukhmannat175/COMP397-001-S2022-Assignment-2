@@ -27,6 +27,7 @@ public class CannonTower : Tower
     AudioClip shootSound;
 
     private List<GameObject> targets = new List<GameObject>();
+    [HideInInspector] public TowerData towerData;
 
     protected GameObject currentTarget = null;
 
@@ -42,6 +43,13 @@ public class CannonTower : Tower
     protected override void TowerStartBehaviour()
     {
         targets = new List<GameObject>();
+
+        if (string.IsNullOrEmpty(towerData.towerId))
+        {
+            towerData.towerId = "ResourseTower" + Random.Range(0, int.MaxValue).ToString();
+            towerData.towerType = TowerType.CannonTower;
+            GameController.instance.current.towers.Add(towerData);
+        }
     }
 
     protected override void TowerUpdateBehaviour()
@@ -52,6 +60,9 @@ public class CannonTower : Tower
         {
             StartCoroutine(Shoot());
         }
+
+        towerData.towerPosition = transform.position;
+        towerData.towerPosition = transform.position;
     }
 
     private IEnumerator Shoot()

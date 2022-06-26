@@ -18,6 +18,7 @@ public class ResourceTower : Tower
     public TowerType type;
 
     [HideInInspector] public TowerData towerData;
+
     private IEnumerator Collect()
     {
         coolingDown = true;
