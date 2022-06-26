@@ -128,6 +128,12 @@ public class TowerPlacer : MonoBehaviour
             isPreview = false;
             SoundManager.instance.PlaySFX(placeSound);
             GameObject tower = Instantiate(resourceTower, worldPos, Quaternion.identity);
+            yield return new WaitForSeconds(tower.GetComponent<Tower>().GetBuildTime());
+
+            if (tower.GetComponent<Tower>().getIsBuilding()) //if tower is set to is building (ie. the player hasn't spent money to buy the tower)
+            {
+                tower.GetComponent<Tower>().CompleteBuilding();
+            }
         }
         Destroy(towerPreview);
     }
