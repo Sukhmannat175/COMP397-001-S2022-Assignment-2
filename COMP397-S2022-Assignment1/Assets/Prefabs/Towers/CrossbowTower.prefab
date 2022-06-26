@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: -1260468489049829631}
   m_Layer: 10
   m_Name: CrossbowTower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -224,7 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c1e1e50ed592848b625c6658c70459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 5
+  currentHealth: 0
 --- !u!1 &3260323774302551585
 GameObject:
   m_ObjectHideFlags: 0

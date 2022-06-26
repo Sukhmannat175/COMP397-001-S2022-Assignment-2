@@ -1,3 +1,11 @@
+/*  Filename:           Tower.cs
+ *  Author:             Han Bi (301176547)
+ *  Last Update:        June 26, 2022
+ *  Description:        Healthbar Script
+ *  Revision History:   June 26, 2022 (Han Bi): Initial script.
+ *                      
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
