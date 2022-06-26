@@ -14,12 +14,10 @@ using UnityEngine;
 public class ResourceTower : Tower
 {
     [SerializeField] private bool coolingDown = false;
-    [SerializeField] private AudioClip collectSound;
     
     private IEnumerator Collect()
     {
         coolingDown = true;
-        SoundManager.instance.PlaySFX(collectSound);
         InventoryManager.instance.CollectResources(0, 10, 5);
         yield return new WaitForSeconds(actionDelay);
         coolingDown = false;
