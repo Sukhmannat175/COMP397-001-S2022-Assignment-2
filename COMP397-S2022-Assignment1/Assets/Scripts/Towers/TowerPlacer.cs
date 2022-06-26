@@ -65,8 +65,8 @@ public class TowerPlacer : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     InventoryManager.instance.BuyTower(goldCost, stoneCost, woodCost);
-                    PlaceTower(currentType);
-                    
+                    StartCoroutine(PlaceTower(currentType));
+
                 }
             }
             else
@@ -101,17 +101,27 @@ public class TowerPlacer : MonoBehaviour
 
     }
 
-    public void PlaceTower(Tower.TowerType towerType)
+    public IEnumerator PlaceTower(Tower.TowerType towerType)
     {
-        if(towerType == Tower.TowerType.CrossbowTower)
+        GameObject tower;
+
+        if (towerType == Tower.TowerType.CrossbowTower)
         {
             isPreview = false;
             SoundManager.instance.PlaySFX(placeSound);
-            GameObject tower = Instantiate(crossbowTower, worldPos, Quaternion.identity, towerContainer);
-        
-        }
-        Destroy(towerPreview);
+            tower = Instantiate(crossbowTower, worldPos, Quaternion.identity);
+            tower.GetComponent<Tower>().StartBuilding();
 
+
+            Destroy(towerPreview);
+
+            yield return new WaitForSeconds(tower.GetComponent<Tower>().GetBuildTime());
+
+            if (tower.GetComponent<Tower>().getIsBuilding()) //if tower is set to is building (ie. the player hasn't spent money to buy the tower)
+            {
+                tower.GetComponent<Tower>().CompleteBuilding();
+            }
+        }
     }
 
     public void CancelBuy()

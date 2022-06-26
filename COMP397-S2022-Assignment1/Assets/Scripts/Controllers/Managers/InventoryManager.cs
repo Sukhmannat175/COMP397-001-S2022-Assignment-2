@@ -83,6 +83,16 @@ public class InventoryManager : MonoBehaviour
         else { return false; }
     }
 
+    public void DecreaseResources(int gold, int stone, int wood)
+    {
+        if (!freeToBuild)
+        {
+            goldOnHand -= gold;
+            stoneOnHand -= stone;
+            woodOnHand -= wood;
+            UpdateDisplay();
+        }
+    }
 
     public void UpdateDisplay()
     {

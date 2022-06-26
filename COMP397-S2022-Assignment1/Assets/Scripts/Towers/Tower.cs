@@ -11,12 +11,26 @@ using UnityEngine;
 
 public abstract class Tower : MonoBehaviour
 {
-    public enum TowerType
-    {
-        CrossbowTower,
-        BombTower,
-        ResourceTower
-    }
+    [SerializeField]
+    [Tooltip("Sets to true if tower is building")]
+    protected bool isBuilding;
+
+    [SerializeField]
+    [Tooltip("How long in seconds this takes to build")]
+    [Range(0, 60)]
+    int BUILD_TIME;
+
+    [SerializeField]
+    GameObject completeBuildButton;
+    [SerializeField]
+    float btnPositionOffset;
+
+    [SerializeField]
+    int instantCompleteGoldCost = 50;
+    [SerializeField]
+    int instantCompleteStoneCost = 0;
+    [SerializeField]
+    int instantCompleteWoodCost = 0;
 
     [SerializeField] protected int maxHealthValue;
     [SerializeField] protected HealthDisplay healthDisplay;
@@ -24,6 +38,13 @@ public abstract class Tower : MonoBehaviour
     [SerializeField]
     [Tooltip("The time tower will wait before firing again")]
     protected float actionDelay;
+
+    public enum TowerType
+    {
+        CrossbowTower,
+        BombTower,
+        ResourceTower
+    }
 
     private void Start()
     {
@@ -56,6 +77,41 @@ public abstract class Tower : MonoBehaviour
     public virtual void RemoveFromTargets(GameObject gameObject) { }
 
     public abstract int GetTowerType();
+
+    public int GetBuildTime()
+    {
+        return BUILD_TIME;
+    }
+
+    public void setIsBuilding(bool isBuilding)
+    {
+        this.isBuilding = isBuilding;
+
+    }
+
+    public bool getIsBuilding()
+    {
+        return isBuilding;
+    }
+
+    public void CompleteBuilding()
+    {
+        if (InventoryManager.instance.EnoughResources(instantCompleteGoldCost, instantCompleteStoneCost, instantCompleteWoodCost))
+        {
+            setIsBuilding(false);
+            completeBuildButton.SetActive(false);
+            GetComponent<Health>().StopDisplayTime();
+            InventoryManager.instance.DecreaseResources(instantCompleteGoldCost, instantCompleteStoneCost, instantCompleteWoodCost);
+        }
+
+    }
+
+    public void StartBuilding()
+    {
+        setIsBuilding(true);
+        completeBuildButton.SetActive(true);
+        GetComponent<Health>().DisplayBuildTime(GetBuildTime());
+    }
 }
 
 
