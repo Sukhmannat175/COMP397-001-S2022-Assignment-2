@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private int totalEnemiesInTheLevel;
 
     public static GameController instance;
-
+    public SaveData current;
     private void Awake()
     {
         if (instance == null)
@@ -144,7 +144,7 @@ public class GameController : MonoBehaviour
 
     public void OnSave()
     {
-        SerializationController.Save("Save", SaveData.current);
+        SerializationController.Save("Save", this.current);
     }
 
     public void OnLoad()

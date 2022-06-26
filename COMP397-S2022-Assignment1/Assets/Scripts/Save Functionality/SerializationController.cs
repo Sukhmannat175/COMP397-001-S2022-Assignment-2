@@ -10,6 +10,7 @@ public class SerializationController
 {
     public static bool Save(string saveName, object saveData)
     {
+        // Serialize into Binary File
         BinaryFormatter formatter = GetBinaryFormatter();
 
         if (!Directory.Exists(Application.persistentDataPath + "/saves"))
@@ -22,24 +23,24 @@ public class SerializationController
         }
 
         string path = Application.persistentDataPath + "/saves/" + saveName + ".save";
-        string pathXml = Application.persistentDataPath + "/xml/" + saveName + ".xml";
 
         FileStream file = File.Create(path);
-
-        XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
-
-        using (FileStream stream = new FileStream(pathXml, FileMode.Create))
-        {
-            serializer.Serialize(stream, saveData);
-        }
-
+        
         formatter.Serialize(file, saveData);
         file.Close();
+
+        // Serialize into Xml file
+        string pathXml = Application.persistentDataPath + "/xml/" + saveName + ".xml";       
+
+        XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
+        StreamWriter writer = new StreamWriter(pathXml);
+        serializer.Serialize(writer, saveData);
+        writer.Close();
 
         return true;
     }
 
-    public static object Load(string path)
+    /*public static object Load(string path)
     {
         if (!File.Exists(path))
         {
@@ -62,10 +63,11 @@ public class SerializationController
             file.Close();
             return null;
         }
-    }
+    }*/
 
     public static BinaryFormatter GetBinaryFormatter()
     {
+        // Initate binary Formatter and Surrogates
         BinaryFormatter formatter = new BinaryFormatter();
         SurrogateSelector selector = new SurrogateSelector();
 

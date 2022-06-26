@@ -36,7 +36,7 @@ public class ResourceTower : Tower
         {
             towerData.towerId = this.GetTowerType().ToString() + Random.Range(0, int.MaxValue).ToString();
             towerData.towerType = TowerType.ResourceTower;
-            SaveData.current.towers.Add(towerData);            
+            GameController.instance.current.towers.Add(towerData);
         }
     }
 
