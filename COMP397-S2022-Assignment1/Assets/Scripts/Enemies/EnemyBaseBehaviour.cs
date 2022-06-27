@@ -30,7 +30,7 @@ public abstract class EnemyBaseBehaviour : Enemy
     [SerializeField] protected bool death;
 
     private string playerProjectileTag = "Projectile";
-
+    private EnemyData removeEnemy;
     protected NavMeshAgent navMeshAgent;
 
     protected void SetSpeed(float speed)
@@ -48,6 +48,16 @@ public abstract class EnemyBaseBehaviour : Enemy
             GameController.instance.KillEnemey(scorePerEnemyKilled);
             InventoryManager.instance.CollectResources(goldPerHead, 0, 0);
             SoundManager.instance.PlayEnemyDeathSfx();
+            
+            foreach (EnemyData enemyData in GameController.instance.current.enemies)
+            {
+                if (enemyData.enemyId == this.id)
+                {
+                    removeEnemy = enemyData;
+                }
+            }
+            GameController.instance.current.enemies.Remove(removeEnemy);
+
             Destroy(gameObject);
         }
     }
@@ -91,7 +101,7 @@ public abstract class EnemyBaseBehaviour : Enemy
 
     public override void EnemyStartBehaviour()
     {
-        // Moved to intialize
+
     }
 
     public override void Intialize(EnemyStaticData data)

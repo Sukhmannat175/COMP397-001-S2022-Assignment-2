@@ -36,9 +36,11 @@ public class ResourceTower : Tower
 
     protected override void TowerStartBehaviour()
     {
+        id = "ResourceTower" + Random.Range(0, int.MaxValue).ToString();
+
         if (string.IsNullOrEmpty(towerData.towerId))
         {
-            towerData.towerId = "ResourceTower" + Random.Range(0, int.MaxValue).ToString();
+            towerData.towerId = id;
             towerData.towerType = TowerType.ResourceTower;
             GameController.instance.current.towers.Add(towerData);
         }

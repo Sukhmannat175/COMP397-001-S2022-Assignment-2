@@ -38,9 +38,11 @@ public class CannonTower : Tower
     {
         targets = new List<GameObject>();
 
+        id = "CannonTower" + Random.Range(0, int.MaxValue).ToString();
+
         if (string.IsNullOrEmpty(towerData.towerId))
         {
-            towerData.towerId = "CannonTower" + Random.Range(0, int.MaxValue).ToString();
+            towerData.towerId = id;
             towerData.towerType = TowerType.CannonTower;
             GameController.instance.current.towers.Add(towerData);
         }

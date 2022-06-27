@@ -36,10 +36,11 @@ public class CrossbowTower : Tower
     protected override void TowerStartBehaviour()
     {
         targets = new List<GameObject>();
+        id = "CrossbowTower" + Random.Range(0, int.MaxValue).ToString();
 
         if (string.IsNullOrEmpty(towerData.towerId))
         {
-            towerData.towerId = "CrossbowTower" + Random.Range(0, int.MaxValue).ToString();
+            towerData.towerId = id;
             towerData.towerType = TowerType.CrossbowTower;
             GameController.instance.current.towers.Add(towerData);
         }

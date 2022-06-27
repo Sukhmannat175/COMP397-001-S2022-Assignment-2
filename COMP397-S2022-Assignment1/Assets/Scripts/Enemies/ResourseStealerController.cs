@@ -66,9 +66,11 @@ public class ResourseStealerController : EnemyBaseBehaviour
         base.EnemyStartBehaviour();
         animator = GetComponent<Animator>();
 
+        id = "ResourceStealer" + Random.Range(0, int.MaxValue).ToString();
+
         if (string.IsNullOrEmpty(enemyData.enemyId))
         {
-            enemyData.enemyId = "ResourceStealer" + Random.Range(0, int.MaxValue).ToString();
+            enemyData.enemyId = id;
             enemyData.enemyType = EnemyType.RESOURCESTEALER;
             GameController.instance.current.enemies.Add(enemyData);
         }

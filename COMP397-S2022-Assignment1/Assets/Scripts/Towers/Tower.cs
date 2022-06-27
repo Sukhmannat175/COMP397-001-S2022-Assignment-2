@@ -41,7 +41,10 @@ public abstract class Tower : MonoBehaviour
     protected float actionDelay;
     protected int damageToEnemy; // damage to enemy by shooting projectile
 
+    [HideInInspector] public string id;
     Health health;
+
+    private TowerData removeTower;
 
     public enum TowerType
     {
@@ -109,6 +112,16 @@ public abstract class Tower : MonoBehaviour
             if (health.currentHealth <= 0)
             {
                 SoundManager.instance.PlayTowerDestroySfx();
+
+                foreach (TowerData towerData in GameController.instance.current.towers)
+                {
+                    if (towerData.towerId == this.id)
+                    {
+                        removeTower = towerData;
+                    }
+                }
+                GameController.instance.current.towers.Remove(removeTower);
+
                 Destroy(gameObject);
             }
         }

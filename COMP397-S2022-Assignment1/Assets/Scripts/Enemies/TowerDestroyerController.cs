@@ -54,10 +54,12 @@ public class TowerDestroyerController : EnemyBaseBehaviour
     {
         base.EnemyStartBehaviour();
 
+        id = "TowerDestroyer" + Random.Range(0, int.MaxValue).ToString();
+
         if (string.IsNullOrEmpty(enemyData.enemyId))
         {
-            enemyData.enemyId = "TowerDestroyer" + Random.Range(0, int.MaxValue).ToString();
-            enemyData.enemyType = EnemyType.TOWERDESTROYER;
+            enemyData.enemyId = id;
+            enemyData.enemyType = EnemyType.STONEMONSTER;
             GameController.instance.current.enemies.Add(enemyData);
         }
     }

@@ -16,9 +16,11 @@ public class GruntGolemController : EnemyBaseBehaviour
     {
         base.EnemyStartBehaviour();
 
+        id = "GruntGolem" + Random.Range(0, int.MaxValue).ToString();
+
         if (string.IsNullOrEmpty(enemyData.enemyId))
         {
-            enemyData.enemyId = "GruntGolem" + Random.Range(0, int.MaxValue).ToString();
+            enemyData.enemyId = id;
             enemyData.enemyType = EnemyType.GRUNTGOLEM;
             GameController.instance.current.enemies.Add(enemyData);
         }

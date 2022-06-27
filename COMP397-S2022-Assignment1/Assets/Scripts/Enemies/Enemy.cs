@@ -28,6 +28,7 @@ public abstract class Enemy : MonoBehaviour
     }
 
     protected EnemyStaticData enemyStaticData;
+    [HideInInspector] public string id;
 
     private void Start()
     {

@@ -30,15 +30,14 @@ public class TowerRange : MonoBehaviour
     {
 
         if (other.CompareTag("Enemy"))
-        {
-            
+        {            
             parentTower.AddToTargets(other.gameObject);
         }
 
-        if (other.GetComponent<Enemy>().enemyState == Enemy.EnemyState.DIG)
+        /*if (other.GetComponent<Enemy>().enemyState == Enemy.EnemyState.DIG)
         {
             parentTower.RemoveFromTargets(other.gameObject);
-        }
+        }*/
 
     }
 
