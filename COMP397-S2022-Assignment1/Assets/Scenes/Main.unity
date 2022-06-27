@@ -15823,7 +15823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da6495c998c23a49bef20e202b23abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freeToBuild: 1
+  freeToBuild: 0
   initialGold: 300
   initialStone: 500
   initialWood: 100
@@ -30660,7 +30660,7 @@ MonoBehaviour:
   spawnInterval: 1
   gruntGolemPrefab: {fileID: 7172756143103013517, guid: c6cfc32748fb5004aa11a1be074b5c58, type: 3}
   stoneMonsterPrefab: {fileID: 3538422563216355809, guid: d26d7f0b848069c4b90a3d109686fed5, type: 3}
-  resourcesStealerPrefab: {fileID: 0}
+  resourcesStealerPrefab: {fileID: 9089145555772058670, guid: 8ae79852e611a28488b1c53305d8280b, type: 3}
   wayPointsContainer: {fileID: 1022852253}
   enemySpawnPoint: {fileID: 1416584973}
   enemyContainer: {fileID: 1388628340}

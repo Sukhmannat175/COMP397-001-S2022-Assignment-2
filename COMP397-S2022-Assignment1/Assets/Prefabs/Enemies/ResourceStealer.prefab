@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 9089145555772058670}
   m_Layer: 0
   m_Name: ResourceStealer
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,15 +185,15 @@ MonoBehaviour:
   speed: 2
   distanceTravelled: 0
   death: 0
-  gold: 1
-  stone: 1
-  wood: 1
+  gold: 2
+  stone: 2
+  wood: 2
   animationStateParameterName: Dig
   walkState: 0
   digState: 2
   actionDelay: 5
-  stealTime: 4
-  actionTime: 4
+  stealTime: 10
+  actionTime: 5
   state: 0
   enemyData:
     enemyId: 
@@ -990,7 +990,7 @@ GameObject:
   - component: {fileID: 4356584196830799029}
   - component: {fileID: 4813246689534859141}
   - component: {fileID: 6627443466205787390}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1094,6 +1094,18 @@ PrefabInstance:
       propertyPath: m_MaxValue
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3182474891814709086, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3961375484031905733, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707041426659438438, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5502234197803816847, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1194,12 +1206,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: HpBar
       objectReference: {fileID: 0}
+    - target: {fileID: 6756639382651629083, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7386875298927102504, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7386875298927102504, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7429871393344429001, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

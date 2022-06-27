@@ -31,6 +31,8 @@ public class ResourseStealerController : EnemyBaseBehaviour
             {
                 yield return new WaitForSeconds(actionDelay);
                 navMeshAgent.speed = 0;
+                animator.SetInteger(animationStateParameterName, digState);
+                yield return new WaitForSeconds(2);
                 state = EnemyState.DIG;
             }
             yield return null;
@@ -42,7 +44,6 @@ public class ResourseStealerController : EnemyBaseBehaviour
         while (true)
         {
             steal = stealTime;
-            Debug.Log(steal);
             while (steal > 0 && state == EnemyState.DIG)
             {
                 yield return new WaitForSeconds(actionTime);
@@ -52,7 +53,6 @@ public class ResourseStealerController : EnemyBaseBehaviour
                 steal--;
                 if (steal == 1)
                 {
-                    navMeshAgent.speed = speed;
                     state = EnemyState.WALK;
                 }
             }
@@ -94,8 +94,7 @@ public class ResourseStealerController : EnemyBaseBehaviour
                 break;
 
             case EnemyState.DIG:
-                
-                animator.SetInteger(animationStateParameterName, digState);
+                navMeshAgent.speed = speed;
                 this.gameObject.transform.GetChild(1).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
                 
                 break;
