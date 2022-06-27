@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBuilding: 0
-  BUILD_TIME: 30
+  BUILD_TIME: 50
   completeBuildButton: {fileID: 5487999560462864047}
   btnPositionOffset: 0
   instantCompleteGoldCost: 50
@@ -171,7 +171,7 @@ MonoBehaviour:
   instantCompleteWoodCost: 0
   maxHealthValue: 0
   healthDisplay: {fileID: 0}
-  actionDelay: 1
+  actionDelay: 10
   coolingDown: 0
   collectSound: {fileID: 0}
   type: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c1e1e50ed592848b625c6658c70459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 80
   currentHealth: 0
 --- !u!1 &5487999560462864047
 GameObject:

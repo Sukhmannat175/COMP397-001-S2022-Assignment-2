@@ -15,6 +15,9 @@ public class ResourceTower : Tower
 {
     [SerializeField] private bool coolingDown = false;
     [SerializeField] private AudioClip collectSound;
+    [SerializeField] private int goldIncrease = 0;
+    [SerializeField] private int stoneIncrease = 50;
+    [SerializeField] private int woodIncrease = 25;
     public TowerType type;
 
     [HideInInspector] public TowerData towerData;
@@ -22,7 +25,7 @@ public class ResourceTower : Tower
     private IEnumerator Collect()
     {
         coolingDown = true;
-        InventoryManager.instance.CollectResources(0, 20, 10);
+        InventoryManager.instance.CollectResources(goldIncrease, stoneIncrease, woodIncrease);
         yield return new WaitForSeconds(actionDelay);
         coolingDown = false;
     }
