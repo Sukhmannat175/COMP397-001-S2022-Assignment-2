@@ -117,16 +117,8 @@ public class GameController : MonoBehaviour
                         enemy.Intialize(stoneMonsterStaticData);
                         break;
                     case Enemy.EnemyType.RESOURCESTEALER:
-                        if (resourcesStealerPrefab != null)
-                        {
                             enemy = Instantiate(resourcesStealerPrefab, enemySpawnPoint.position, resourcesStealerPrefab.transform.rotation, enemyContainer);
                             enemy.Intialize(resourcesStealerStaticData);
-                        }
-                        else
-                        {
-                            --totalEnemiesInTheLevel;
-                            Debug.Log("Please attach the resource stealer prefab to game controller.");
-                        }
                         break;
                     default:
                         Debug.LogError(type + " is not yet defined in spawn method");

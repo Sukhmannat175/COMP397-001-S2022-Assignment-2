@@ -34,16 +34,16 @@ public class CannonTower : Tower
     //for testing
     [SerializeField] private bool coolingDown = false; //used to flag tower cooldown in Coroutine
 
-
     protected override void TowerStartBehaviour()
     {
         targets = new List<GameObject>();
 
         if (string.IsNullOrEmpty(towerData.towerId))
         {
-            towerData.towerId = "ResourseTower" + Random.Range(0, int.MaxValue).ToString();
+            towerData.towerId = "CannonTower" + Random.Range(0, int.MaxValue).ToString();
             towerData.towerType = TowerType.CannonTower;
             GameController.instance.current.towers.Add(towerData);
+            Debug.Log("CT");
         }
     }
 

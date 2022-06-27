@@ -241,8 +241,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3260323774302551597}
   - component: {fileID: 3260323774302551586}
-  - component: {fileID: 3260323774302551587}
   - component: {fileID: 3260323774302551584}
+  - component: {fileID: 3260323774302551587}
   m_Layer: 0
   m_Name: TargetRange
   m_TagString: Untagged
@@ -317,19 +317,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!135 &3260323774302551587
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3260323774302551585}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3260323774302551584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,6 +330,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentTower: {fileID: 0}
+--- !u!135 &3260323774302551587
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3260323774302551585}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3260323774470202576
 GameObject:
   m_ObjectHideFlags: 0

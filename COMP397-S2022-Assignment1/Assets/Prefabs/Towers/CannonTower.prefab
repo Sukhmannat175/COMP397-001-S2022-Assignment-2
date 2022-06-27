@@ -143,9 +143,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8503041736520198770}
+  - component: {fileID: -9130364112038992531}
   - component: {fileID: 2981330072653256151}
   - component: {fileID: 4543374945260035795}
-  - component: {fileID: -9130364112038992531}
   m_Layer: 10
   m_Name: CannonTower
   m_TagString: Tower
@@ -172,6 +172,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &-9130364112038992531
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645810273052523551}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.7569714, y: 14.833684, z: 3.854773}
+  m_Center: {x: 0.16955233, y: 7.3262076, z: 0.0142223835}
 --- !u!114 &2981330072653256151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,19 +231,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 160
   currentHealth: 0
---- !u!65 &-9130364112038992531
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1645810273052523551}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.7569714, y: 14.833684, z: 3.854773}
-  m_Center: {x: 0.16955233, y: 7.3262076, z: 0.0142223835}
 --- !u!1 &3042409304226114851
 GameObject:
   m_ObjectHideFlags: 0
