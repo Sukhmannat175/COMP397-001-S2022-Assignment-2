@@ -15823,17 +15823,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da6495c998c23a49bef20e202b23abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freeToBuild: 0
+  freeToBuild: 1
   initialGold: 300
   initialStone: 500
   initialWood: 100
   inventoryDisplay: {fileID: 411697591}
-  crossbowTower: {fileID: 3260323772641981898, guid: 9f8847e5884da1f4ca180650bb68b5ce, type: 3}
-  crossbowTowerPreview: {fileID: 3260323772641981898, guid: e38885ee8597f11488933977a467821f, type: 3}
-  resourceTower: {fileID: 3260323772641981898, guid: c2b6da968f0d230449dcb6b032114969, type: 3}
-  resourceTowerPreview: {fileID: 3260323772641981898, guid: 57d5bdd27d4580e48b2b1cc6fe73418e, type: 3}
-  cannonTower: {fileID: 1645810273052523551, guid: 3051f8e8528f9eb4daf425fbf45d95f5, type: 3}
-  cannonTowerPreview: {fileID: 5641309601765881537, guid: 2d8b6a4f770f4554aaca2c5e85250c74, type: 3}
   goldOnHand: 0
   stoneOnHand: 0
   woodOnHand: 0
@@ -25028,6 +25022,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1522464791281592701, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1627065023742429633, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
       propertyPath: clip
       value: 
@@ -25798,7 +25796,7 @@ PrefabInstance:
       objectReference: {fileID: 3260323772641981898, guid: 57d5bdd27d4580e48b2b1cc6fe73418e, type: 3}
     - target: {fileID: 6194972701161581305, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6207377200263016683, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
       propertyPath: m_Sprite
@@ -30658,14 +30656,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveLabel: {fileID: 646350293}
   waveLabelFormat: WAVE {0} / {1}
-  waves:
-  - types: 030000000300000002000000020000000200000002000000
-  - types: 010000000100000002000000020000000200000002000000
   waveInterval: 20
   spawnInterval: 1
   gruntGolemPrefab: {fileID: 7172756143103013517, guid: c6cfc32748fb5004aa11a1be074b5c58, type: 3}
   stoneMonsterPrefab: {fileID: 3538422563216355809, guid: d26d7f0b848069c4b90a3d109686fed5, type: 3}
-  resourceStealerPrefab: {fileID: 9089145555772058670, guid: 8ae79852e611a28488b1c53305d8280b, type: 3}
+  resourcesStealerPrefab: {fileID: 0}
   wayPointsContainer: {fileID: 1022852253}
   enemySpawnPoint: {fileID: 1416584973}
   enemyContainer: {fileID: 1388628340}
@@ -30673,6 +30668,31 @@ MonoBehaviour:
   playerHpBarController: {fileID: 1732713155}
   finalScore: {fileID: 2132481448}
   finalEnemiesKilled: {fileID: 965309158}
+  waveStaticData: []
+  gruntGolemStaticData:
+    enemy: 0
+    hp: 0
+    ap: 0
+    speed: 0
+    goldPerHead: 0
+    scorePerHead: 0
+    stoppingDistance: 0
+  stoneMonsterStaticData:
+    enemy: 0
+    hp: 0
+    ap: 0
+    speed: 0
+    goldPerHead: 0
+    scorePerHead: 0
+    stoppingDistance: 0
+  resourcesStealerStaticData:
+    enemy: 0
+    hp: 0
+    ap: 0
+    speed: 0
+    goldPerHead: 0
+    scorePerHead: 0
+    stoppingDistance: 0
   currentWave: 0
   score: 0
   enemiesKilled: 0
