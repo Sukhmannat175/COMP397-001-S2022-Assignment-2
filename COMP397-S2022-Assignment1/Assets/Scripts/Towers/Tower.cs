@@ -153,14 +153,24 @@ public abstract class Tower : MonoBehaviour
 
     public void CompleteBuilding()
     {
-        if (InventoryManager.instance.EnoughResources(instantCompleteGoldCost, instantCompleteStoneCost, instantCompleteWoodCost))
-        {
-            setIsBuilding(false);
-            completeBuildButton.SetActive(false);
-            GetComponent<Health>().StopDisplayTime();
-            InventoryManager.instance.DecreaseResources(instantCompleteGoldCost, instantCompleteStoneCost, instantCompleteWoodCost);
-        }
 
+
+        setIsBuilding(false);
+        completeBuildButton.SetActive(false);
+        GetComponent<Health>().StopDisplayTime();
+
+
+    }
+
+    public void InstantComplete()
+    {
+        if (InventoryManager.instance.EnoughResources(instantCompleteGoldCost, instantCompleteStoneCost, instantCompleteWoodCost)){
+
+            InventoryManager.instance.DecreaseResources(instantCompleteGoldCost, instantCompleteStoneCost, instantCompleteWoodCost);
+            CompleteBuilding();
+        }
+            
+        
     }
 
     public void StartBuilding()
