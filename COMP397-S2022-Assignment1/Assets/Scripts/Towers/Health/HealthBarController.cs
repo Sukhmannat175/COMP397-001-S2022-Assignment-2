@@ -1,15 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class HealthBarController : MonoBehaviour
-{   /*  Filename:           Tower.cs
+/*  Filename:           HealthBarController.cs
  *  Author:             Han Bi (301176547)
  *  Last Update:        June 26, 2022
  *  Description:        Managing all Healthbars
  *  Revision History:   June 26, 2022 (Han Bi): Initial script.
  *                      
  */
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HealthBarController : MonoBehaviour
+{   
 
 
     [SerializeField]
