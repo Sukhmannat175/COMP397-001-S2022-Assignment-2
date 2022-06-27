@@ -124,7 +124,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7198464692785057917}
         m_TargetAssemblyTypeName: Tower, Assembly-CSharp
-        m_MethodName: CompleteBuilding
+        m_MethodName: InstantComplete
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -207,6 +207,7 @@ MonoBehaviour:
   maxHealthValue: 0
   healthDisplay: {fileID: 0}
   actionDelay: 1
+  id: 
   attackZone: {fileID: 3260323774302551585}
   projectile: {fileID: 3439487239067927562, guid: fe5c4c8b36e4d8f4090fe2d78875e123, type: 3}
   projectileSpawn: {fileID: 3260323774470202576}
