@@ -172,8 +172,12 @@ MonoBehaviour:
   maxHealthValue: 0
   healthDisplay: {fileID: 0}
   actionDelay: 10
+  id: 
   coolingDown: 0
   collectSound: {fileID: 0}
+  goldIncrease: 0
+  stoneIncrease: 50
+  woodIncrease: 25
   type: 0
   towerData:
     towerId: 
@@ -318,7 +322,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 334775036340264880}
         m_TargetAssemblyTypeName: Tower, Assembly-CSharp
-        m_MethodName: CompleteBuilding
+        m_MethodName: InstantComplete
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
