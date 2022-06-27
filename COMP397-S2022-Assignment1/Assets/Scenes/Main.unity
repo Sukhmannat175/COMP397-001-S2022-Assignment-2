@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15885,17 +15885,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da6495c998c23a49bef20e202b23abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freeToBuild: 1
+  freeToBuild: 0
   initialGold: 300
   initialStone: 500
   initialWood: 100
   inventoryDisplay: {fileID: 411697591}
-  crossbowTower: {fileID: 3260323772641981898, guid: 9f8847e5884da1f4ca180650bb68b5ce, type: 3}
-  crossbowTowerPreview: {fileID: 3260323772641981898, guid: e38885ee8597f11488933977a467821f, type: 3}
-  resourceTower: {fileID: 0}
-  resourceTowerPreview: {fileID: 0}
-  cannonTower: {fileID: 0}
-  cannonTowerPreview: {fileID: 0}
   goldOnHand: 0
   stoneOnHand: 0
   woodOnHand: 0
@@ -30801,12 +30795,13 @@ MonoBehaviour:
   waveLabel: {fileID: 646350293}
   waveLabelFormat: WAVE {0} / {1}
   waves:
-  - types: 010000000100000002000000020000000200000002000000
+  - types: 030000000300000002000000020000000200000002000000
   - types: 010000000100000002000000020000000200000002000000
   waveInterval: 20
   spawnInterval: 1
   gruntGolemPrefab: {fileID: 7172756143103013517, guid: c6cfc32748fb5004aa11a1be074b5c58, type: 3}
   stoneMonsterPrefab: {fileID: 3538422563216355809, guid: d26d7f0b848069c4b90a3d109686fed5, type: 3}
+  resourceStealerPrefab: {fileID: 9089145555772058670, guid: 8ae79852e611a28488b1c53305d8280b, type: 3}
   wayPointsContainer: {fileID: 1022852253}
   enemySpawnPoint: {fileID: 1416584973}
   enemyContainer: {fileID: 1388628340}
@@ -30819,6 +30814,9 @@ MonoBehaviour:
   enemiesKilled: 0
   totalEnemiesDead: 0
   totalEnemiesInTheLevel: 0
+  current:
+    towers: []
+    enemies: []
 --- !u!4 &758556403
 Transform:
   m_ObjectHideFlags: 0
@@ -30827,7 +30825,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758556401}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.180333, y: -47.452858, z: -35.358753}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

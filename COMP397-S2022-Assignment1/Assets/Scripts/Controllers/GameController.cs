@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     [Header("Enemies")]
     [SerializeField] private Enemy gruntGolemPrefab;
     [SerializeField] private Enemy stoneMonsterPrefab;
+    [SerializeField] private Enemy resourceStealerPrefab;
     [SerializeField] private Transform wayPointsContainer;
     [SerializeField] private Transform enemySpawnPoint;
     [SerializeField] private Transform enemyContainer;
@@ -99,7 +100,7 @@ public class GameController : MonoBehaviour
                         enemy = Instantiate(stoneMonsterPrefab, enemySpawnPoint.position, stoneMonsterPrefab.transform.rotation, enemyContainer);
                         break;
                     case Enemy.EnemyType.RESOURCESTEALER:
-                        // TODO
+                        enemy = Instantiate(resourceStealerPrefab, enemySpawnPoint.position, resourceStealerPrefab.transform.rotation, enemyContainer);
                         break;
                     default:
                         Debug.LogError(type + " is not yet defined in spawn method");

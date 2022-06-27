@@ -198,6 +198,11 @@ MonoBehaviour:
   projectile: {fileID: 911225693854249301, guid: 52f6fc5cda4ec5a45ba1ecbc565f89b0, type: 3}
   projectileSpawn: {fileID: 5941472038132836022}
   shootSound: {fileID: 8300000, guid: 7097b80e8ee8b1c4ebb02bc153897723, type: 3}
+  towerData:
+    towerId: 
+    towerType: 0
+    towerPosition: {x: 0, y: 0, z: 0}
+    towerRotation: {x: 0, y: 0, z: 0, w: 0}
   coolingDown: 0
 --- !u!114 &4543374945260035795
 MonoBehaviour:

@@ -21,14 +21,14 @@ public class InventoryManager : MonoBehaviour
 
     [SerializeField] private InventoryDisplay inventoryDisplay;
 
-    [SerializeField] private GameObject crossbowTower;
+    /*[SerializeField] private GameObject crossbowTower;
     [SerializeField] GameObject crossbowTowerPreview;
 
     [SerializeField] private GameObject resourceTower;
     [SerializeField] GameObject resourceTowerPreview;
 
     [SerializeField] private GameObject cannonTower;
-    [SerializeField] GameObject cannonTowerPreview;
+    [SerializeField] GameObject cannonTowerPreview;*/
 
     [Header("Debug")]
     [SerializeField] private int goldOnHand;

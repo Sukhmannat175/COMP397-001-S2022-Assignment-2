@@ -10,6 +10,8 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
+    public EnemyState enemyState;
+
     public enum EnemyType
     {
         NONE = 0,
@@ -17,10 +19,11 @@ public abstract class Enemy : MonoBehaviour
         STONEMONSTER = 2,
         RESOURCESTEALER = 3
     }
-    public enum State
+    public enum EnemyState
     {
         WALK = 0,
         ATTACK = 1,
+        DIG = 2,
     }
 
     private void Start()

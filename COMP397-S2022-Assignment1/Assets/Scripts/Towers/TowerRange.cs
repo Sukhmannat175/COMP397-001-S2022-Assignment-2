@@ -33,7 +33,12 @@ public class TowerRange : MonoBehaviour
         {
             parentTower.AddToTargets(other.gameObject);
         }
-        
+
+        if (other.GetComponent<Enemy>().enemyState == Enemy.EnemyState.DIG)
+        {
+            parentTower.RemoveFromTargets(other.gameObject);
+        }
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -42,6 +47,5 @@ public class TowerRange : MonoBehaviour
         {
             parentTower.RemoveFromTargets(other.gameObject);
         }
-        
     }
 }

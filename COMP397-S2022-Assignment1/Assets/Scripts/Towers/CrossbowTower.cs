@@ -135,7 +135,7 @@ public class CrossbowTower : Tower
         }
     }
 
-    public override void  RemoveFromTargets(GameObject gameObject)
+    public override void RemoveFromTargets(GameObject gameObject)
     {
         targets.Remove(gameObject);
         UpdateCurrentTarget();

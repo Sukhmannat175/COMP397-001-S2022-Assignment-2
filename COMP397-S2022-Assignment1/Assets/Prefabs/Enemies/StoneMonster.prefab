@@ -339,12 +339,10 @@ MonoBehaviour:
   healthDisplay: {fileID: 7888966983346944561}
   maxHealth: 10
   goldPerHead: 50
-  type: 2
+  enemyType: 2
   enemyDamage: 1
   playerDamage: 1
   scorePerEnemyKilled: 20
-  deathSound: {fileID: 8300000, guid: f2c6c9b84f33c8b45bad6727c1051469, type: 3}
-  playerSound: {fileID: 8300000, guid: 7ab3073a65d6f03479af749e1239ca78, type: 3}
   path: 0
   wayPoints: []
   speed: 0

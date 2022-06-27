@@ -24,7 +24,7 @@ public class TowerDestroyerController : EnemyBaseBehaviour
 
     [Header("Debug")]
     [SerializeField] private Tower target;
-    [SerializeField] private State state;
+    [SerializeField] private EnemyState state;
 
     public void SetTargetTower(Tower tower)
     {
@@ -32,11 +32,11 @@ public class TowerDestroyerController : EnemyBaseBehaviour
 
         if (target == null)
         {
-            state = State.WALK;
+            state = EnemyState.WALK;
         }    
         else
         {
-            state = State.ATTACK;
+            state = EnemyState.ATTACK;
         }
     }
 
@@ -52,17 +52,19 @@ public class TowerDestroyerController : EnemyBaseBehaviour
 
         switch(state)
         {
-            case State.WALK:
+            case EnemyState.WALK:
                 animator.SetInteger(animationStateParameterName, walkState);
                 Walk(wayPoints[path]);
                 break;
-            case State.ATTACK:
+
+            case EnemyState.ATTACK:
                 if (target != null)
                 {
                     animator.SetInteger(animationStateParameterName, attackState);
                     navMeshAgent.SetDestination(target.transform.position);
                 }
                 break;
+
             default:
                 Debug.Log(state + " does not support by code.");
                 break;

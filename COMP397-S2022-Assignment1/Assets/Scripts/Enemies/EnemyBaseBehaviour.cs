@@ -15,7 +15,7 @@ public abstract class EnemyBaseBehaviour : Enemy
     [SerializeField] private HealthDisplay healthDisplay;
     [SerializeField] private int maxHealth;
     [SerializeField] private int goldPerHead;
-    [SerializeField] private EnemyType type;
+    [SerializeField] private EnemyType enemyType;
     [SerializeField] private int enemyDamage = 1;
     [SerializeField] protected int playerDamage = 1;
     [SerializeField] private int scorePerEnemyKilled = 10;
@@ -32,7 +32,7 @@ public abstract class EnemyBaseBehaviour : Enemy
 
     protected NavMeshAgent navMeshAgent;
 
-    private void SetSpeed(float speed)
+    protected void SetSpeed(float speed)
     {
         this.speed = speed;
     }
