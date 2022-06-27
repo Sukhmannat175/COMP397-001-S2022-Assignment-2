@@ -2,7 +2,7 @@
  *  Author:             Yuk Yee Wong (301234795)
  *                      Marcus Ngooi (301147411)
  *                      Ikamjot Hundal (301134374)
- *  Last Update:        June 25, 2022
+ *  Last Update:        June 26, 2022
  *  Description:        Inventory Manager.
  *  Revision History:   June 6, 2022 (Yuk Yee Wong): Initial script including tower preview and purchase script.
  *                      June 25, 2022 (Marcus Ngooi): Added resource tower logic on lines 24-25.

@@ -1,4 +1,4 @@
-/*  Filename:           Tower.cs
+/*  Filename:           HealtBar.cs
  *  Author:             Han Bi (301176547)
  *  Last Update:        June 26, 2022
  *  Description:        Healthbar Script

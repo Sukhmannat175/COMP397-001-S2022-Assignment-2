@@ -1,4 +1,4 @@
-/*  Filename:           Tower.cs
+/*  Filename:           Health.cs
  *  Author:             Han Bi (301176547)
  *  Last Update:        June 26, 2022
  *  Description:        Health Script
