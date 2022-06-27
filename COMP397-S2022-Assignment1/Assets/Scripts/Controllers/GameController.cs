@@ -12,23 +12,16 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    [System.Serializable]
-    public class EnemyWave
-    {
-        public List<Enemy.EnemyType> types;
-    }
-
     [Header("Enemy Waves")]
     [SerializeField] private Text waveLabel;
     [SerializeField] private string waveLabelFormat;
-    [SerializeField] private List<EnemyWave> waves;
     [SerializeField] private float waveInterval = 10f;
     [SerializeField] private float spawnInterval = 1f;
 
     [Header("Enemies")]
     [SerializeField] private Enemy gruntGolemPrefab;
     [SerializeField] private Enemy stoneMonsterPrefab;
-    [SerializeField] private Enemy resourceStealerPrefab;
+    [SerializeField] private Enemy resourcesStealerPrefab;
     [SerializeField] private Transform wayPointsContainer;
     [SerializeField] private Transform enemySpawnPoint;
     [SerializeField] private Transform enemyContainer;
@@ -38,6 +31,12 @@ public class GameController : MonoBehaviour
     [SerializeField] private PlayerHealthBarController playerHpBarController;
     [SerializeField] private Text finalScore;
     [SerializeField] private Text finalEnemiesKilled;
+
+    [Header("Loaded from Resources")]
+    [SerializeField] List<EnemyWave> waveStaticData;
+    [SerializeField] private EnemyStaticData gruntGolemStaticData;
+    [SerializeField] private EnemyStaticData stoneMonsterStaticData;
+    [SerializeField] private EnemyStaticData resourcesStealerStaticData;
 
     [Header("Debug")]
     [SerializeField] private int currentWave;
@@ -60,6 +59,22 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
+
+        // Load data from scriptable object
+        GameStaticData gameStaticData = Resources.Load<GameStaticData>("ScriptableObjects/GameStaticData");
+        if (gameStaticData != null)
+        {
+            waveStaticData = gameStaticData.waveStaticData;
+            waveInterval = gameStaticData.waveInterval;
+            spawnInterval = gameStaticData.spawnInterval;
+            gruntGolemStaticData = gameStaticData.enemyStaticData.Find(x => x.enemy == Enemy.EnemyType.GRUNTGOLEM);
+            stoneMonsterStaticData = gameStaticData.enemyStaticData.Find(x => x.enemy == Enemy.EnemyType.STONEMONSTER);
+            resourcesStealerStaticData = gameStaticData.enemyStaticData.Find(x => x.enemy == Enemy.EnemyType.RESOURCESTEALER);
+        }
+        else {
+            Debug.LogError("gameStaticData cannot be loaded");
+        }
+
         CalculateTotalEnemiesInTheLevel();
         StartCoroutine(Spawn());
     }
@@ -67,7 +82,7 @@ public class GameController : MonoBehaviour
     private void CalculateTotalEnemiesInTheLevel()
     {
         totalEnemiesInTheLevel = 0;
-        foreach (EnemyWave wave in waves)
+        foreach (EnemyWave wave in waveStaticData)
         {
             totalEnemiesInTheLevel += wave.types.Count;
         }
@@ -75,12 +90,12 @@ public class GameController : MonoBehaviour
 
     private void UpdateWaveLabel()
     {
-        waveLabel.text = string.Format(waveLabelFormat, currentWave, waves.Count);
+        waveLabel.text = string.Format(waveLabelFormat, currentWave, waveStaticData.Count);
     }
 
     private IEnumerator Spawn()
     {
-        foreach (EnemyWave wave in waves)
+        foreach (EnemyWave wave in waveStaticData)
         {
             currentWave++;
             UpdateWaveLabel();
@@ -95,12 +110,15 @@ public class GameController : MonoBehaviour
                 {
                     case Enemy.EnemyType.GRUNTGOLEM:
                         enemy = Instantiate(gruntGolemPrefab, enemySpawnPoint.position, gruntGolemPrefab.transform.rotation, enemyContainer);
+                        enemy.Intialize(gruntGolemStaticData);
                         break;
                     case Enemy.EnemyType.STONEMONSTER:
                         enemy = Instantiate(stoneMonsterPrefab, enemySpawnPoint.position, stoneMonsterPrefab.transform.rotation, enemyContainer);
+                        enemy.Intialize(stoneMonsterStaticData);
                         break;
                     case Enemy.EnemyType.RESOURCESTEALER:
-                        enemy = Instantiate(resourceStealerPrefab, enemySpawnPoint.position, resourceStealerPrefab.transform.rotation, enemyContainer);
+                            enemy = Instantiate(resourcesStealerPrefab, enemySpawnPoint.position, resourcesStealerPrefab.transform.rotation, enemyContainer);
+                            enemy.Intialize(resourcesStealerStaticData);
                         break;
                     default:
                         Debug.LogError(type + " is not yet defined in spawn method");

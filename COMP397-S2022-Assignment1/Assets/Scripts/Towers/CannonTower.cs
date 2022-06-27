@@ -75,7 +75,7 @@ public class CannonTower : Tower
     private void ShootProjectile(GameObject target)
     {
         GameObject proj = Instantiate(projectile, projectileSpawn.transform); //creates the projectile at the spawn location
-
+        proj.GetComponent<Projectile>().SetDamage(damageToEnemy); // sets projectile damage
         proj.GetComponent<Projectile>().SetTarget(target); //sets the target for the projectile
 
     }

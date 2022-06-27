@@ -11,8 +11,6 @@ using UnityEngine;
 
 public class CannonBall : Projectile
 {
-
-    [SerializeField] int damage = 1;
     [SerializeField] float projectileSpeed = 10;
     [SerializeField] float cannonBallRange = 2f;
     Transform targetTransform;

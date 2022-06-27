@@ -92,9 +92,10 @@ public class Health : MonoBehaviour
         OnHealthRemoved(this);
     }
 
-    private void OnDestroy()
+    public void SetMaxHealth(int maxHealth)
     {
-        OnHealthRemoved(this);
+        this.maxHealth = maxHealth;
+        currentHealth = maxHealth;
     }
 
 

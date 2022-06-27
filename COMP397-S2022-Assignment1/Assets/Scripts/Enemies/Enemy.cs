@@ -7,6 +7,7 @@
  */
 
 using UnityEngine;
+using UnityEngine.AI;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public abstract class Enemy : MonoBehaviour
         DIG = 2,
     }
 
+    protected EnemyStaticData enemyStaticData;
+
     private void Start()
     {
         EnemyStartBehaviour();
@@ -35,6 +38,8 @@ public abstract class Enemy : MonoBehaviour
     {
         EnemyUpdateBehaviour();
     }
+
+    public abstract void Intialize(EnemyStaticData data);
 
     public abstract void SetWayPoints(Transform wayPointsContainer);
 

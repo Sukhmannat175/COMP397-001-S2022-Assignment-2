@@ -11,8 +11,14 @@ using UnityEngine;
 
 public abstract class Projectile : MonoBehaviour
 {
+    protected int damage;
     protected GameObject target;
     protected virtual void Shoot(GameObject target) { }
+
+    public void SetDamage(int damage)
+    {
+        this.damage = damage;
+    }
 
     public void SetTarget(GameObject gameObject)
     {

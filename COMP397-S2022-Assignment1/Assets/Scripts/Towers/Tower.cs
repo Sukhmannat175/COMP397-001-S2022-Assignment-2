@@ -39,6 +39,7 @@ public abstract class Tower : MonoBehaviour
     [SerializeField]
     [Tooltip("The time tower will wait before firing again")]
     protected float actionDelay;
+    protected int damageToEnemy; // damage to enemy by shooting projectile
 
     Health health;
 
@@ -77,6 +78,16 @@ public abstract class Tower : MonoBehaviour
     private void LateUpdate()
     {
         completeBuildButton.transform.position = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * btnPositionOffset);
+    }
+
+    public void Intialize(TowerStaticData data)
+    {
+        health = GetComponent<Health>();
+
+        BUILD_TIME = data.buildTime;
+        health.SetMaxHealth(data.hp);
+        actionDelay = data.interval;
+        damageToEnemy = data.damageToEnemy;
     }
 
     protected abstract void TowerUpdateBehaviour();

@@ -40,9 +40,11 @@ public class TowerDestroyerController : EnemyBaseBehaviour
         }
     }
 
-    public override void EnemyStartBehaviour()
+    public override void Intialize(EnemyStaticData data)
     {
-        base.EnemyStartBehaviour();
+        base.Intialize(data);
+        damage = data.ap;
+
         projectile.Init(damage);
     }
 
