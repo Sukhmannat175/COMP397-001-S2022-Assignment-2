@@ -41,7 +41,6 @@ public class ResourceTower : Tower
             towerData.towerId = "ResourceTower" + Random.Range(0, int.MaxValue).ToString();
             towerData.towerType = TowerType.ResourceTower;
             GameController.instance.current.towers.Add(towerData);
-            Debug.Log("RT");
         }
     }
 

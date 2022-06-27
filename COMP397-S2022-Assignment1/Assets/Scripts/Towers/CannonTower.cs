@@ -43,7 +43,6 @@ public class CannonTower : Tower
             towerData.towerId = "CannonTower" + Random.Range(0, int.MaxValue).ToString();
             towerData.towerType = TowerType.CannonTower;
             GameController.instance.current.towers.Add(towerData);
-            Debug.Log("CT");
         }
     }
 
@@ -57,7 +56,7 @@ public class CannonTower : Tower
         }
 
         towerData.towerPosition = transform.position;
-        towerData.towerPosition = transform.position;
+        towerData.towerRotation = transform.rotation;
     }
 
     private IEnumerator Shoot()

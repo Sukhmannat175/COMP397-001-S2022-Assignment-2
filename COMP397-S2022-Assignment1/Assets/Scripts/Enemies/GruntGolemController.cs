@@ -10,9 +10,25 @@ using UnityEngine;
 
 public class GruntGolemController : EnemyBaseBehaviour
 {
+    [HideInInspector] public EnemyData enemyData;
+
+    public override void EnemyStartBehaviour()
+    {
+        base.EnemyStartBehaviour();
+
+        if (string.IsNullOrEmpty(enemyData.enemyId))
+        {
+            enemyData.enemyId = "GruntGolem" + Random.Range(0, int.MaxValue).ToString();
+            enemyData.enemyType = EnemyType.GRUNTGOLEM;
+            GameController.instance.current.enemies.Add(enemyData);
+        }
+    }
     public override void EnemyUpdateBehaviour()
     {
         base.EnemyUpdateBehaviour();
         Walk(wayPoints[path]);
+
+        enemyData.enemyPosition = transform.position;
+        enemyData.enemyRotation = transform.rotation;
     }
 }

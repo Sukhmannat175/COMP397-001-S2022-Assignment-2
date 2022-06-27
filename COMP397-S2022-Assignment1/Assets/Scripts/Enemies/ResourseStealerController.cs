@@ -18,6 +18,8 @@ public class ResourseStealerController : EnemyBaseBehaviour
     [Header("Debug")]
     [SerializeField] private EnemyState state;
 
+    [HideInInspector] public EnemyData enemyData;
+
     private Animator animator;
     private int steal;
 
@@ -63,6 +65,14 @@ public class ResourseStealerController : EnemyBaseBehaviour
     {
         base.EnemyStartBehaviour();
         animator = GetComponent<Animator>();
+
+        if (string.IsNullOrEmpty(enemyData.enemyId))
+        {
+            enemyData.enemyId = "ResourceStealer" + Random.Range(0, int.MaxValue).ToString();
+            enemyData.enemyType = EnemyType.RESOURCESTEALER;
+            GameController.instance.current.enemies.Add(enemyData);
+        }
+
         StartCoroutine(Dig());
         StartCoroutine(StealResources());
     }
@@ -92,6 +102,9 @@ public class ResourseStealerController : EnemyBaseBehaviour
                 Debug.Log(state + " does not support by code.");
                 break;
         }
+
+        enemyData.enemyPosition = transform.position;
+        enemyData.enemyRotation = transform.rotation;
     }
 
     public void DigDown()

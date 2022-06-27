@@ -42,7 +42,6 @@ public class CrossbowTower : Tower
             towerData.towerId = "CrossbowTower" + Random.Range(0, int.MaxValue).ToString();
             towerData.towerType = TowerType.CrossbowTower;
             GameController.instance.current.towers.Add(towerData);
-            Debug.Log("CCT");
         }
     }
 
@@ -59,7 +58,7 @@ public class CrossbowTower : Tower
         }
 
         towerData.towerPosition = transform.position;
-        towerData.towerPosition = transform.position;
+        towerData.towerRotation = transform.rotation;
     }
 
 

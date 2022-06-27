@@ -26,6 +26,8 @@ public class TowerDestroyerController : EnemyBaseBehaviour
     [SerializeField] private Tower target;
     [SerializeField] private EnemyState state;
 
+    [HideInInspector] public EnemyData enemyData;
+
     public void SetTargetTower(Tower tower)
     {
         target = tower;
@@ -48,6 +50,17 @@ public class TowerDestroyerController : EnemyBaseBehaviour
         projectile.Init(damage);
     }
 
+    public override void EnemyStartBehaviour()
+    {
+        base.EnemyStartBehaviour();
+
+        if (string.IsNullOrEmpty(enemyData.enemyId))
+        {
+            enemyData.enemyId = "TowerDestroyer" + Random.Range(0, int.MaxValue).ToString();
+            enemyData.enemyType = EnemyType.TOWERDESTROYER;
+            GameController.instance.current.enemies.Add(enemyData);
+        }
+    }
     public override void EnemyUpdateBehaviour()
     {
         base.EnemyUpdateBehaviour();
@@ -71,5 +84,8 @@ public class TowerDestroyerController : EnemyBaseBehaviour
                 Debug.Log(state + " does not support by code.");
                 break;
         }
+
+        enemyData.enemyPosition = transform.position;
+        enemyData.enemyRotation = transform.rotation;
     }
 }
