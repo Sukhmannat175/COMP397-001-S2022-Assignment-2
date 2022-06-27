@@ -157,7 +157,7 @@ public class TowerPlacer : MonoBehaviour
         {
             isPreview = false;
             SoundManager.instance.PlaySFX(placeSound);
-            GameObject towerObject = Instantiate(crossbowTower, worldPos, Quaternion.identity);
+            GameObject towerObject = Instantiate(crossbowTower, worldPos, Quaternion.identity, towerContainer);
             Tower tower = towerObject.GetComponent<Tower>();
             tower.Intialize(crossbowTowerStaticData);
             tower.StartBuilding();
@@ -172,7 +172,7 @@ public class TowerPlacer : MonoBehaviour
         {
             isPreview = false;
             SoundManager.instance.PlaySFX(placeSound);
-            GameObject towerObject = Instantiate(resourceTower, worldPos, Quaternion.identity);
+            GameObject towerObject = Instantiate(resourceTower, worldPos, Quaternion.identity, towerContainer);
             Tower tower = towerObject.GetComponent<Tower>();
             tower.Intialize(resourceTowerStaticData);
             tower.StartBuilding();
@@ -188,7 +188,7 @@ public class TowerPlacer : MonoBehaviour
         {
             isPreview = false;
             SoundManager.instance.PlaySFX(placeSound);
-            GameObject towerObject = Instantiate(cannonTower, worldPos, Quaternion.identity);
+            GameObject towerObject = Instantiate(cannonTower, worldPos, Quaternion.identity, towerContainer);
             Tower tower = towerObject.GetComponent<Tower>();
             tower.Intialize(cannonTowerStaticData);
             tower.StartBuilding();

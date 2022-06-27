@@ -27,6 +27,7 @@ public abstract class EnemyBaseBehaviour : Enemy
     [Tooltip("Come from nav mesh agent, for calculating distance travelled")]
     [SerializeField] protected float speed;
     [SerializeField] protected float distanceTravelled;
+    [SerializeField] protected bool death;
 
     private string playerProjectileTag = "Projectile";
 
@@ -41,8 +42,9 @@ public abstract class EnemyBaseBehaviour : Enemy
     {
         healthDisplay.TakeDamage(damage);
 
-        if (healthDisplay.CurrentHealthValue == 0)
+        if (healthDisplay.CurrentHealthValue == 0 && !death)
         {
+            death = true;
             GameController.instance.KillEnemey(scorePerEnemyKilled);
             InventoryManager.instance.CollectResources(goldPerHead, 0, 0);
             SoundManager.instance.PlayEnemyDeathSfx();

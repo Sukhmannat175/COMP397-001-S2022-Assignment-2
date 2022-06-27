@@ -12,4 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b9b9f27a5621754694f1f28453b8df9, type: 3}
   m_Name: TowerPlacerStaticData
   m_EditorClassIdentifier: 
-  towerStaticDataList: []
+  towerStaticDataList:
+  - tower: 0
+    hp: 50
+    buildTime: 5
+    interval: 1
+    damageToEnemy: 1
+  - tower: 1
+    hp: 80
+    buildTime: 10
+    interval: 3
+    damageToEnemy: 5
+  - tower: 2
+    hp: 40
+    buildTime: 20
+    interval: 3
+    damageToEnemy: 0
