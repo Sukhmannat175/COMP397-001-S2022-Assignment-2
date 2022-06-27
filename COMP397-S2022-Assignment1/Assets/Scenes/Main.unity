@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17061,11 +17061,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ce09998b07d3e34ba45f58e54665a09, type: 3}
   m_PrefabInstance: {fileID: 153038713}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &428612478 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3721160899893965714, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
-  m_PrefabInstance: {fileID: 659298398}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &430624725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25862,6 +25857,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -95
       objectReference: {fileID: 0}
+    - target: {fileID: 5746885714705268384, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5782740966405630705, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
       propertyPath: up
       value: 0
@@ -25896,7 +25895,7 @@ PrefabInstance:
       objectReference: {fileID: 3260323772641981898, guid: 57d5bdd27d4580e48b2b1cc6fe73418e, type: 3}
     - target: {fileID: 6194972701161581305, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6207377200263016683, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
       propertyPath: m_Sprite
@@ -26421,25 +26420,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5639b2c661b4a0341a42bed69eab96f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &659298404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 428612478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff5e6e582d5f89b48a5b02741c1e4cc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBarPrefab: {fileID: 2316432186565039736, guid: ece331523d283654c88708cd0c02db33, type: 3}
 --- !u!114 &659298405 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8904154262236749373, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
   m_PrefabInstance: {fileID: 659298398}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 428612478}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9d2dc4cee268834e8c74919fe8280c2, type: 3}
@@ -30800,13 +30786,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveLabel: {fileID: 646350293}
   waveLabelFormat: WAVE {0} / {1}
-  waves:
-  - types: 010000000100000002000000020000000200000002000000
-  - types: 010000000100000002000000020000000200000002000000
   waveInterval: 20
   spawnInterval: 1
   gruntGolemPrefab: {fileID: 7172756143103013517, guid: c6cfc32748fb5004aa11a1be074b5c58, type: 3}
   stoneMonsterPrefab: {fileID: 3538422563216355809, guid: d26d7f0b848069c4b90a3d109686fed5, type: 3}
+  resourcesStealerPrefab: {fileID: 0}
   wayPointsContainer: {fileID: 1022852253}
   enemySpawnPoint: {fileID: 1416584973}
   enemyContainer: {fileID: 1388628340}
@@ -30814,6 +30798,31 @@ MonoBehaviour:
   playerHpBarController: {fileID: 1732713155}
   finalScore: {fileID: 2132481448}
   finalEnemiesKilled: {fileID: 965309158}
+  waveStaticData: []
+  gruntGolemStaticData:
+    enemy: 0
+    hp: 0
+    ap: 0
+    speed: 0
+    goldPerHead: 0
+    scorePerHead: 0
+    stoppingDistance: 0
+  stoneMonsterStaticData:
+    enemy: 0
+    hp: 0
+    ap: 0
+    speed: 0
+    goldPerHead: 0
+    scorePerHead: 0
+    stoppingDistance: 0
+  resourcesStealerStaticData:
+    enemy: 0
+    hp: 0
+    ap: 0
+    speed: 0
+    goldPerHead: 0
+    scorePerHead: 0
+    stoppingDistance: 0
   currentWave: 0
   score: 0
   enemiesKilled: 0
@@ -33725,6 +33734,24 @@ MonoBehaviour:
   cannonTowerPreview: {fileID: 5641309601765881537, guid: 2d8b6a4f770f4554aaca2c5e85250c74, type: 3}
   isPreview: 0
   placeSound: {fileID: 8300000, guid: 5e14f9c2e242e76458e2b9a9a72aacfa, type: 3}
+  crossbowTowerStaticData:
+    tower: 0
+    hp: 0
+    buildTime: 0
+    interval: 0
+    damageToEnemy: 0
+  cannonTowerStaticData:
+    tower: 0
+    hp: 0
+    buildTime: 0
+    interval: 0
+    damageToEnemy: 0
+  resourceTowerStaticData:
+    tower: 0
+    hp: 0
+    buildTime: 0
+    interval: 0
+    damageToEnemy: 0
   screenPos: {x: 0, y: 0, z: 0}
   worldPos: {x: 0, y: 0, z: 0}
   ground:
