@@ -22,7 +22,7 @@ public class ResourceTower : Tower
     private IEnumerator Collect()
     {
         coolingDown = true;
-        InventoryManager.instance.CollectResources(0, 10, 5);
+        InventoryManager.instance.CollectResources(0, 20, 10);
         yield return new WaitForSeconds(actionDelay);
         coolingDown = false;
     }

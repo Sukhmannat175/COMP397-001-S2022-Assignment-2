@@ -89,10 +89,26 @@ public abstract class EnemyBaseBehaviour : Enemy
 
     public override void EnemyStartBehaviour()
     {
-        healthDisplay.Init(maxHealth);
-        navMeshAgent = GetComponent<NavMeshAgent>();
-        SetSpeed(navMeshAgent.speed);
+        // Moved to intialize
     }
+
+    public override void Intialize(EnemyStaticData data)
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+
+        maxHealth = data.hp;
+        navMeshAgent.speed = data.speed;
+        navMeshAgent.stoppingDistance = data.stoppingDistance;
+        goldPerHead = data.goldPerHead;
+        scorePerEnemyKilled = data.scorePerHead;
+        playerDamage = data.ap;
+
+        healthDisplay.Init(maxHealth);
+        SetSpeed(navMeshAgent.speed);
+
+        enemyStaticData = data;
+    }
+
     public override void Walk(Transform position)
     {
         navMeshAgent.destination = position.position;

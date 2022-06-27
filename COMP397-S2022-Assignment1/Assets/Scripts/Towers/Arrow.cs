@@ -12,7 +12,6 @@ using UnityEngine;
 
 public class Arrow : Projectile
 {
-    [SerializeField] float damage = 1;
     [SerializeField] float projectileSpeed = 20;
     Transform targetTransform;
     Vector3 enemyPos;

@@ -30,6 +30,11 @@ public class TowerPlacer : MonoBehaviour
 
     [SerializeField] AudioClip placeSound;
 
+    [Header("Loaded from Resources")]
+    [SerializeField] private TowerStaticData crossbowTowerStaticData;
+    [SerializeField] private TowerStaticData cannonTowerStaticData;
+    [SerializeField] private TowerStaticData resourceTowerStaticData;
+
     public Vector3 screenPos;
     public Vector3 worldPos;
 
@@ -40,6 +45,22 @@ public class TowerPlacer : MonoBehaviour
     int goldCost;
     int stoneCost;
     int woodCost;
+
+    private void Start()
+    {
+        // Load data from scriptable object
+        TowerPlacerStaticData towerPlacerStaticData = Resources.Load<TowerPlacerStaticData>("ScriptableObjects/TowerPlacerStaticData");
+        if (towerPlacerStaticData != null)
+        {
+            crossbowTowerStaticData = towerPlacerStaticData.towerStaticDataList.Find(x => x.tower == Tower.TowerType.CrossbowTower);
+            cannonTowerStaticData = towerPlacerStaticData.towerStaticDataList.Find(x => x.tower == Tower.TowerType.CannonTower);
+            resourceTowerStaticData = towerPlacerStaticData.towerStaticDataList.Find(x => x.tower == Tower.TowerType.ResourceTower);
+        }
+        else
+        {
+            Debug.LogError("towerPlacerStaticData cannot be loaded");
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -136,26 +157,30 @@ public class TowerPlacer : MonoBehaviour
         {
             isPreview = false;
             SoundManager.instance.PlaySFX(placeSound);
-            GameObject tower = Instantiate(crossbowTower, worldPos, Quaternion.identity);
-            tower.GetComponent<Tower>().StartBuilding();
-            yield return new WaitForSeconds(tower.GetComponent<Tower>().GetBuildTime());
+            GameObject towerObject = Instantiate(crossbowTower, worldPos, Quaternion.identity);
+            Tower tower = towerObject.GetComponent<Tower>();
+            tower.Intialize(crossbowTowerStaticData);
+            tower.StartBuilding();
+            yield return new WaitForSeconds(tower.GetBuildTime());
 
-            if (tower.GetComponent<Tower>().getIsBuilding()) //if tower is set to is building (ie. the player hasn't spent money to buy the tower)
+            if (tower.getIsBuilding()) //if tower is set to is building (ie. the player hasn't spent money to buy the tower)
             {
-                tower.GetComponent<Tower>().CompleteBuilding();
+                tower.CompleteBuilding();
             }
         }
         if (towerType == Tower.TowerType.ResourceTower)
         {
             isPreview = false;
             SoundManager.instance.PlaySFX(placeSound);
-            GameObject tower = Instantiate(resourceTower, worldPos, Quaternion.identity);
-            tower.GetComponent<Tower>().StartBuilding();
-            yield return new WaitForSeconds(tower.GetComponent<Tower>().GetBuildTime());
+            GameObject towerObject = Instantiate(resourceTower, worldPos, Quaternion.identity);
+            Tower tower = towerObject.GetComponent<Tower>();
+            tower.Intialize(resourceTowerStaticData);
+            tower.StartBuilding();
+            yield return new WaitForSeconds(tower.GetBuildTime());
 
-            if (tower.GetComponent<Tower>().getIsBuilding()) //if tower is set to is building (ie. the player hasn't spent money to buy the tower)
+            if (tower.getIsBuilding()) //if tower is set to is building (ie. the player hasn't spent money to buy the tower)
             {
-                tower.GetComponent<Tower>().CompleteBuilding();
+                tower.CompleteBuilding();
             }
         }
 
@@ -163,13 +188,15 @@ public class TowerPlacer : MonoBehaviour
         {
             isPreview = false;
             SoundManager.instance.PlaySFX(placeSound);
-            GameObject tower = Instantiate(cannonTower, worldPos, Quaternion.identity);
-            tower.GetComponent<Tower>().StartBuilding();
-            yield return new WaitForSeconds(tower.GetComponent<Tower>().GetBuildTime());
+            GameObject towerObject = Instantiate(cannonTower, worldPos, Quaternion.identity);
+            Tower tower = towerObject.GetComponent<Tower>();
+            tower.Intialize(cannonTowerStaticData);
+            tower.StartBuilding();
+            yield return new WaitForSeconds(tower.GetBuildTime());
 
-            if (tower.GetComponent<Tower>().getIsBuilding()) //if tower is set to is building (ie. the player hasn't spent money to buy the tower)
+            if (tower.getIsBuilding()) //if tower is set to is building (ie. the player hasn't spent money to buy the tower)
             {
-                tower.GetComponent<Tower>().CompleteBuilding();
+                tower.CompleteBuilding();
             }
         }
     }
