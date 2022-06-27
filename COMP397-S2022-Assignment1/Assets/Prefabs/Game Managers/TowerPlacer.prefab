@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3918099991464310358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3918099991464310356}
+  - component: {fileID: 3918099991464310357}
+  m_Layer: 0
+  m_Name: TowerPlacer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3918099991464310356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3918099991464310358}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -49.03653, y: 4.5702763, z: -6.5940676}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3918099991464310357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3918099991464310358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf8de593773a4c4eba0a5eb3daa7525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crossbowTower: {fileID: 3260323772641981898, guid: 9f8847e5884da1f4ca180650bb68b5ce, type: 3}
+  crossbowTowerPreview: {fileID: 3260323772641981898, guid: e38885ee8597f11488933977a467821f, type: 3}
+  towerContainer: {fileID: 0}
+  resourceTower: {fileID: 3260323772641981898, guid: c2b6da968f0d230449dcb6b032114969, type: 3}
+  resourceTowerPreview: {fileID: 3260323772641981898, guid: 57d5bdd27d4580e48b2b1cc6fe73418e, type: 3}
+  cannonTower: {fileID: 1645810273052523551, guid: 3051f8e8528f9eb4daf425fbf45d95f5, type: 3}
+  cannonTowerPreview: {fileID: 5641309601765881537, guid: 2d8b6a4f770f4554aaca2c5e85250c74, type: 3}
+  isPreview: 0
+  placeSound: {fileID: 8300000, guid: 5e14f9c2e242e76458e2b9a9a72aacfa, type: 3}
+  screenPos: {x: 0, y: 0, z: 0}
+  worldPos: {x: 0, y: 0, z: 0}
+  ground:
+    serializedVersion: 2
+    m_Bits: 128
