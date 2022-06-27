@@ -22,7 +22,7 @@ MonoBehaviour:
     hp: 80
     buildTime: 10
     interval: 3
-    damageToEnemy: 5
+    damageToEnemy: 1
   - tower: 2
     hp: 40
     buildTime: 20
