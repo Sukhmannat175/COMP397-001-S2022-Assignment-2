@@ -14,7 +14,6 @@ public class HealthBarController : MonoBehaviour
 
     [SerializeField]
     private HealthBar healthBarPrefab;
-    [SerializeField] private Transform healthBarContainer;
 
     private Dictionary<Health, HealthBar> healthBars = new Dictionary<Health, HealthBar>();
 
@@ -30,7 +29,7 @@ public class HealthBarController : MonoBehaviour
     {
         if (!healthBars.ContainsKey(health))
         {
-            var healthBar = Instantiate(healthBarPrefab, healthBarContainer);
+            var healthBar = Instantiate(healthBarPrefab, transform);
             healthBars.Add(health, healthBar);
             healthBar.SetHealth(health);
         }
