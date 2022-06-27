@@ -15823,7 +15823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da6495c998c23a49bef20e202b23abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freeToBuild: 0
+  freeToBuild: 1
   initialGold: 300
   initialStone: 500
   initialWood: 100

@@ -46,8 +46,11 @@ public class TowerPlacer : MonoBehaviour
     int stoneCost;
     int woodCost;
 
+    [SerializeField] int towersPlaced;
+
     private void Start()
     {
+        towersPlaced = 0;
         // Load data from scriptable object
         TowerPlacerStaticData towerPlacerStaticData = Resources.Load<TowerPlacerStaticData>("ScriptableObjects/TowerPlacerStaticData");
         if (towerPlacerStaticData != null)
@@ -81,13 +84,14 @@ public class TowerPlacer : MonoBehaviour
 
             towerPreview.transform.position = worldPos;
 
-            if (towerPreview.GetComponent<TowerPreview>().GetIsValidPosition() && InventoryManager.instance.EnoughResources(goldCost, stoneCost, woodCost))
+            if (towerPreview.GetComponent<TowerPreview>().GetIsValidPosition() && InventoryManager.instance.EnoughResources(goldCost, stoneCost, woodCost) && towersPlaced < 10)
             {
                 towerPreview.GetComponent<TowerPreview>().ChangeRangeColor(new Color(1, 1, 1, 0.4f));
 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) && towersPlaced < 10)
                 {
                     InventoryManager.instance.BuyTower(goldCost, stoneCost, woodCost);
+                    towersPlaced++;
                     StartCoroutine(PlaceTower(currentType));
 
                 }
