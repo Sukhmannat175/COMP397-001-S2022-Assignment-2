@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6926670520046671638}
   - component: {fileID: 3564297774039614366}
   - component: {fileID: 345172109298404956}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,9 +143,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8503041736520198770}
+  - component: {fileID: -9130364112038992531}
   - component: {fileID: 2981330072653256151}
   - component: {fileID: 4543374945260035795}
-  - component: {fileID: -9130364112038992531}
   m_Layer: 10
   m_Name: CannonTower
   m_TagString: Tower
@@ -172,6 +172,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &-9130364112038992531
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645810273052523551}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.7569714, y: 14.833684, z: 3.854773}
+  m_Center: {x: 0.16955233, y: 7.3262076, z: 0.0142223835}
 --- !u!114 &2981330072653256151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,11 +202,11 @@ MonoBehaviour:
   completeBuildButton: {fileID: 1380604078204711762}
   btnPositionOffset: 0
   instantCompleteGoldCost: 50
-  instantCompleteStoneCost: 50
-  instantCompleteWoodCost: 50
+  instantCompleteStoneCost: 0
+  instantCompleteWoodCost: 0
   maxHealthValue: 0
   healthDisplay: {fileID: 0}
-  actionDelay: 1
+  actionDelay: 2
   attackZone: {fileID: 3613199125038796217}
   projectile: {fileID: 911225693854249301, guid: 52f6fc5cda4ec5a45ba1ecbc565f89b0, type: 3}
   projectileSpawn: {fileID: 5941472038132836022}
@@ -216,21 +229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c1e1e50ed592848b625c6658c70459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 160
   currentHealth: 0
---- !u!65 &-9130364112038992531
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1645810273052523551}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.7569714, y: 14.833684, z: 3.854773}
-  m_Center: {x: 0.16955233, y: 7.3262076, z: 0.0142223835}
 --- !u!1 &3042409304226114851
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 8446063435770240706}
   - component: {fileID: 2179920546043287281}
   - component: {fileID: 2234653810459045601}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 1297689967823538330}
   - component: {fileID: 8919946737213493916}
   - component: {fileID: 3427281342578543176}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: TargetRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +453,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5610848595956718443}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: ProjectileSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 1197327187137578650}
   - component: {fileID: 7906638927744033627}
   - component: {fileID: 5837760320626789560}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -669,7 +669,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 503c5b62ac4301a4d9412744823ac81f, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 503c5b62ac4301a4d9412744823ac81f, type: 3}

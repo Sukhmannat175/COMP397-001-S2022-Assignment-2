@@ -130,7 +130,7 @@ MonoBehaviour:
   towerMask:
     serializedVersion: 2
     m_Bits: 1024
-  radius: 1.5
+  radius: 1.8
   towerDestroyer: {fileID: 0}
 --- !u!1 &7951703380762339649
 GameObject:
@@ -636,8 +636,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.035507627, y: 0.043468334, z: 0.029268684}
-  m_Center: {x: -0.0008882287, y: 0.0105724735, z: -0.00032733745}
+  m_Size: {x: 0.035507627, y: 0.10453712, z: 0.19108689}
+  m_Center: {x: -0.0008876392, y: 0.04110407, z: 0.0805818}
 --- !u!82 &3078189703603042841
 AudioSource:
   m_ObjectHideFlags: 0

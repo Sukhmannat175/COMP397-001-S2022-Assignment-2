@@ -109,7 +109,7 @@ public class TowerPlacer : MonoBehaviour
                 woodCost = woodNeeded;
 
                 isPreview = true;
-                towerPreview = Instantiate(resourceTowerPreview);
+                towerPreview = Instantiate(resourceTowerPreview, towerContainer);
             }
         }
         if (towerType == Tower.TowerType.CannonTower)
@@ -138,6 +138,7 @@ public class TowerPlacer : MonoBehaviour
             SoundManager.instance.PlaySFX(placeSound);
             GameObject tower = Instantiate(crossbowTower, worldPos, Quaternion.identity);
             tower.GetComponent<Tower>().StartBuilding();
+            tower.transform.SetParent(towerContainer);
             yield return new WaitForSeconds(tower.GetComponent<Tower>().GetBuildTime());
 
             if (tower.GetComponent<Tower>().getIsBuilding()) //if tower is set to is building (ie. the player hasn't spent money to buy the tower)
@@ -151,6 +152,7 @@ public class TowerPlacer : MonoBehaviour
             SoundManager.instance.PlaySFX(placeSound);
             GameObject tower = Instantiate(resourceTower, worldPos, Quaternion.identity);
             tower.GetComponent<Tower>().StartBuilding();
+            tower.transform.SetParent(towerContainer);
             yield return new WaitForSeconds(tower.GetComponent<Tower>().GetBuildTime());
 
             if (tower.GetComponent<Tower>().getIsBuilding()) //if tower is set to is building (ie. the player hasn't spent money to buy the tower)
@@ -165,6 +167,7 @@ public class TowerPlacer : MonoBehaviour
             SoundManager.instance.PlaySFX(placeSound);
             GameObject tower = Instantiate(cannonTower, worldPos, Quaternion.identity);
             tower.GetComponent<Tower>().StartBuilding();
+            tower.transform.SetParent(towerContainer);
             yield return new WaitForSeconds(tower.GetComponent<Tower>().GetBuildTime());
 
             if (tower.GetComponent<Tower>().getIsBuilding()) //if tower is set to is building (ie. the player hasn't spent money to buy the tower)

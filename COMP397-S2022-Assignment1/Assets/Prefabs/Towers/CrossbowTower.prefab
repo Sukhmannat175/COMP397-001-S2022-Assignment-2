@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBuilding: 0
-  BUILD_TIME: 30
+  BUILD_TIME: 20
   completeBuildButton: {fileID: 3237061064917321248}
   btnPositionOffset: 0
   instantCompleteGoldCost: 50
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c1e1e50ed592848b625c6658c70459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 100
   currentHealth: 0
 --- !u!1 &3260323774302551585
 GameObject:

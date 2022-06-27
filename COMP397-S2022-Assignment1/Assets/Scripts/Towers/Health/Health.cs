@@ -14,11 +14,12 @@ using System;
 
 public class Health : MonoBehaviour
 {
+    //these two track when an object of type Health has be added to the scene
     public static event Action<Health> OnHealthAdded = delegate { };
     public static event Action<Health> OnHealthRemoved = delegate { };
 
     [SerializeField]
-    float maxHealth = 100;
+    private float maxHealth = 100;
     public float currentHealth;
 
 
@@ -32,14 +33,11 @@ public class Health : MonoBehaviour
     //this will track when building time is updated
     public event Action<float> OnBuildingTimeUpdated = delegate { };
 
-    private void Start()
-    {
-        currentHealth = maxHealth;
-    }
-
     void OnEnable()
     {
-        OnHealthAdded(this);        
+        currentHealth = maxHealth;
+        OnHealthAdded(this);
+ 
     }
 
     // Update is called once per frame
@@ -94,6 +92,10 @@ public class Health : MonoBehaviour
         OnHealthRemoved(this);
     }
 
+    private void OnDestroy()
+    {
+        OnHealthRemoved(this);
+    }
 
 
 }

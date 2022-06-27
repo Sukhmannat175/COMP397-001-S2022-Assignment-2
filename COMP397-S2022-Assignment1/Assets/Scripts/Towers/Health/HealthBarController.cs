@@ -15,21 +15,27 @@ public class HealthBarController : MonoBehaviour
     [SerializeField]
     private HealthBar healthBarPrefab;
 
-    private Dictionary<Health, HealthBar> healthBars = new Dictionary<Health, HealthBar>();
+    [SerializeField] Transform healthbarsParent;
 
+    public Dictionary<Health, HealthBar> healthBars = new Dictionary<Health, HealthBar>();
 
     private void Awake()
     {
+
         //registers the methods which will be called for the static actions provided
+
         Health.OnHealthAdded += AddHealthBar;
         Health.OnHealthRemoved += RemoveHealthBar;
     }
 
+
     private void AddHealthBar(Health health)
     {
+        
         if (!healthBars.ContainsKey(health))
         {
             var healthBar = Instantiate(healthBarPrefab, transform);
+            healthBar.transform.SetParent(healthbarsParent);
             healthBars.Add(health, healthBar);
             healthBar.SetHealth(health);
         }
@@ -48,5 +54,10 @@ public class HealthBarController : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        Health.OnHealthAdded -= AddHealthBar;
+        Health.OnHealthRemoved -= RemoveHealthBar;
+    }
 
 }
