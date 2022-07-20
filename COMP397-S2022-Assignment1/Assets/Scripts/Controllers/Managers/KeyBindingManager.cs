@@ -32,6 +32,7 @@ public class KeyBindingManager : MonoBehaviour
     [SerializeField] private KeyCode right;
     [SerializeField] private bool selectedNormalXAxis = true;
     [SerializeField] private bool selectedNormalYAxis = true;
+    [SerializeField] private bool selectedLeftJoystick = true;
 
 
     public static KeyBindingManager instance;
@@ -42,6 +43,7 @@ public class KeyBindingManager : MonoBehaviour
     public KeyCode Right { get { return right; } }
     public bool SelectedNormalXAxis { get { return selectedNormalXAxis; } }
     public bool SelectedNormalYAxis { get { return selectedNormalYAxis; } }
+    public bool SelectedNormalLayout { get { return selectedLeftJoystick; } }
 
     private void Awake()
     {
@@ -122,5 +124,15 @@ public class KeyBindingManager : MonoBehaviour
         up = defaultUp;
         down = defaultDown;
         selectedNormalYAxis = true;
+    }
+
+    public void UseLeftJoystick()
+    {
+        selectedLeftJoystick = true;
+    }
+
+    public void UseRightJoystick()
+    {
+        selectedLeftJoystick = false;
     }
 }

@@ -19,7 +19,7 @@ public class ToggleXYControls : MonoBehaviour
 {
     public enum Axis { NONE = 0, X = 1, Y = 2 }
     [SerializeField] private Axis axis;
-    [SerializeField] private List<KeyBindingHelper> keyBindingHelpers;
+    [SerializeField] private bool inverted;
     
     private Toggle toggle;
 
@@ -30,15 +30,27 @@ public class ToggleXYControls : MonoBehaviour
 
     private void OnEnable()
     {
+        StartCoroutine(WaitForManager());
+    }
+
+    IEnumerator WaitForManager()
+    {
+        while (KeyBindingManager.instance == null)
+            yield return new WaitForEndOfFrame();
+
         if (KeyBindingManager.instance != null)
         {
             switch (axis)
             {
                 case Axis.X:
-                    toggle.isOn = KeyBindingManager.instance.SelectedNormalXAxis;
+                    toggle.isOn = !inverted ? 
+                        KeyBindingManager.instance.SelectedNormalXAxis :
+                        !KeyBindingManager.instance.SelectedNormalXAxis;
                     break;
                 case Axis.Y:
-                    toggle.isOn = KeyBindingManager.instance.SelectedNormalYAxis;
+                    toggle.isOn = !inverted ? 
+                        KeyBindingManager.instance.SelectedNormalYAxis :
+                        !KeyBindingManager.instance.SelectedNormalYAxis;
                     break;
                 default:
                     Debug.LogError("Please select the axis");
@@ -46,12 +58,18 @@ public class ToggleXYControls : MonoBehaviour
             }
         }
 
-        toggle.onValueChanged.AddListener(OnValueChange);
+        if (!inverted)
+        {
+            toggle.onValueChanged.AddListener(OnValueChange);
+        }
     }
 
     private void OnDisable()
     {
-        toggle.onValueChanged.RemoveListener(OnValueChange);
+        if (!inverted)
+        {
+            toggle.onValueChanged.RemoveListener(OnValueChange);
+        }
     }
 
     public void OnValueChange(bool value)
@@ -76,10 +94,6 @@ public class ToggleXYControls : MonoBehaviour
                     Debug.LogError("Please select the axis");
                     break;
             }
-
-            foreach (KeyBindingHelper helper in keyBindingHelpers)
-                helper.UpdateKeyLabel();
-
         }
     }
 }
