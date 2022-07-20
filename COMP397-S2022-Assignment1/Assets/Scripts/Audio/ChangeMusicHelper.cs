@@ -20,6 +20,16 @@ public class ChangeMusicHelper : MonoBehaviour
 
     public void Play()
     {
+        StartCoroutine(WaitForManager());
+    }
+
+    IEnumerator WaitForManager()
+    {
+        while (SoundManager.instance == null)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
         SoundManager.instance.ChangeMusic(clip);
     }
 }
