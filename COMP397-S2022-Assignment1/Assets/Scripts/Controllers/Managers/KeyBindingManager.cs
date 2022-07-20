@@ -1,8 +1,9 @@
 /*  Filename:           KeyBindingController.cs
  *  Author:             Yuk Yee Wong (301234795)
- *  Last Update:        June 6, 2022
+ *  Last Update:        July 20, 2022
  *  Description:        Key Binding Controller.
  *  Revision History:   June 6, 2022 (Yuk Yee Wong): Initial script.
+ *                      July 20, 2022 (Yuk Yee Wong): Add boolean and method to record mobile layout chose.
  */
 
 using UnityEngine;
@@ -32,6 +33,7 @@ public class KeyBindingManager : MonoBehaviour
     [SerializeField] private KeyCode right;
     [SerializeField] private bool selectedNormalXAxis = true;
     [SerializeField] private bool selectedNormalYAxis = true;
+    [SerializeField] private bool selectedNormalMobileLayout = true; 
 
 
     public static KeyBindingManager instance;
@@ -42,6 +44,7 @@ public class KeyBindingManager : MonoBehaviour
     public KeyCode Right { get { return right; } }
     public bool SelectedNormalXAxis { get { return selectedNormalXAxis; } }
     public bool SelectedNormalYAxis { get { return selectedNormalYAxis; } }
+    public bool SelectedNormalLayout { get { return selectedNormalMobileLayout; } }
 
     private void Awake()
     {
@@ -122,5 +125,15 @@ public class KeyBindingManager : MonoBehaviour
         up = defaultUp;
         down = defaultDown;
         selectedNormalYAxis = true;
+    }
+
+    public void UseNormalMobileLayout()
+    {
+        selectedNormalMobileLayout = true;
+    }
+
+    public void UseFlippedMobileLayout()
+    {
+        selectedNormalMobileLayout = false;
     }
 }

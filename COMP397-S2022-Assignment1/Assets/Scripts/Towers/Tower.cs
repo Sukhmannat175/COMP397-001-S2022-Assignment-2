@@ -4,6 +4,7 @@
  *  Description:        Base abstract class for all towers.
  *  Revision History:   June 8, 2022 (Han Bi): Initial script.
  *                      June 26, 2022 (Han Bi): Added tower building time functionality
+ *                      June 26, 2022 (Yuk Yee Wong): Added initialize function by using tower static data
  */
 
 using System.Collections;

@@ -1,8 +1,9 @@
 /*  Filename:           ChangeMusicHelper.cs
  *  Author:             Yuk Yee Wong (301234795)
- *  Last Update:        June 6, 2022
+ *  Last Update:        July 20, 2022
  *  Description:        Change Music Helper.
  *  Revision History:   June 6, 2022 (Yuk Yee Wong): Initial script.
+ *                      July 20, 2022 (Yuk Yee Wong): Add coroutine to wait for sound manager.
  */
 
 using System.Collections;
@@ -20,6 +21,16 @@ public class ChangeMusicHelper : MonoBehaviour
 
     public void Play()
     {
+        StartCoroutine(WaitForManager());
+    }
+
+    IEnumerator WaitForManager()
+    {
+        while (SoundManager.instance == null)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
         SoundManager.instance.ChangeMusic(clip);
     }
 }

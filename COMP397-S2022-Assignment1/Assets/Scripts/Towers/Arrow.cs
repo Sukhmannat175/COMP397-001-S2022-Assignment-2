@@ -1,8 +1,9 @@
 /*  Filename:           Arrow.cs
  *  Author:             Han Bi (301176547)
- *  Last Update:        June 7, 2022
+ *  Last Update:        June 26, 2022
  *  Description:        Use for arrow tower projectiles.
  *  Revision History:   June 7, 2022 (Han Bi): Initial script.
+ *                      June 26, 2022 (Yuk Yee Wong): Remove the damage float to Projectile.
  */
 
 using System.Collections;

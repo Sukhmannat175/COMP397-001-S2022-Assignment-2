@@ -1,8 +1,10 @@
 /*  Filename:           PlayerCameraController.cs
  *  Author:             Marcus Ngooi (301147411)
- *  Last Update:        June 9, 2022
+ *  Last Update:        July 20, 2022
  *  Description:        Button Sound Helper.
  *  Revision History:   June 9, 2022 (Marcus Ngooi): Allows player to move the camera around to see different parts of the level.
+
+ *                      July 20, 2022 (Yuk Yee Wong): Add mobile touch functionality to control camera. 
  */
 
 using System.Collections;
@@ -12,7 +14,8 @@ using UnityEngine;
 public class PlayerCameraController : MonoBehaviour
 {
     // "Public" variables
-    [SerializeField] private float cameraSpeed = 10.0f;
+    [SerializeField] private float sensitivity = 10.0f;
+    [SerializeField] private Joystick joyStick;
 
     // Private variables
     private Transform cameraTransform;
@@ -25,30 +28,38 @@ public class PlayerCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Movement based on KeyBinding Manager
-        if (Input.GetKey(KeyBindingManager.instance.Up))
+        float horizontalInput = 0;
+        float verticalInput = 0;
+
+        if (Application.platform == RuntimePlatform.Android)
         {
-            cameraTransform.position = new Vector3(cameraTransform.position.x,
-                                                    cameraTransform.position.y,
-                                                    cameraTransform.position.z + (1 * cameraSpeed * Time.deltaTime));
+            horizontalInput = KeyBindingManager.instance.SelectedNormalXAxis ? joyStick.Horizontal : -joyStick.Horizontal;
+            verticalInput = KeyBindingManager.instance.SelectedNormalYAxis ? joyStick.Vertical : -joyStick.Vertical;
         }
-        if (Input.GetKey(KeyBindingManager.instance.Down))
+        else
         {
-            cameraTransform.position = new Vector3(cameraTransform.position.x,
-                                                    cameraTransform.position.y,
-                                                    cameraTransform.position.z + (-1 * cameraSpeed * Time.deltaTime));
+            // Movement based on KeyBinding Manager
+            if (Input.GetKey(KeyBindingManager.instance.Up))
+            {
+                verticalInput += 1;
+            }
+            if (Input.GetKey(KeyBindingManager.instance.Down))
+            {
+                verticalInput -= 1;
+            }
+            if (Input.GetKey(KeyBindingManager.instance.Left))
+            {
+                horizontalInput -= 1;
+            }
+            if (Input.GetKey(KeyBindingManager.instance.Right))
+            {
+                horizontalInput += 1;
+            }
         }
-        if (Input.GetKey(KeyBindingManager.instance.Left))
+
+        if (verticalInput != 0 || horizontalInput != 0)
         {
-            cameraTransform.position = new Vector3(cameraTransform.position.x + (-1 * cameraSpeed * Time.deltaTime),
-                                                    cameraTransform.position.y,
-                                                    cameraTransform.position.z);
-        }
-        if (Input.GetKey(KeyBindingManager.instance.Right))
-        {
-            cameraTransform.position = new Vector3(cameraTransform.position.x + (1 * cameraSpeed * Time.deltaTime),
-                                                    cameraTransform.position.y,
-                                                    cameraTransform.position.z);
+            cameraTransform.position = transform.position + new Vector3(horizontalInput, verticalInput, 0) * sensitivity * Time.deltaTime;
         }
     }
 }

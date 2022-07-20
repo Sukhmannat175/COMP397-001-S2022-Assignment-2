@@ -1,8 +1,9 @@
 /*  Filename:           CrossbowTower.cs
  *  Author:             Han Bi (301176547)
- *  Last Update:        June 7, 2022
+ *  Last Update:        June 26, 2022
  *  Description:        Use for crossbow tower projectiles.
  *  Revision History:   June 7, 2022 (Han Bi): Initial script.
+ *                      June 26, 2022 (Yuk Yee Wong): Set projectile damage in CrossbowTower.
  */
 
 using System.Collections;

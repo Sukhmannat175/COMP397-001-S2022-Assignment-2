@@ -1,8 +1,8 @@
 /*  Filename:           EnemyStaticData.cs
- *  Author:             Sukhmannat Singh (301168420)
+ *  Author:             Yuk Yee Wong (301234795)
  *  Last Update:        June 26, 2022
  *  Description:        Enemy Data, for save functionality
- *  Revision History:   June 26, 2022 (Sukhmannat Singh): Initial script.
+ *  Revision History:   June 26, 2022 (Yuk Yee Wong): Initial script.
  */
 
 

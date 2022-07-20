@@ -3,6 +3,7 @@
  *  Last Update:        June 26, 2022
  *  Description:        Use for Cannonball tower projectiles.
  *  Revision History:   June 26, 2022 (Ikamjot Hundal): Initial script.
+ *                      June 26, 2022 (Yuk Yee Wong): Setting projectile damage in CannonTower.
  */
 using System.Collections;
 using System.Collections.Generic;
