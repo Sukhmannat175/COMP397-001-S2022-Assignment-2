@@ -37777,6 +37777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4702e4f01f80d484e8b4b6942d80c96c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  platformsForJoystick: 0b00000008000000
   sensitivity: 10
   joyStick: {fileID: 43966669}
 --- !u!4 &964099617 stripped

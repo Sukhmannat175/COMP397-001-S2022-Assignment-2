@@ -14,11 +14,13 @@ using UnityEngine;
 public class PlayerCameraController : MonoBehaviour
 {
     // "Public" variables
+    [SerializeField] private List<RuntimePlatform> platformsForJoystick;
     [SerializeField] private float sensitivity = 10.0f;
     [SerializeField] private Joystick joyStick;
 
     // Private variables
     private Transform cameraTransform;
+    private bool forceMobileLayout = false;
 
     void Start()
     {
@@ -31,7 +33,7 @@ public class PlayerCameraController : MonoBehaviour
         float horizontalInput = 0;
         float verticalInput = 0;
 
-        if (Application.platform == RuntimePlatform.Android)
+        if (forceMobileLayout || platformsForJoystick.Contains(Application.platform))
         {
             horizontalInput = KeyBindingManager.instance.SelectedNormalXAxis ? joyStick.Horizontal : -joyStick.Horizontal;
             verticalInput = KeyBindingManager.instance.SelectedNormalYAxis ? joyStick.Vertical : -joyStick.Vertical;
