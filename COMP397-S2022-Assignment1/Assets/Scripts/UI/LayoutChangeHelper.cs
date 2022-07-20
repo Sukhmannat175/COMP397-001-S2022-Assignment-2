@@ -1,3 +1,10 @@
+/*  Filename:           LayoutChangeHelper.cs
+ *  Author:             Yuk Yee Wong (301234795)
+ *  Last Update:        July 20, 2022
+ *  Description:        Layout Change Helper.
+ *  Revision History:   July 20, 2022 (Yuk Yee Wong): Initial script.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

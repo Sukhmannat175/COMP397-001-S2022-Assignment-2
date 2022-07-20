@@ -7,6 +7,7 @@
  *  Revision History:   June 7, 2022 (Han Bi): Initial script.
  *                      June 26, 2022 (Marcus Ngooi): Adding resource tower to TowerPlacer.
  *                      June 26, 2022 (Ikamjot Hundal): Adding CannonBall tower to TowerPlacer.
+ *                      June 26, 2022 (Yuk Yee Wong): Adding start method to place the tower using TowerPlaceStaticData, calling initialize function in PlaceTower function, and placing the tower to towerContainer.
  */
 
 using System.Collections;

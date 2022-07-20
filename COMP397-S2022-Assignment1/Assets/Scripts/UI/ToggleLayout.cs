@@ -1,3 +1,10 @@
+/*  Filename:           ToggleLayout.cs
+ *  Author:             Yuk Yee Wong (301234795)
+ *  Last Update:        July 20, 2022
+ *  Description:        Toggle different mobile layouts.
+ *  Revision History:   July 20, 2022 (Yuk Yee Wong): Initial script.
+ *  */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -51,9 +58,9 @@ public class ToggleLayout : MonoBehaviour
         if (KeyBindingManager.instance != null)
         {
             if (value)
-                KeyBindingManager.instance.UseLeftJoystick();
+                KeyBindingManager.instance.UseNormalMobileLayout();
             else
-                KeyBindingManager.instance.UseRightJoystick();
+                KeyBindingManager.instance.UseFlippedMobileLayout();
         }
     }
 }

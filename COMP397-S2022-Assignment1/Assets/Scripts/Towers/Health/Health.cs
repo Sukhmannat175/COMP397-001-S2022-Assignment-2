@@ -2,7 +2,8 @@
  *  Author:             Han Bi (301176547)
  *  Last Update:        June 26, 2022
  *  Description:        Health Script
- *  Revision History:   June 26, 2022 (Han Bi): Initial script.                  
+ *  Revision History:   June 26, 2022 (Han Bi): Initial script. 
+ *                      June 26, 2022 (Yuk Yee Wong): Added a SetMaxHealth function
  */
 
 

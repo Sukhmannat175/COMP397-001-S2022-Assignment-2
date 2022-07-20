@@ -1,8 +1,9 @@
 /*  Filename:           TowerDestroyerController.cs
  *  Author:             Yuk Yee Wong (301234795)
- *  Last Update:        June 18, 2022
+ *  Last Update:        June 26, 2022
  *  Description:        Controls tower destroyer.
  *  Revision History:   June 18, 2022 (Yuk Yee Wong): Initial script.
+ *                      June 26, 2022 (Yuk Yee Wong): Change EnemyStartBehavior method to Initialize.
  */
 
 using System.Collections;

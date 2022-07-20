@@ -1,8 +1,9 @@
 /*  Filename:           ToggleXYControls.cs
  *  Author:             Yuk Yee Wong (301234795)
- *  Last Update:        June 6, 2022
+ *  Last Update:        July 20, 2022
  *  Description:        Toggle X and Y Axis Controls.
  *  Revision History:   June 6, 2022 (Yuk Yee Wong): Initial script.
+ *  Revision History:   July 20, 2022 (Yuk Yee Wong): Add inverted boolean to control another toggle.
  */
 
 using System.Collections;
