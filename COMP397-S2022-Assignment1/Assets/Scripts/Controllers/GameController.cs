@@ -3,6 +3,7 @@
  *  Last Update:        June 11, 2022
  *  Description:        Controls aspects of the game including spawning enemy waves, ending the game, keeping track of vital statistics.
  *  Revision History:   June 11, 2022 (Sukhmannat Singh): Initial script.
+ *                      July 20, 2022 (Han Bi): Refactored code to work with EnemyFactory.cs
  */
 
 using System.Collections;
@@ -19,9 +20,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private float spawnInterval = 1f;
 
     [Header("Enemies")]
-    [SerializeField] private Enemy gruntGolemPrefab;
-    [SerializeField] private Enemy stoneMonsterPrefab;
-    [SerializeField] private Enemy resourcesStealerPrefab;
+
     [SerializeField] private Transform wayPointsContainer;
     [SerializeField] private Transform enemySpawnPoint;
     [SerializeField] private Transform enemyContainer;
@@ -34,9 +33,6 @@ public class GameController : MonoBehaviour
 
     [Header("Loaded from Resources")]
     [SerializeField] List<EnemyWave> waveStaticData;
-    [SerializeField] private EnemyStaticData gruntGolemStaticData;
-    [SerializeField] private EnemyStaticData stoneMonsterStaticData;
-    [SerializeField] private EnemyStaticData resourcesStealerStaticData;
 
     [Header("Debug")]
     [SerializeField] private int currentWave;
@@ -67,9 +63,9 @@ public class GameController : MonoBehaviour
             waveStaticData = gameStaticData.waveStaticData;
             waveInterval = gameStaticData.waveInterval;
             spawnInterval = gameStaticData.spawnInterval;
-            gruntGolemStaticData = gameStaticData.enemyStaticData.Find(x => x.enemy == Enemy.EnemyType.GRUNTGOLEM);
-            stoneMonsterStaticData = gameStaticData.enemyStaticData.Find(x => x.enemy == Enemy.EnemyType.STONEMONSTER);
-            resourcesStealerStaticData = gameStaticData.enemyStaticData.Find(x => x.enemy == Enemy.EnemyType.RESOURCESTEALER);
+            //gruntGolemStaticData = gameStaticData.enemyStaticData.Find(x => x.enemy == Enemy.EnemyType.GRUNTGOLEM);
+            //stoneMonsterStaticData = gameStaticData.enemyStaticData.Find(x => x.enemy == Enemy.EnemyType.STONEMONSTER);
+            //resourcesStealerStaticData = gameStaticData.enemyStaticData.Find(x => x.enemy == Enemy.EnemyType.RESOURCESTEALER);
         }
         else {
             Debug.LogError("gameStaticData cannot be loaded");
@@ -106,24 +102,8 @@ public class GameController : MonoBehaviour
 
                 Enemy enemy = null;
 
-                switch (type)
-                {
-                    case Enemy.EnemyType.GRUNTGOLEM:
-                        enemy = Instantiate(gruntGolemPrefab, enemySpawnPoint.position, gruntGolemPrefab.transform.rotation, enemyContainer);
-                        enemy.Intialize(gruntGolemStaticData);
-                        break;
-                    case Enemy.EnemyType.STONEMONSTER:
-                        enemy = Instantiate(stoneMonsterPrefab, enemySpawnPoint.position, stoneMonsterPrefab.transform.rotation, enemyContainer);
-                        enemy.Intialize(stoneMonsterStaticData);
-                        break;
-                    case Enemy.EnemyType.RESOURCESTEALER:
-                            enemy = Instantiate(resourcesStealerPrefab, enemySpawnPoint.position, resourcesStealerPrefab.transform.rotation, enemyContainer);
-                            enemy.Intialize(resourcesStealerStaticData);
-                        break;
-                    default:
-                        Debug.LogError(type + " is not yet defined in spawn method");
-                        break;
-                }
+                enemy = EnemyFactory.instance.CreateEnemy(type, enemySpawnPoint.position);
+                enemy.transform.parent = enemyContainer;
 
                 if (enemy != null)
                     enemy.SetWayPoints(wayPointsContainer);

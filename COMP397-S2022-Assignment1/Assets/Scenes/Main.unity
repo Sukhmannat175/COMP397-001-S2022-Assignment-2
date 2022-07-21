@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -30635,6 +30635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 758556403}
   - component: {fileID: 758556402}
+  - component: {fileID: 758556404}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -30658,9 +30659,6 @@ MonoBehaviour:
   waveLabelFormat: WAVE {0} / {1}
   waveInterval: 20
   spawnInterval: 1
-  gruntGolemPrefab: {fileID: 7172756143103013517, guid: c6cfc32748fb5004aa11a1be074b5c58, type: 3}
-  stoneMonsterPrefab: {fileID: 3538422563216355809, guid: d26d7f0b848069c4b90a3d109686fed5, type: 3}
-  resourcesStealerPrefab: {fileID: 9089145555772058670, guid: 8ae79852e611a28488b1c53305d8280b, type: 3}
   wayPointsContainer: {fileID: 1022852253}
   enemySpawnPoint: {fileID: 1416584973}
   enemyContainer: {fileID: 1388628340}
@@ -30669,6 +30667,44 @@ MonoBehaviour:
   finalScore: {fileID: 2132481448}
   finalEnemiesKilled: {fileID: 965309158}
   waveStaticData: []
+  currentWave: 0
+  score: 0
+  enemiesKilled: 0
+  totalEnemiesDead: 0
+  totalEnemiesInTheLevel: 0
+  current:
+    towers: []
+    enemies: []
+--- !u!4 &758556403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758556401}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &758556404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758556401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ad3468771323eb4893c4722a4e0614a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gruntGolemPrefab: {fileID: 7172756143103013517, guid: c6cfc32748fb5004aa11a1be074b5c58, type: 3}
+  stoneMonsterPrefab: {fileID: 3538422563216355809, guid: d26d7f0b848069c4b90a3d109686fed5, type: 3}
+  resourcesStealerPrefab: {fileID: 9089145555772058670, guid: 8ae79852e611a28488b1c53305d8280b, type: 3}
   gruntGolemStaticData:
     enemy: 0
     hp: 0
@@ -30693,29 +30729,6 @@ MonoBehaviour:
     goldPerHead: 0
     scorePerHead: 0
     stoppingDistance: 0
-  currentWave: 0
-  score: 0
-  enemiesKilled: 0
-  totalEnemiesDead: 0
-  totalEnemiesInTheLevel: 0
-  current:
-    towers: []
-    enemies: []
---- !u!4 &758556403
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 758556401}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &759332721 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ce09998b07d3e34ba45f58e54665a09, type: 3}

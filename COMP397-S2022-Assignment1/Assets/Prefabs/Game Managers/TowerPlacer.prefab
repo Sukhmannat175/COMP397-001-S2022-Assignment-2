@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3918099991464310356}
   - component: {fileID: 3918099991464310357}
+  - component: {fileID: 2115198964}
   m_Layer: 0
   m_Name: TowerPlacer
   m_TagString: Untagged
@@ -44,13 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf8de593773a4c4eba0a5eb3daa7525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crossbowTower: {fileID: 3260323772641981898, guid: 9f8847e5884da1f4ca180650bb68b5ce, type: 3}
-  crossbowTowerPreview: {fileID: 3260323772641981898, guid: e38885ee8597f11488933977a467821f, type: 3}
   towerContainer: {fileID: 0}
-  resourceTower: {fileID: 3260323772641981898, guid: c2b6da968f0d230449dcb6b032114969, type: 3}
-  resourceTowerPreview: {fileID: 3260323772641981898, guid: 57d5bdd27d4580e48b2b1cc6fe73418e, type: 3}
-  cannonTower: {fileID: 1645810273052523551, guid: 3051f8e8528f9eb4daf425fbf45d95f5, type: 3}
-  cannonTowerPreview: {fileID: 5641309601765881537, guid: 2d8b6a4f770f4554aaca2c5e85250c74, type: 3}
   isPreview: 0
   placeSound: {fileID: 8300000, guid: 5e14f9c2e242e76458e2b9a9a72aacfa, type: 3}
   screenPos: {x: 0, y: 0, z: 0}
@@ -58,3 +53,40 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 128
+  towersPlaced: 0
+--- !u!114 &2115198964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3918099991464310358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc770bb92e80ef246a587a35c97e7d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crossbowTower: {fileID: 3260323772641981898, guid: 9f8847e5884da1f4ca180650bb68b5ce, type: 3}
+  cannonTower: {fileID: 1645810273052523551, guid: 3051f8e8528f9eb4daf425fbf45d95f5, type: 3}
+  resourceTower: {fileID: 3260323772641981898, guid: c2b6da968f0d230449dcb6b032114969, type: 3}
+  crossbowTowerPreview: {fileID: 3260323772641981898, guid: e38885ee8597f11488933977a467821f, type: 3}
+  cannonTowerPreview: {fileID: 5641309601765881537, guid: 2d8b6a4f770f4554aaca2c5e85250c74, type: 3}
+  resourceTowerPreview: {fileID: 3260323772641981898, guid: 57d5bdd27d4580e48b2b1cc6fe73418e, type: 3}
+  crossbowTowerStaticData:
+    tower: 0
+    hp: 0
+    buildTime: 0
+    interval: 0
+    damageToEnemy: 0
+  cannonTowerStaticData:
+    tower: 0
+    hp: 0
+    buildTime: 0
+    interval: 0
+    damageToEnemy: 0
+  resourceTowerStaticData:
+    tower: 0
+    hp: 0
+    buildTime: 0
+    interval: 0
+    damageToEnemy: 0
