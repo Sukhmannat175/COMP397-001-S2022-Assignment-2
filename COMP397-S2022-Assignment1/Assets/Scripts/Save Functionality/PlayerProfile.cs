@@ -28,3 +28,14 @@ public class EnemyData
     public Vector3 enemyPosition;
     public Quaternion enemyRotation;
 }
+
+[System.Serializable]
+public class PlayerData
+{
+    public int health;
+    public int wave;
+    public int score;
+    public int gold;
+    public int stone;
+    public int wood;
+}

@@ -48,7 +48,7 @@ public class SerializationController
         return true;
     }
 
-    /*public static object Load(string path)
+    public static object Load(string path)
     {
         if (!File.Exists(path))
         {
@@ -71,7 +71,7 @@ public class SerializationController
             file.Close();
             return null;
         }
-    }*/
+    }
 
     public static BinaryFormatter GetBinaryFormatter()
     {

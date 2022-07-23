@@ -36,4 +36,6 @@ public class SaveData
     public List<TowerData> towers;
 
     public List<EnemyData> enemies;
+
+    public PlayerData playerData;
 }

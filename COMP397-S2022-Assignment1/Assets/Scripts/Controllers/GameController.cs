@@ -164,19 +164,25 @@ public class GameController : MonoBehaviour
 
     public void OnSave()
     {
+        this.current.playerData.health = playerHpBarController.CurrentHealthValue;
+        this.current.playerData.wave = currentWave;
+        this.current.playerData.score = score;
+        this.current.playerData.gold = InventoryManager.instance.goldOnHand;
+        this.current.playerData.stone = InventoryManager.instance.stoneOnHand;
+        this.current.playerData.wood = InventoryManager.instance.woodOnHand;
+
         SerializationController.Save("Save", this.current);
     }
 
     public void OnLoad()
     {
-        /*SaveData current = SaveData.current;
         TowerPlacer placer =  new TowerPlacer();
-        current = (SaveData)SerializationController.Load(Application.persistentDataPath + "/saves/Save.save");
+        SaveData.current = (SaveData)SerializationController.Load(Application.persistentDataPath + "/saves/Save.save");
 
         for (int i = 0; i < SaveData.current.towers.Count; i++)
         {
             TowerData currentTower = current.towers[i];
-            placer.PlaceTower();
-        }*/
+            placer.PlaceTowerOnLoad(currentTower.towerType, currentTower.towerPosition, currentTower.towerRotation);
+        }
     }
 }

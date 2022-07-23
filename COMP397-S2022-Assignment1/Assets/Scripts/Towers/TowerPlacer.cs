@@ -206,6 +206,56 @@ public class TowerPlacer : MonoBehaviour
         }
     }
 
+    public IEnumerator PlaceTowerOnLoad(Tower.TowerType towerType, Vector3 pos, Quaternion rot)
+    {
+        if (towerType == Tower.TowerType.CrossbowTower)
+        {
+            isPreview = false;
+            SoundManager.instance.PlaySFX(placeSound);
+            GameObject towerObject = Instantiate(crossbowTower, pos, rot, towerContainer);
+            Tower tower = towerObject.GetComponent<Tower>();
+            tower.Intialize(crossbowTowerStaticData);
+            tower.StartBuilding();
+            yield return new WaitForSeconds(tower.GetBuildTime());
+
+            if (tower.getIsBuilding()) //if tower is set to is building (ie. the player hasn't spent money to buy the tower)
+            {
+                tower.CompleteBuilding();
+            }
+        }
+        if (towerType == Tower.TowerType.ResourceTower)
+        {
+            isPreview = false;
+            SoundManager.instance.PlaySFX(placeSound);
+            GameObject towerObject = Instantiate(resourceTower, pos, rot, towerContainer);
+            Tower tower = towerObject.GetComponent<Tower>();
+            tower.Intialize(resourceTowerStaticData);
+            tower.StartBuilding();
+            yield return new WaitForSeconds(tower.GetBuildTime());
+
+            if (tower.getIsBuilding()) //if tower is set to is building (ie. the player hasn't spent money to buy the tower)
+            {
+                tower.CompleteBuilding();
+            }
+        }
+
+        if (towerType == Tower.TowerType.CannonTower)
+        {
+            isPreview = false;
+            SoundManager.instance.PlaySFX(placeSound);
+            GameObject towerObject = Instantiate(cannonTower, pos, rot, towerContainer);
+            Tower tower = towerObject.GetComponent<Tower>();
+            tower.Intialize(cannonTowerStaticData);
+            tower.StartBuilding();
+            yield return new WaitForSeconds(tower.GetBuildTime());
+
+            if (tower.getIsBuilding()) //if tower is set to is building (ie. the player hasn't spent money to buy the tower)
+            {
+                tower.CompleteBuilding();
+            }
+        }
+    }
+
     public void CancelBuy()
     {
         Destroy(towerPreview.gameObject);
