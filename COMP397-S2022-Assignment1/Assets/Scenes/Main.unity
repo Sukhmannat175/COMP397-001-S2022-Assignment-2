@@ -29566,6 +29566,8 @@ MonoBehaviour:
     scorePerHead: 0
     stoppingDistance: 0
   placer: {fileID: 1744754043}
+  towers: {fileID: 58421335}
+  enemies: {fileID: 1388628339}
   currentWave: 0
   score: 0
   enemiesKilled: 0

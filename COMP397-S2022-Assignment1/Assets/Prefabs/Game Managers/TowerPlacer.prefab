@@ -53,8 +53,27 @@ MonoBehaviour:
   cannonTowerPreview: {fileID: 5641309601765881537, guid: 2d8b6a4f770f4554aaca2c5e85250c74, type: 3}
   isPreview: 0
   placeSound: {fileID: 8300000, guid: 5e14f9c2e242e76458e2b9a9a72aacfa, type: 3}
+  crossbowTowerStaticData:
+    tower: 0
+    hp: 0
+    buildTime: 0
+    interval: 0
+    damageToEnemy: 0
+  cannonTowerStaticData:
+    tower: 0
+    hp: 0
+    buildTime: 0
+    interval: 0
+    damageToEnemy: 0
+  resourceTowerStaticData:
+    tower: 0
+    hp: 0
+    buildTime: 0
+    interval: 0
+    damageToEnemy: 0
   screenPos: {x: 0, y: 0, z: 0}
   worldPos: {x: 0, y: 0, z: 0}
   ground:
     serializedVersion: 2
     m_Bits: 128
+  towersPlaced: 0

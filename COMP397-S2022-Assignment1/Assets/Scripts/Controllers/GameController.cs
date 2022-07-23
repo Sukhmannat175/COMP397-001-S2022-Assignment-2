@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -39,6 +40,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private EnemyStaticData stoneMonsterStaticData;
     [SerializeField] private EnemyStaticData resourcesStealerStaticData;
     [SerializeField] private TowerPlacer placer;
+    [SerializeField] private GameObject towers;
+    [SerializeField] private GameObject enemies;
 
     [Header("Debug")]
     [SerializeField] private int currentWave;
@@ -177,7 +180,25 @@ public class GameController : MonoBehaviour
 
     public void OnLoad()
     {
-        
+        int towerCount = towers.transform.childCount;
+        int enemyCount = enemies.transform.childCount;
+
+        if (towers.transform.childCount > 0)
+        {
+            for (int i = 0; i < towerCount; i++)
+            {
+                Destroy(towers.transform.GetChild(i).gameObject);
+            }
+        }
+
+        if (enemies.transform.childCount > 0)
+        {
+            for (int i = 0; i < enemyCount; i++)
+            {
+                Destroy(enemies.transform.GetChild(i).gameObject);
+            }
+        }
+
         SaveData.current = (SaveData)SerializationController.Load(Application.persistentDataPath + "/saves/Save.save");
 
         for (int i = 0; i < SaveData.current.towers.Count; i++)
