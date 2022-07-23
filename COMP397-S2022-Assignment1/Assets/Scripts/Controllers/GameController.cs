@@ -242,5 +242,13 @@ public class GameController : MonoBehaviour
             EnemyData currentEnemy = SaveData.current.enemies[i];
             SpawnOnLoad(currentEnemy.enemyType, currentEnemy.enemyPosition, currentEnemy.enemyRotation, currentEnemy.health);
         }
+
+        PlayerHealthBarController.instance.SetHealthValue(SaveData.current.playerData.health);
+        currentWave = SaveData.current.playerData.wave;
+        score = SaveData.current.playerData.score;
+        InventoryManager.instance.goldOnHand = SaveData.current.playerData.gold;
+        InventoryManager.instance.stoneOnHand = SaveData.current.playerData.stone;
+        InventoryManager.instance.woodOnHand = SaveData.current.playerData.wood;
+
     }
 }
