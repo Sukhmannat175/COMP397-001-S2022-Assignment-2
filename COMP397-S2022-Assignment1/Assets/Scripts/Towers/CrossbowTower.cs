@@ -43,6 +43,9 @@ public class CrossbowTower : Tower
         {
             towerData.towerId = id;
             towerData.towerType = TowerType.CrossbowTower;
+            towerData.towerPosition = transform.position;
+            towerData.towerRotation = transform.rotation;
+            towerData.isBuilding = getIsBuilding();
             GameController.instance.current.towers.Add(towerData);
         }
     }
@@ -58,9 +61,8 @@ public class CrossbowTower : Tower
         {
             StartCoroutine(Shoot());
         }
-
-        towerData.towerPosition = transform.position;
-        towerData.towerRotation = transform.rotation;
+        towerData.isBuilding = getIsBuilding();
+        towerData.health = health.currentHealth;
     }
 
 

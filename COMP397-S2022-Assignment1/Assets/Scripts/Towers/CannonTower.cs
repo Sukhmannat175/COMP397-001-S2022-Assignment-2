@@ -45,6 +45,9 @@ public class CannonTower : Tower
         {
             towerData.towerId = id;
             towerData.towerType = TowerType.CannonTower;
+            towerData.towerPosition = transform.position;
+            towerData.towerRotation = transform.rotation;
+            towerData.isBuilding = getIsBuilding();
             GameController.instance.current.towers.Add(towerData);
         }
     }
@@ -58,8 +61,8 @@ public class CannonTower : Tower
             StartCoroutine(Shoot());
         }
 
-        towerData.towerPosition = transform.position;
-        towerData.towerRotation = transform.rotation;
+        towerData.isBuilding = getIsBuilding();
+        towerData.health = health.currentHealth;
     }
 
     private IEnumerator Shoot()

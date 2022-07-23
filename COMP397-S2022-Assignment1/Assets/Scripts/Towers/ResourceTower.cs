@@ -42,6 +42,9 @@ public class ResourceTower : Tower
         {
             towerData.towerId = id;
             towerData.towerType = TowerType.ResourceTower;
+            towerData.towerPosition = transform.position;
+            towerData.towerRotation = transform.rotation;
+            towerData.isBuilding = getIsBuilding();
             GameController.instance.current.towers.Add(towerData);
         }
     }
@@ -52,8 +55,7 @@ public class ResourceTower : Tower
         {
             StartCoroutine(Collect());
         }
-
-        towerData.towerPosition = transform.position;
-        towerData.towerRotation = transform.rotation;
+        towerData.isBuilding = getIsBuilding();
+        towerData.health = health.currentHealth;
     }
 }

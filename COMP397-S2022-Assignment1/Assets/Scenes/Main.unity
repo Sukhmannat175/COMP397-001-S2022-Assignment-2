@@ -25109,6 +25109,34 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544474353852376770, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544474353852376770, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544474353852376770, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 758556402}
+    - target: {fileID: 7544474353852376770, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544474353852376770, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: OnLoad
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544474353852376770, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: GameController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544474353852376770, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7942671219058978012, guid: f3405fa2f01a25244adddb04f014bc09, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -29537,6 +29565,7 @@ MonoBehaviour:
     goldPerHead: 0
     scorePerHead: 0
     stoppingDistance: 0
+  placer: {fileID: 1744754043}
   currentWave: 0
   score: 0
   enemiesKilled: 0
@@ -29545,6 +29574,13 @@ MonoBehaviour:
   current:
     towers: []
     enemies: []
+    playerData:
+      health: 0
+      wave: 0
+      score: 0
+      gold: 0
+      stone: 0
+      wood: 0
 --- !u!4 &758556403
 Transform:
   m_ObjectHideFlags: 0
@@ -68066,6 +68102,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ce09998b07d3e34ba45f58e54665a09, type: 3}
+--- !u!114 &1744754043 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3918099991464310357, guid: da3a0fb7bd3651343987b27febebf73f, type: 3}
+  m_PrefabInstance: {fileID: 3918099991190063647}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf8de593773a4c4eba0a5eb3daa7525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1744891074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6716346510261606082, guid: 9a6a5629a38e6b34d859ed53bfcde983, type: 3}

@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private EnemyStaticData gruntGolemStaticData;
     [SerializeField] private EnemyStaticData stoneMonsterStaticData;
     [SerializeField] private EnemyStaticData resourcesStealerStaticData;
+    [SerializeField] private TowerPlacer placer;
 
     [Header("Debug")]
     [SerializeField] private int currentWave;
@@ -45,9 +46,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private int enemiesKilled = 0;
     [Tooltip("Include those killed by towers and self-destructed when reached the end of the path")]
     [SerializeField] private int totalEnemiesDead = 0;
-    [SerializeField] private int totalEnemiesInTheLevel;
+    [SerializeField] private int totalEnemiesInTheLevel;    
 
-    public static GameController instance;
+    public static GameController instance;    
     public SaveData current;
     private void Awake()
     {
@@ -176,13 +177,14 @@ public class GameController : MonoBehaviour
 
     public void OnLoad()
     {
-        TowerPlacer placer =  new TowerPlacer();
+        
         SaveData.current = (SaveData)SerializationController.Load(Application.persistentDataPath + "/saves/Save.save");
 
         for (int i = 0; i < SaveData.current.towers.Count; i++)
         {
-            TowerData currentTower = current.towers[i];
-            placer.PlaceTowerOnLoad(currentTower.towerType, currentTower.towerPosition, currentTower.towerRotation);
+            TowerData currentTower = SaveData.current.towers[i];
+            StartCoroutine(placer.PlaceTowerOnLoad(currentTower.towerType, currentTower.towerPosition, currentTower.towerRotation, currentTower.isBuilding, currentTower.health));
+            Debug.Log(i);
         }
     }
 }

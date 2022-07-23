@@ -15,7 +15,7 @@ public abstract class Tower : MonoBehaviour
 {
     [SerializeField]
     [Tooltip("Sets to true if tower is building")]
-    protected bool isBuilding;
+    protected bool isBuilding = true;
 
     [SerializeField]
     [Tooltip("How long in seconds this takes to build")]
@@ -43,7 +43,7 @@ public abstract class Tower : MonoBehaviour
     protected int damageToEnemy; // damage to enemy by shooting projectile
 
     [HideInInspector] public string id;
-    Health health;
+    public Health health;
 
     private TowerData removeTower;
 
@@ -154,13 +154,9 @@ public abstract class Tower : MonoBehaviour
 
     public void CompleteBuilding()
     {
-
-
         setIsBuilding(false);
         completeBuildButton.SetActive(false);
         GetComponent<Health>().StopDisplayTime();
-
-
     }
 
     public void InstantComplete()

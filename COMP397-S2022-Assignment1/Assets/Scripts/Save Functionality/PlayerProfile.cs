@@ -15,6 +15,8 @@ using System.Xml.Serialization;
 public class TowerData
 {
     public string towerId;
+    public bool isBuilding;
+    public float health;
     public Tower.TowerType towerType;
     public Vector3 towerPosition;
     public Quaternion towerRotation;
@@ -24,6 +26,7 @@ public class TowerData
 public class EnemyData
 {
     public string enemyId;
+    public float health;
     public Enemy.EnemyType enemyType;
     public Vector3 enemyPosition;
     public Quaternion enemyRotation;
