@@ -13,7 +13,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Collider), typeof(NavMeshAgent))]
 public abstract class EnemyBaseBehaviour : Enemy
 {
-    [SerializeField] private HealthDisplay healthDisplay;
+    
     [SerializeField] private int maxHealth;
     [SerializeField] private int goldPerHead;
     [SerializeField] private EnemyType enemyType;

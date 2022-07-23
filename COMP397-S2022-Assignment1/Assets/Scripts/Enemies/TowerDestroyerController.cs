@@ -88,6 +88,7 @@ public class TowerDestroyerController : EnemyBaseBehaviour
                 break;
         }
 
+        enemyData.health = healthDisplay.CurrentHealthValue;
         enemyData.enemyPosition = transform.position;
         enemyData.enemyRotation = transform.rotation;
     }

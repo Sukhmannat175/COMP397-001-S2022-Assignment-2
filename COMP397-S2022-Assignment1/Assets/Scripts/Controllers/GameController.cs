@@ -138,6 +138,36 @@ public class GameController : MonoBehaviour
         }
     }
 
+    private void SpawnOnLoad(Enemy.EnemyType type, Vector3 pos, Quaternion rot, int health)
+    {
+        Enemy enemy = null;
+
+        switch (type)
+        {
+            case Enemy.EnemyType.GRUNTGOLEM:
+                enemy = Instantiate(gruntGolemPrefab, pos, rot, enemyContainer);
+                enemy.Intialize(gruntGolemStaticData);
+                enemy.SetWayPoints(wayPointsContainer);
+                enemy.healthDisplay.SetHealthValue(health);
+                break;
+            case Enemy.EnemyType.STONEMONSTER:
+                enemy = Instantiate(stoneMonsterPrefab, pos, rot, enemyContainer);
+                enemy.Intialize(stoneMonsterStaticData);
+                enemy.SetWayPoints(wayPointsContainer);
+                enemy.healthDisplay.SetHealthValue(health);
+                break;
+            case Enemy.EnemyType.RESOURCESTEALER:
+                enemy = Instantiate(resourcesStealerPrefab, pos, rot, enemyContainer);
+                enemy.Intialize(resourcesStealerStaticData);
+                enemy.SetWayPoints(wayPointsContainer);
+                enemy.healthDisplay.SetHealthValue(health);
+                break;
+            default:
+                Debug.LogError(type + " is not yet defined in spawn method");
+                break;
+        }
+    }
+
     public void KillEnemey(int score)
     {
         this.score += score;
@@ -205,7 +235,12 @@ public class GameController : MonoBehaviour
         {
             TowerData currentTower = SaveData.current.towers[i];
             StartCoroutine(placer.PlaceTowerOnLoad(currentTower.towerType, currentTower.towerPosition, currentTower.towerRotation, currentTower.isBuilding, currentTower.health));
-            Debug.Log(i);
+        }
+
+        for (int i = 0; i < SaveData.current.enemies.Count; i++)
+        {
+            EnemyData currentEnemy = SaveData.current.enemies[i];
+            SpawnOnLoad(currentEnemy.enemyType, currentEnemy.enemyPosition, currentEnemy.enemyRotation, currentEnemy.health);
         }
     }
 }

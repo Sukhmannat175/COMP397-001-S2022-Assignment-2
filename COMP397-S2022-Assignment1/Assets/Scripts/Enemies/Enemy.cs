@@ -7,12 +7,14 @@
  *                      June 20, 2022 (Yuk Yee Wong): Add enemy static data to control the intialization.
  */
 
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public abstract class Enemy : MonoBehaviour
 {
     public EnemyState enemyState;
+    [SerializeField] public HealthDisplay healthDisplay;
 
     public enum EnemyType
     {

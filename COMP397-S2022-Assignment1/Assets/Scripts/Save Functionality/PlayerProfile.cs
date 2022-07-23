@@ -26,7 +26,7 @@ public class TowerData
 public class EnemyData
 {
     public string enemyId;
-    public float health;
+    public int health;
     public Enemy.EnemyType enemyType;
     public Vector3 enemyPosition;
     public Quaternion enemyRotation;
