@@ -53,6 +53,7 @@ public class GameController : MonoBehaviour
 
     public static GameController instance;    
     public SaveData current;
+    private bool changeWaveOnLoad = true;
     private void Awake()
     {
         if (instance == null)
@@ -100,47 +101,54 @@ public class GameController : MonoBehaviour
 
     private IEnumerator Spawn()
     {
-        foreach (EnemyWave wave in waveStaticData)
+        while (changeWaveOnLoad)
         {
-            currentWave++;
-            UpdateWaveLabel();
-
-            foreach (Enemy.EnemyType type in wave.types)
+            if (currentWave < 10)
             {
-                yield return new WaitForSeconds(spawnInterval);
-
-                Enemy enemy = null;
-
-                switch (type)
+                currentWave++;
+                UpdateWaveLabel();
+                foreach (Enemy.EnemyType type in waveStaticData[currentWave - 1].types)
                 {
-                    case Enemy.EnemyType.GRUNTGOLEM:
-                        enemy = Instantiate(gruntGolemPrefab, enemySpawnPoint.position, gruntGolemPrefab.transform.rotation, enemyContainer);
-                        enemy.Intialize(gruntGolemStaticData);
-                        break;
-                    case Enemy.EnemyType.STONEMONSTER:
-                        enemy = Instantiate(stoneMonsterPrefab, enemySpawnPoint.position, stoneMonsterPrefab.transform.rotation, enemyContainer);
-                        enemy.Intialize(stoneMonsterStaticData);
-                        break;
-                    case Enemy.EnemyType.RESOURCESTEALER:
+                    yield return new WaitForSeconds(spawnInterval);
+
+                    Enemy enemy = null;
+
+                    switch (type)
+                    {
+                        case Enemy.EnemyType.GRUNTGOLEM:
+                            enemy = Instantiate(gruntGolemPrefab, enemySpawnPoint.position, gruntGolemPrefab.transform.rotation, enemyContainer);
+                            enemy.Intialize(gruntGolemStaticData);
+                            break;
+                        case Enemy.EnemyType.STONEMONSTER:
+                            enemy = Instantiate(stoneMonsterPrefab, enemySpawnPoint.position, stoneMonsterPrefab.transform.rotation, enemyContainer);
+                            enemy.Intialize(stoneMonsterStaticData);
+                            break;
+                        case Enemy.EnemyType.RESOURCESTEALER:
                             enemy = Instantiate(resourcesStealerPrefab, enemySpawnPoint.position, resourcesStealerPrefab.transform.rotation, enemyContainer);
                             enemy.Intialize(resourcesStealerStaticData);
-                        break;
-                    default:
-                        Debug.LogError(type + " is not yet defined in spawn method");
-                        break;
+                            break;
+                        default:
+                            Debug.LogError(type + " is not yet defined in spawn method");
+                            break;
+                    }
+
+                    if (enemy != null)
+                        enemy.SetWayPoints(wayPointsContainer);
                 }
-
-                if (enemy != null)
-                    enemy.SetWayPoints(wayPointsContainer);
+                
+                yield return new WaitForSeconds(waveInterval);
             }
-
-            yield return new WaitForSeconds(waveInterval);
+            else
+            {
+                changeWaveOnLoad = false;
+            }
         }
     }
 
     private void SpawnOnLoad(Enemy.EnemyType type, Vector3 pos, Quaternion rot, int health)
     {
-        Enemy enemy = null;
+        Enemy enemy ;
+        UpdateWaveLabel();
 
         switch (type)
         {
@@ -250,5 +258,6 @@ public class GameController : MonoBehaviour
         InventoryManager.instance.stoneOnHand = SaveData.current.playerData.stone;
         InventoryManager.instance.woodOnHand = SaveData.current.playerData.wood;
 
+        UpdateWaveLabel();
     }
 }
