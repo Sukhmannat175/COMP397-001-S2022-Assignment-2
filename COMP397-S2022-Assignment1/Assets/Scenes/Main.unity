@@ -21357,6 +21357,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6716346510261606082, guid: 9a6a5629a38e6b34d859ed53bfcde983, type: 3}
   m_PrefabInstance: {fileID: 1283481428}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &548344699 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3918099991464310358, guid: da3a0fb7bd3651343987b27febebf73f, type: 3}
+  m_PrefabInstance: {fileID: 3918099991190063647}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &549207647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30492,6 +30497,7 @@ GameObject:
   m_Component:
   - component: {fileID: 758556403}
   - component: {fileID: 758556402}
+  - component: {fileID: 758556404}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -30587,6 +30593,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &758556404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758556401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dccad87d2a031c468991364bcc6e5b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gruntGolemPrefab: {fileID: 7172756143103013517, guid: c6cfc32748fb5004aa11a1be074b5c58, type: 3}
+  stoneMonsterPrefab: {fileID: 3538422563216355809, guid: d26d7f0b848069c4b90a3d109686fed5, type: 3}
+  resourcesStealerPrefab: {fileID: 9089145555772058670, guid: 8ae79852e611a28488b1c53305d8280b, type: 3}
+  gruntGolemStaticData:
+    enemy: 0
+    hp: 0
+    ap: 0
+    speed: 0
+    goldPerHead: 0
+    scorePerHead: 0
+    stoppingDistance: 0
+  stoneMonsterStaticData:
+    enemy: 0
+    hp: 0
+    ap: 0
+    speed: 0
+    goldPerHead: 0
+    scorePerHead: 0
+    stoppingDistance: 0
+  resourcesStealerStaticData:
+    enemy: 0
+    hp: 0
+    ap: 0
+    speed: 0
+    goldPerHead: 0
+    scorePerHead: 0
+    stoppingDistance: 0
 --- !u!4 &759332721 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ce09998b07d3e34ba45f58e54665a09, type: 3}
@@ -69139,12 +69184,48 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3918099991464310357, guid: da3a0fb7bd3651343987b27febebf73f, type: 3}
   m_PrefabInstance: {fileID: 3918099991190063647}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 548344699}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cf8de593773a4c4eba0a5eb3daa7525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1744754045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548344699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6986dc6e1c9fc245bf73b495b20cbc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crossbowTower: {fileID: 3260323772641981898, guid: 9f8847e5884da1f4ca180650bb68b5ce, type: 3}
+  cannonTower: {fileID: 1645810273052523551, guid: 3051f8e8528f9eb4daf425fbf45d95f5, type: 3}
+  resourceTower: {fileID: 3260323772641981898, guid: c2b6da968f0d230449dcb6b032114969, type: 3}
+  crossbowTowerPreview: {fileID: 3260323772641981898, guid: e38885ee8597f11488933977a467821f, type: 3}
+  cannonTowerPreview: {fileID: 5641309601765881537, guid: 2d8b6a4f770f4554aaca2c5e85250c74, type: 3}
+  resourceTowerPreview: {fileID: 3260323772641981898, guid: 57d5bdd27d4580e48b2b1cc6fe73418e, type: 3}
+  crossbowTowerStaticData:
+    tower: 0
+    hp: 0
+    buildTime: 0
+    interval: 0
+    damageToEnemy: 0
+  cannonTowerStaticData:
+    tower: 1
+    hp: 0
+    buildTime: 0
+    interval: 0
+    damageToEnemy: 0
+  resourceTowerStaticData:
+    tower: 2
+    hp: 0
+    buildTime: 0
+    interval: 0
+    damageToEnemy: 0
 --- !u!4 &1744891074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6716346510261606082, guid: 9a6a5629a38e6b34d859ed53bfcde983, type: 3}
