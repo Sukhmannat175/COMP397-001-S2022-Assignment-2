@@ -12,7 +12,7 @@ public class PlayerHealthBarController : HealthDisplay
 {
     [SerializeField] private int playerMaxHealthValue = 10;
     // Private variables
-    [SerializeField][Range(0, 10)] private int currentPlayerHealthValue;
+    [SerializeField][Range(0, 10)] public int currentPlayerHealthValue;
 
     public static PlayerHealthBarController instance;
 

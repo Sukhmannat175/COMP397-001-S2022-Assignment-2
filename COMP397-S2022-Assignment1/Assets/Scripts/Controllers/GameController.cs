@@ -49,7 +49,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private int enemiesKilled = 0;
     [Tooltip("Include those killed by towers and self-destructed when reached the end of the path")]
     [SerializeField] private int totalEnemiesDead = 0;
-    [SerializeField] private int totalEnemiesInTheLevel;    
+    [SerializeField] private int totalEnemiesInTheLevel;
 
     public static GameController instance;    
     public SaveData current;
@@ -251,13 +251,13 @@ public class GameController : MonoBehaviour
             SpawnOnLoad(currentEnemy.enemyType, currentEnemy.enemyPosition, currentEnemy.enemyRotation, currentEnemy.health);
         }
 
-        PlayerHealthBarController.instance.SetHealthValue(SaveData.current.playerData.health);
+        PlayerHealthBarController.instance.currentPlayerHealthValue = SaveData.current.playerData.health;
         currentWave = SaveData.current.playerData.wave;
         score = SaveData.current.playerData.score;
         InventoryManager.instance.goldOnHand = SaveData.current.playerData.gold;
         InventoryManager.instance.stoneOnHand = SaveData.current.playerData.stone;
         InventoryManager.instance.woodOnHand = SaveData.current.playerData.wood;
-
         UpdateWaveLabel();
+        InventoryManager.instance.UpdateDisplay();
     }
 }

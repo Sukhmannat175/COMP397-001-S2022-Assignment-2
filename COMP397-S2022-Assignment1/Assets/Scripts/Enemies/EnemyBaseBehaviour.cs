@@ -134,6 +134,14 @@ public abstract class EnemyBaseBehaviour : Enemy
                     path += 1;
                     if (path == wayPoints.Count)
                     {
+                        foreach (EnemyData enemyData in GameController.instance.current.enemies)
+                        {
+                            if (enemyData.enemyId == this.id)
+                            {
+                                removeEnemy = enemyData;
+                            }
+                        }
+                        GameController.instance.current.enemies.Remove(removeEnemy);
                         PlayerHealthBarController.instance.TakeDamage(playerDamage);
                         GameController.instance.AddTotalEnemiesDead();
                         SoundManager.instance.PlayPlayerDamageSfx();
