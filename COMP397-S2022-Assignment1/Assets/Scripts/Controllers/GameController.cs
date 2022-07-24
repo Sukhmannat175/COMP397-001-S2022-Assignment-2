@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
@@ -33,6 +34,10 @@ public class GameController : MonoBehaviour
     [SerializeField] private PlayerHealthBarController playerHpBarController;
     [SerializeField] private Text finalScore;
     [SerializeField] private Text finalEnemiesKilled;
+    [SerializeField] private GameObject saveDataButton1;
+    [SerializeField] private GameObject saveDataButton2;
+    [SerializeField] private GameObject loadDataButton1;
+    [SerializeField] private GameObject loadDataButton2;
 
     [Header("Loaded from Resources")]
     [SerializeField] List<EnemyWave> waveStaticData;
@@ -204,7 +209,7 @@ public class GameController : MonoBehaviour
         gameOverScreen.Open(GameOverScreen.GameEndState.GAMEOVER, score, enemiesKilled);
     }
 
-    public void OnSave()
+    public void OnSave(string saveName)
     {
         this.current.playerData.health = playerHpBarController.CurrentHealthValue;
         this.current.playerData.wave = currentWave;
@@ -213,10 +218,44 @@ public class GameController : MonoBehaviour
         this.current.playerData.stone = InventoryManager.instance.stoneOnHand;
         this.current.playerData.wood = InventoryManager.instance.woodOnHand;
 
-        SerializationController.Save("Save", this.current);
+        SerializationController.Save(saveName, this.current);
     }
 
-    public void OnLoad()
+    public void PreLoad()
+    {
+        if (File.Exists(Application.persistentDataPath + "/saves/Save 1.save"))
+        {
+            SaveData.current = (SaveData)SerializationController.Load(Application.persistentDataPath + "/saves/Save 1.save");
+
+            saveDataButton1.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>().text = "Save 1";
+            saveDataButton1.gameObject.transform.GetChild(2).gameObject.GetComponent<Text>().text = "Wave: " + SaveData.current.playerData.wave;
+            saveDataButton1.gameObject.transform.GetChild(1).gameObject.GetComponent<Text>().text = "Player Health: " + SaveData.current.playerData.health;
+            saveDataButton1.gameObject.transform.GetChild(3).gameObject.GetComponent<Text>().text = "Score: " + SaveData.current.playerData.score;
+
+            loadDataButton1.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>().text = "Save 1";
+            loadDataButton1.gameObject.transform.GetChild(2).gameObject.GetComponent<Text>().text = "Wave: " + SaveData.current.playerData.wave;
+            loadDataButton1.gameObject.transform.GetChild(1).gameObject.GetComponent<Text>().text = "Player Health: " + SaveData.current.playerData.health;
+            loadDataButton1.gameObject.transform.GetChild(3).gameObject.GetComponent<Text>().text = "Score: " + SaveData.current.playerData.score;
+        }
+
+        if (File.Exists(Application.persistentDataPath + "/saves/Save 2.save"))
+        {
+            SaveData.current = (SaveData)SerializationController.Load(Application.persistentDataPath + "/saves/Save 2.save");
+
+            saveDataButton2.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>().text = "Save 1";
+            saveDataButton2.gameObject.transform.GetChild(2).gameObject.GetComponent<Text>().text = "Wave: " + SaveData.current.playerData.wave;
+            saveDataButton2.gameObject.transform.GetChild(1).gameObject.GetComponent<Text>().text = "Player Health: " + SaveData.current.playerData.health;
+            saveDataButton2.gameObject.transform.GetChild(3).gameObject.GetComponent<Text>().text = "Score: " + SaveData.current.playerData.score;
+
+            loadDataButton2.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>().text = "Save 2";
+            loadDataButton2.gameObject.transform.GetChild(1).gameObject.GetComponent<Text>().text = "Player Health: " + SaveData.current.playerData.health;
+            loadDataButton2.gameObject.transform.GetChild(2).gameObject.GetComponent<Text>().text = "Wave: " + SaveData.current.playerData.wave;
+            loadDataButton2.gameObject.transform.GetChild(3).gameObject.GetComponent<Text>().text = "Score: " + SaveData.current.playerData.score;
+        }
+
+    }
+
+    public void OnLoad(string saveName)
     {
         int towerCount = towers.transform.childCount;
         int enemyCount = enemies.transform.childCount;
@@ -237,7 +276,7 @@ public class GameController : MonoBehaviour
             }
         }
 
-        SaveData.current = (SaveData)SerializationController.Load(Application.persistentDataPath + "/saves/Save.save");
+        SaveData.current = (SaveData)SerializationController.Load(Application.persistentDataPath + "/saves/" + saveName);
 
         for (int i = 0; i < SaveData.current.towers.Count; i++)
         {
