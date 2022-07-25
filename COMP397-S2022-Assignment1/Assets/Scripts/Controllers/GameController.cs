@@ -2,11 +2,13 @@
  *  Author:             Sukhmannat Singh (301168420)
  *                      Yuk Yee Wong (301234795)
  *                      Han Bi (301176547)
+ *                      Marcus Ngooi (301147411)
  *  Last Update:        June 26, 2022
  *  Description:        Controls aspects of the game including spawning enemy waves, ending the game, keeping track of vital statistics.
  *  Revision History:   June 11, 2022 (Sukhmannat Singh): Initial script.
  *                      June 26, 2022 (Yuk Yee Wong): Adding wave management scripts.
  *                      July 20, 2022 (Han Bi): Refactored code to work with EnemyFactory.cs.
+ *                      July 24, 2022 (Marcus Ngooi): Integrated Factory Design pattern with load system.
  */
 
 using System.Collections;
