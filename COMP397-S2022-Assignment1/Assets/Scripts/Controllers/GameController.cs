@@ -1,9 +1,12 @@
 /*  Filename:           GameController.cs
  *  Author:             Sukhmannat Singh (301168420)
+ *                      Yuk Yee Wong (301234795)
+ *                      Han Bi (301176547)
  *  Last Update:        June 26, 2022
  *  Description:        Controls aspects of the game including spawning enemy waves, ending the game, keeping track of vital statistics.
  *  Revision History:   June 11, 2022 (Sukhmannat Singh): Initial script.
  *                      June 26, 2022 (Yuk Yee Wong): Adding wave management scripts.
+ *                      July 20, 2022 (Han Bi): Refactored code to work with EnemyFactory.cs.
  */
 
 using System.Collections;
@@ -118,29 +121,13 @@ public class GameController : MonoBehaviour
 
                     Enemy enemy = null;
 
-                    switch (type)
-                    {
-                        case Enemy.EnemyType.GRUNTGOLEM:
-                            enemy = Instantiate(gruntGolemPrefab, enemySpawnPoint.position, gruntGolemPrefab.transform.rotation, enemyContainer);
-                            enemy.Intialize(gruntGolemStaticData);
-                            break;
-                        case Enemy.EnemyType.STONEMONSTER:
-                            enemy = Instantiate(stoneMonsterPrefab, enemySpawnPoint.position, stoneMonsterPrefab.transform.rotation, enemyContainer);
-                            enemy.Intialize(stoneMonsterStaticData);
-                            break;
-                        case Enemy.EnemyType.RESOURCESTEALER:
-                            enemy = Instantiate(resourcesStealerPrefab, enemySpawnPoint.position, resourcesStealerPrefab.transform.rotation, enemyContainer);
-                            enemy.Intialize(resourcesStealerStaticData);
-                            break;
-                        default:
-                            Debug.LogError(type + " is not yet defined in spawn method");
-                            break;
-                    }
+                    enemy = EnemyFactory.instance.CreateEnemy(type, enemySpawnPoint.position, gruntGolemPrefab.transform.rotation);   // Using gruntGolemPrefab rotation for all since technically they all would have same rotation on start.
+                    enemy.transform.parent = enemyContainer;
 
                     if (enemy != null)
                         enemy.SetWayPoints(wayPointsContainer);
                 }
-                
+
                 yield return new WaitForSeconds(waveInterval);
             }
             else
@@ -152,34 +139,91 @@ public class GameController : MonoBehaviour
 
     private void SpawnOnLoad(Enemy.EnemyType type, Vector3 pos, Quaternion rot, int health)
     {
-        Enemy enemy ;
+        Enemy enemy;
         UpdateWaveLabel();
 
-        switch (type)
-        {
-            case Enemy.EnemyType.GRUNTGOLEM:
-                enemy = Instantiate(gruntGolemPrefab, pos, rot, enemyContainer);
-                enemy.Intialize(gruntGolemStaticData);
-                enemy.SetWayPoints(wayPointsContainer);
-                enemy.healthDisplay.SetHealthValue(health);
-                break;
-            case Enemy.EnemyType.STONEMONSTER:
-                enemy = Instantiate(stoneMonsterPrefab, pos, rot, enemyContainer);
-                enemy.Intialize(stoneMonsterStaticData);
-                enemy.SetWayPoints(wayPointsContainer);
-                enemy.healthDisplay.SetHealthValue(health);
-                break;
-            case Enemy.EnemyType.RESOURCESTEALER:
-                enemy = Instantiate(resourcesStealerPrefab, pos, rot, enemyContainer);
-                enemy.Intialize(resourcesStealerStaticData);
-                enemy.SetWayPoints(wayPointsContainer);
-                enemy.healthDisplay.SetHealthValue(health);
-                break;
-            default:
-                Debug.LogError(type + " is not yet defined in spawn method");
-                break;
-        }
+        enemy = EnemyFactory.instance.CreateEnemy(type, pos, rot);
+        enemy.transform.parent = enemyContainer;
+        enemy.SetWayPoints(wayPointsContainer);
+        enemy.healthDisplay.SetHealthValue(health);
     }
+
+    //private IEnumerator Spawn()
+    //{
+    //    while (changeWaveOnLoad)
+    //    {
+    //        if (currentWave < 10)
+    //        {
+    //            currentWave++;
+    //            UpdateWaveLabel();
+    //            foreach (Enemy.EnemyType type in waveStaticData[currentWave - 1].types)
+    //            {
+    //                yield return new WaitForSeconds(spawnInterval);
+
+    //                Enemy enemy = null;
+
+    //                switch (type)
+    //                {
+    //                    case Enemy.EnemyType.GRUNTGOLEM:
+    //                        enemy = Instantiate(gruntGolemPrefab, enemySpawnPoint.position, gruntGolemPrefab.transform.rotation, enemyContainer);
+    //                        enemy.Intialize(gruntGolemStaticData);
+    //                        break;
+    //                    case Enemy.EnemyType.STONEMONSTER:
+    //                        enemy = Instantiate(stoneMonsterPrefab, enemySpawnPoint.position, stoneMonsterPrefab.transform.rotation, enemyContainer);
+    //                        enemy.Intialize(stoneMonsterStaticData);
+    //                        break;
+    //                    case Enemy.EnemyType.RESOURCESTEALER:
+    //                        enemy = Instantiate(resourcesStealerPrefab, enemySpawnPoint.position, resourcesStealerPrefab.transform.rotation, enemyContainer);
+    //                        enemy.Intialize(resourcesStealerStaticData);
+    //                        break;
+    //                    default:
+    //                        Debug.LogError(type + " is not yet defined in spawn method");
+    //                        break;
+    //                }
+
+    //                if (enemy != null)
+    //                    enemy.SetWayPoints(wayPointsContainer);
+    //            }
+
+    //            yield return new WaitForSeconds(waveInterval);
+    //        }
+    //        else
+    //        {
+    //            changeWaveOnLoad = false;
+    //        }
+    //    }
+    //}
+
+    //private void SpawnOnLoad(Enemy.EnemyType type, Vector3 pos, Quaternion rot, int health)
+    //{
+    //    Enemy enemy ;
+    //    UpdateWaveLabel();
+
+    //    switch (type)
+    //    {
+    //        case Enemy.EnemyType.GRUNTGOLEM:
+    //            enemy = Instantiate(gruntGolemPrefab, pos, rot, enemyContainer);
+    //            enemy.Intialize(gruntGolemStaticData);
+    //            enemy.SetWayPoints(wayPointsContainer);
+    //            enemy.healthDisplay.SetHealthValue(health);
+    //            break;
+    //        case Enemy.EnemyType.STONEMONSTER:
+    //            enemy = Instantiate(stoneMonsterPrefab, pos, rot, enemyContainer);
+    //            enemy.Intialize(stoneMonsterStaticData);
+    //            enemy.SetWayPoints(wayPointsContainer);
+    //            enemy.healthDisplay.SetHealthValue(health);
+    //            break;
+    //        case Enemy.EnemyType.RESOURCESTEALER:
+    //            enemy = Instantiate(resourcesStealerPrefab, pos, rot, enemyContainer);
+    //            enemy.Intialize(resourcesStealerStaticData);
+    //            enemy.SetWayPoints(wayPointsContainer);
+    //            enemy.healthDisplay.SetHealthValue(health);
+    //            break;
+    //        default:
+    //            Debug.LogError(type + " is not yet defined in spawn method");
+    //            break;
+    //    }
+    //}
 
     public void KillEnemey(int score)
     {
