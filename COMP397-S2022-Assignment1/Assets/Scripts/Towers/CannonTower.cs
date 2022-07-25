@@ -4,6 +4,7 @@
  *  Description:        Use for Cannonball tower projectiles.
  *  Revision History:   June 26, 2022 (Ikamjot Hundal): Initial script.
  *                      June 26, 2022 (Yuk Yee Wong): Setting projectile damage in CannonTower.
+ *                      June 26, 2022 (Sukhmannat Singh): Added logic to add data to save file
  */
 using System.Collections;
 using System.Collections.Generic;

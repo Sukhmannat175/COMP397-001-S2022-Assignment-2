@@ -10,6 +10,7 @@
  *                      June 26, 2022 (Ikamjot Hundal): Adding CannonBall tower to TowerPlacer.
  *                      June 26, 2022 (Yuk Yee Wong): Adding start method to place the tower using TowerPlaceStaticData, calling initialize function in PlaceTower function, and placing the tower to towerContainer.
  *                      July 20, 2022 (Han Bi): Moved alot of the tower specific code to TowerFactory.
+ *                      July 22, 2022 (Sukhmannat Singh): Added method to spawn towers on load.
  *                      July 24, 2022 (Marcus Ngooi): Integrated Factory Design pattern to work with load system.
  */
 

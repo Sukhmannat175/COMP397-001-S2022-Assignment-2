@@ -7,6 +7,7 @@
  *  Revision History:   June 11, 2022 (Sukhmannat Singh): Initial script.
  *                      June 26, 2022 (Yuk Yee Wong): Adding wave management scripts.
  *                      July 20, 2022 (Han Bi): Refactored code to work with EnemyFactory.cs.
+ *                      July 22, 2022 (Sukhmannat Singh): Added Save/Load methods.
  */
 
 using System.Collections;

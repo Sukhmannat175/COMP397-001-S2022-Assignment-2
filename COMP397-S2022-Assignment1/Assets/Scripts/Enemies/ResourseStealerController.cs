@@ -1,8 +1,9 @@
-/*  Filename:           InventoryManager.cs
+/*  Filename:           ResourseSteaerController.cs
  *  Author:             Sukhmannat Singh (301168420)
- *  Last Update:        June 26, 2022
+ *  Last Update:        June 24, 2022
  *  Description:        Inventory Manager.
  *  Revision History:   June 26, 2022 (Sukhmannat Singh): Initial script.
+ *                      June 26, 2022 (Sukhmannat Singh): Added logic to add data to save file
  */
 using System.Collections;
 using System.Collections.Generic;

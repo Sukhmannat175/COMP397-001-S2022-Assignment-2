@@ -3,6 +3,7 @@
  *  Last Update:        June 26, 2022
  *  Description:        Use for crossbow tower projectiles.
  *  Revision History:   June 7, 2022 (Han Bi): Initial script.
+ *                      June 26, 2022 (Sukhmannat Singh): Added logic to add data to save file
  *                      June 26, 2022 (Yuk Yee Wong): Set projectile damage in CrossbowTower.
  */
 

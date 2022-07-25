@@ -3,6 +3,7 @@
  *  Last Update:        June 26, 2022
  *  Description:        Controls tower destroyer.
  *  Revision History:   June 18, 2022 (Yuk Yee Wong): Initial script.
+ *                      June 26, 2022 (Sukhmannat Singh): Added logic to add data to save file.
  *                      June 26, 2022 (Yuk Yee Wong): Change EnemyStartBehavior method to Initialize.
  */
 

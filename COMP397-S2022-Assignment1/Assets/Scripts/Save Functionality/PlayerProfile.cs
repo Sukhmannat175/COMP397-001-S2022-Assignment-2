@@ -3,6 +3,7 @@
  *  Last Update:        June 26, 2022
  *  Description:        PlayerProfile for save functionality
  *  Revision History:   June 26, 2022 (Sukhmannat Singh): Initial script.
+ *                      July 20, 2022 (Sukhmannat Singh): Added player data.
  */
 
 using System.Collections;

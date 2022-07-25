@@ -4,6 +4,7 @@
  *  Description:        Controls grunt golem.
  *  Revision History:   June 11, 2022 (Sukhmannat Singh): Initial script.
  *                      June 18, 2022 (Yuk Yee Wong): Most of the script is moved to the EnemyBaseBehaviour to allow for inheritance.
+ *                      June 26, 2022 (Sukhmannat Singh): Added logic to add data to save file
  */
 
 using UnityEngine;

@@ -3,8 +3,9 @@
  *                      Marcus Ngooi (301147411)
  *  Last Update:        June 25, 2022
  *  Description:        Use for resource tower.
- *  Revision History:   June 7, 2022 (Han Bi): Initial script.
+ *  Revision History:   June 7, 2022 (Han Bi): Initial script.                      
  *                      June 25, 2022 (Marcus Ngooi): Added logic for collector tower.
+ *                      June 26, 2022 (Sukhmannat Singh): Added logic to add data to save file
  */
 
 using System.Collections;
