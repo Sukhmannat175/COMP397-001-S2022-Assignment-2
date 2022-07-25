@@ -1,5 +1,6 @@
 /*  Filename:           Enemy.cs
  *  Author:             Han Bi (301176547)
+ *                      Yuk Yee Wong (301234795)
  *  Last Update:        June 20, 2022
  *  Description:        Abstract Enemy Class for all enemies.
  *  Revision History:   June 7, 2022 (Han Bi): Initial script which currently has mechanics to allow proper tower targeting.

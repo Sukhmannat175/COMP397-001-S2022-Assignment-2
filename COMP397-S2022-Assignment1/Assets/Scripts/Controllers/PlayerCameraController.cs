@@ -1,11 +1,11 @@
 /*  Filename:           PlayerCameraController.cs
  *  Author:             Marcus Ngooi (301147411)
+ *                      Yuk Yee Wong (301234795)
  *  Last Update:        July 21, 2022
  *  Description:        Camera Movement.
  *  Revision History:   June 9, 2022 (Marcus Ngooi): Allows player to move the camera around to see different parts of the level.
-
  *                      July 20, 2022 (Yuk Yee Wong): Add mobile touch functionality to control camera. 
- *                      July 21, 2022 (Yuk Yee Wong): Add camera movement restricts to control camera. 
+ *                      July 21, 2022 (Ikamjot Hundal): Add camera movement restricts to control camera. 
  */
 
 using System.Collections;
