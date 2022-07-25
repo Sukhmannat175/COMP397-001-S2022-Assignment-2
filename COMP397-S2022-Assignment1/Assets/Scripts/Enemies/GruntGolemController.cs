@@ -1,5 +1,6 @@
 /*  Filename:           GruntGolemController.cs
  *  Author:             Sukhmannat Singh (301168420)
+ *                      Yuk Yee Wong (301234795)
  *  Last Update:        June 11, 2022
  *  Description:        Controls grunt golem.
  *  Revision History:   June 11, 2022 (Sukhmannat Singh): Initial script.
