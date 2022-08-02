@@ -1,10 +1,12 @@
 /*  Filename:           TowerDestroyerController.cs
  *  Author:             Yuk Yee Wong (301234795)
+ *                      Sukhmannat Singh (301168420)
  *  Last Update:        June 26, 2022
  *  Description:        Controls tower destroyer.
  *  Revision History:   June 18, 2022 (Yuk Yee Wong): Initial script.
  *                      June 26, 2022 (Sukhmannat Singh): Added logic to add data to save file.
  *                      June 26, 2022 (Yuk Yee Wong): Change EnemyStartBehavior method to Initialize.
+ *                      Auguest 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
  */
 
 using System.Collections;
@@ -26,9 +28,6 @@ public class TowerDestroyerController : EnemyBaseBehaviour
 
     [Header("Debug")]
     [SerializeField] private Tower target;
-    [SerializeField] private EnemyState state;
-
-    [HideInInspector] public EnemyData enemyData;
 
     public void SetTargetTower(Tower tower)
     {
@@ -52,19 +51,14 @@ public class TowerDestroyerController : EnemyBaseBehaviour
         projectile.Init(damage);
     }
 
-    public override void EnemyStartBehaviour()
-    {
-        base.EnemyStartBehaviour();
+    public override void EnemyStartBehaviour() { }
 
-        id = "TowerDestroyer" + Random.Range(0, int.MaxValue).ToString();
+    public override void EnemyOnEnableBehaviour() { }
 
-        if (string.IsNullOrEmpty(enemyData.enemyId))
-        {
-            enemyData.enemyId = id;
-            enemyData.enemyType = EnemyType.STONEMONSTER;
-            GameController.instance.current.enemies.Add(enemyData);
-        }
-    }
+    protected override string idPrefix { get { return "TowerDestroyer"; } }
+
+    protected override EnemyType enemyType { get { return EnemyType.STONEMONSTER; } }
+
     public override void EnemyUpdateBehaviour()
     {
         base.EnemyUpdateBehaviour();
@@ -92,5 +86,10 @@ public class TowerDestroyerController : EnemyBaseBehaviour
         enemyData.health = healthDisplay.CurrentHealthValue;
         enemyData.enemyPosition = transform.position;
         enemyData.enemyRotation = transform.rotation;
+    }
+
+    protected override void ReturnToPool()
+    {
+        EnemyFactory.Instance.ReturnPooledStoneMonster(this);
     }
 }

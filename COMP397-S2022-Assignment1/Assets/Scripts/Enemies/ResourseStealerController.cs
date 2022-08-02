@@ -1,9 +1,11 @@
 /*  Filename:           ResourseSteaerController.cs
  *  Author:             Sukhmannat Singh (301168420)
+ *                      Yuk Yee Wong (301234795)
  *  Last Update:        June 24, 2022
  *  Description:        Inventory Manager.
  *  Revision History:   June 26, 2022 (Sukhmannat Singh): Initial script.
  *                      June 26, 2022 (Sukhmannat Singh): Added logic to add data to save file
+ *                      Auguest 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -22,16 +24,16 @@ public class ResourseStealerController : EnemyBaseBehaviour
     [SerializeField] private int stealTime;
     [SerializeField] private int actionTime;
 
-    [Header("Debug")]
-    [SerializeField] private EnemyState state;
-
-    [HideInInspector] public EnemyData enemyData;
-
     private Animator animator;
     private int steal;
 
+    private Coroutine digCoroutine;
+    private Coroutine stealCoroutine;
+
     public IEnumerator Dig()
     {
+        state = EnemyState.WALK;
+
         while (true)
         {
             if (state == EnemyState.WALK)
@@ -68,22 +70,30 @@ public class ResourseStealerController : EnemyBaseBehaviour
         }
     }
 
+    protected override string idPrefix { get { return "ResourceStealer"; } }
+
+    protected override EnemyType enemyType { get { return EnemyType.RESOURCESTEALER; } }
+
     public override void EnemyStartBehaviour()
     {
-        base.EnemyStartBehaviour();
         animator = GetComponent<Animator>();
+    }
 
-        id = "ResourceStealer" + Random.Range(0, int.MaxValue).ToString();
-
-        if (string.IsNullOrEmpty(enemyData.enemyId))
+    public override void EnemyOnEnableBehaviour() 
+    {
+        if (digCoroutine != null)
         {
-            enemyData.enemyId = id;
-            enemyData.enemyType = EnemyType.RESOURCESTEALER;
-            GameController.instance.current.enemies.Add(enemyData);
+            StopCoroutine(digCoroutine);
         }
 
-        StartCoroutine(Dig());
-        StartCoroutine(StealResources());
+        digCoroutine = StartCoroutine(Dig());
+
+        if (stealCoroutine != null)
+        {
+            StopCoroutine(stealCoroutine);
+        }
+
+        stealCoroutine = StartCoroutine(StealResources());
     }
 
     public override void EnemyUpdateBehaviour()
@@ -118,7 +128,12 @@ public class ResourseStealerController : EnemyBaseBehaviour
 
     public void DigDown()
     {
-        
+
         //this.gameObject.SetActive(false);
+    }
+
+    protected override void ReturnToPool()
+    {
+        EnemyFactory.Instance.ReturnPooledResourceStealer(this);
     }
 }

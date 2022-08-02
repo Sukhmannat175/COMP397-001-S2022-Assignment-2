@@ -1,10 +1,12 @@
 /*  Filename:           EnemyBaseBehaviour.cs
  *  Author:             Yuk Yee Wong (301234795)
+ *                      Sukhmannat Singh (301168420)
  *  Last Update:        June 26, 2022
  *  Description:        Abstract Enemy Base Behaviour Class for all enemies.
  *  Revision History:   June 18, 2022 (Yuk Yee Wong): Initial script extracted from GruntGolemController with modifications on health, projectile, enemy damage etc.
  *                      June 24, 2022 (Sukhmannat Singh): Added logic for deleting destroyed objects from save file 
  *                      June 26, 2022 (Yuk Yee Wong): Adding initialize function using enemy static data and fix bug by adding a death boolean for checking
+ *                      Auguest 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
  */
 
 using System.Collections.Generic;
@@ -14,22 +16,25 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Collider), typeof(NavMeshAgent))]
 public abstract class EnemyBaseBehaviour : Enemy
 {
-    
+    [Header("Initialize by Static Data")]
     [SerializeField] private int maxHealth;
     [SerializeField] private int goldPerHead;
-    [SerializeField] private EnemyType enemyType;
     [SerializeField] private int enemyDamage = 1;
     [SerializeField] protected int playerDamage = 1;
     [SerializeField] private int scorePerEnemyKilled = 10;
-
-    [Header("Debug")]
-    [SerializeField] protected int path = 0;
-    [Tooltip("Assigned from game controller")]
-    [SerializeField] protected List<Transform> wayPoints;
     [Tooltip("Come from nav mesh agent, for calculating distance travelled")]
     [SerializeField] protected float speed;
+
+    [Header("Data that will reset on spawn")]
+    [SerializeField] protected int path = 0;
     [SerializeField] protected float distanceTravelled;
     [SerializeField] protected bool death;
+
+    [Header("Debug")]
+    [Tooltip("Assigned from game controller")]
+    [SerializeField] protected List<Transform> wayPoints;
+    [Tooltip("Updated by itself")]
+    [SerializeField] protected EnemyState state;
 
     private string playerProjectileTag = "Projectile";
     private EnemyData removeEnemy;
@@ -60,7 +65,7 @@ public abstract class EnemyBaseBehaviour : Enemy
             }
             GameController.instance.current.enemies.Remove(removeEnemy);
 
-            Destroy(gameObject);
+            ReturnToPool();
         }
     }
 
@@ -101,9 +106,12 @@ public abstract class EnemyBaseBehaviour : Enemy
         UpdateDistanceTravelled();
     }
 
-    public override void EnemyStartBehaviour()
+    protected override void RefreshEnemyData()
     {
-
+        id = idPrefix + Random.Range(0, int.MaxValue).ToString();
+        enemyData.enemyId = id;
+        enemyData.enemyType = enemyType;
+        GameController.instance.current.enemies.Add(enemyData);
     }
 
     public override void Intialize(EnemyStaticData data)
@@ -120,7 +128,16 @@ public abstract class EnemyBaseBehaviour : Enemy
         healthDisplay.Init(maxHealth);
         SetSpeed(navMeshAgent.speed);
 
-        enemyStaticData = data;
+        ResetEnemy();
+
+        RefreshEnemyData();
+    }
+
+    protected void ResetEnemy()
+    {
+        path = 0;
+        distanceTravelled = 0;
+        death = false;
     }
 
     public override void Walk(Transform position)
@@ -146,7 +163,7 @@ public abstract class EnemyBaseBehaviour : Enemy
                         PlayerHealthBarController.instance.TakeDamage(playerDamage);
                         GameController.instance.AddTotalEnemiesDead();
                         SoundManager.instance.PlayPlayerDamageSfx();
-                        Destroy(gameObject);
+                        ReturnToPool();
                     }
                 }
             }

@@ -6,27 +6,21 @@
  *  Revision History:   June 11, 2022 (Sukhmannat Singh): Initial script.
  *                      June 18, 2022 (Yuk Yee Wong): Most of the script is moved to the EnemyBaseBehaviour to allow for inheritance.
  *                      June 26, 2022 (Sukhmannat Singh): Added logic to add data to save file
+ *                      Auguest 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
  */
 
 using UnityEngine;
 
 public class GruntGolemController : EnemyBaseBehaviour
 {
-    [HideInInspector] public EnemyData enemyData;
+    protected override string idPrefix { get { return "GruntGolem"; } }
 
-    public override void EnemyStartBehaviour()
-    {
-        base.EnemyStartBehaviour();
+    protected override EnemyType enemyType { get { return EnemyType.GRUNTGOLEM; } }
 
-        id = "GruntGolem" + Random.Range(0, int.MaxValue).ToString();
+    public override void EnemyStartBehaviour() { }
 
-        if (string.IsNullOrEmpty(enemyData.enemyId))
-        {
-            enemyData.enemyId = id;
-            enemyData.enemyType = EnemyType.GRUNTGOLEM;
-            GameController.instance.current.enemies.Add(enemyData);
-        }
-    }
+    public override void EnemyOnEnableBehaviour() { }
+
     public override void EnemyUpdateBehaviour()
     {
         base.EnemyUpdateBehaviour();
@@ -35,5 +29,10 @@ public class GruntGolemController : EnemyBaseBehaviour
         enemyData.health = healthDisplay.CurrentHealthValue;
         enemyData.enemyPosition = transform.position;
         enemyData.enemyRotation = transform.rotation;
+    }
+
+    protected override void ReturnToPool()
+    {
+        EnemyFactory.Instance.ReturnPooledGruntGolem(this);
     }
 }
