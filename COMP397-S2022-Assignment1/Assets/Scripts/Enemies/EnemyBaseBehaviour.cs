@@ -33,8 +33,6 @@ public abstract class EnemyBaseBehaviour : Enemy
     [Header("Debug")]
     [Tooltip("Assigned from game controller")]
     [SerializeField] protected List<Transform> wayPoints;
-    [Tooltip("Updated by itself")]
-    [SerializeField] protected EnemyState state;
 
     private string playerProjectileTag = "Projectile";
     private EnemyData removeEnemy;
@@ -87,14 +85,6 @@ public abstract class EnemyBaseBehaviour : Enemy
         distanceTravelled += speed * Time.deltaTime;
     }
 
-    public override void SetWayPoints(Transform wayPointsContainer)
-    {
-        wayPoints.Clear();
-
-        foreach (Transform wayPoint in wayPointsContainer.transform)
-            wayPoints.Add(wayPoint);
-    }
-
     public override float GetDistanceTravelled()
     {
         return distanceTravelled;
@@ -104,6 +94,15 @@ public abstract class EnemyBaseBehaviour : Enemy
     {
         UpdateEnemyHpBarRotation();
         UpdateDistanceTravelled();
+        UpdateEnemyData();
+    }
+
+    protected void UpdateEnemyData()
+    {
+        enemyData.health = healthDisplay.CurrentHealthValue;
+        enemyData.enemyPosition = transform.position;
+        enemyData.enemyRotation = transform.rotation;
+        enemyData.enemyState = state;
     }
 
     protected override void RefreshEnemyData()
@@ -111,10 +110,11 @@ public abstract class EnemyBaseBehaviour : Enemy
         id = idPrefix + Random.Range(0, int.MaxValue).ToString();
         enemyData.enemyId = id;
         enemyData.enemyType = enemyType;
+        enemyData.enemyState = EnemyState.WALK;
         GameController.instance.current.enemies.Add(enemyData);
     }
 
-    public override void Intialize(EnemyStaticData data)
+    public override void Intialize(EnemyStaticData data, Transform wayPointsContainer)
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
 
@@ -131,6 +131,11 @@ public abstract class EnemyBaseBehaviour : Enemy
         ResetEnemy();
 
         RefreshEnemyData();
+
+        wayPoints.Clear();
+
+        foreach (Transform wayPoint in wayPointsContainer.transform)
+            wayPoints.Add(wayPoint);
     }
 
     protected void ResetEnemy()
@@ -150,23 +155,31 @@ public abstract class EnemyBaseBehaviour : Enemy
                 if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude == 0f)
                 {
                     path += 1;
-                    if (path == wayPoints.Count)
-                    {
-                        foreach (EnemyData enemyData in GameController.instance.current.enemies)
-                        {
-                            if (enemyData.enemyId == this.id)
-                            {
-                                removeEnemy = enemyData;
-                            }
-                        }
-                        GameController.instance.current.enemies.Remove(removeEnemy);
-                        PlayerHealthBarController.instance.TakeDamage(playerDamage);
-                        GameController.instance.AddTotalEnemiesDead();
-                        SoundManager.instance.PlayPlayerDamageSfx();
-                        ReturnToPool();
-                    }
+                    PathEnd();
                 }
             }
         }
+    }
+
+    protected void PathEnd()
+    {
+        if (!death)
+        {
+            foreach (EnemyData enemyData in GameController.instance.current.enemies)
+            {
+                if (enemyData.enemyId == this.id)
+                {
+                    removeEnemy = enemyData;
+                }
+            }
+
+            GameController.instance.current.enemies.Remove(removeEnemy);
+            PlayerHealthBarController.instance.TakeDamage(playerDamage); 
+            GameController.instance.AddTotalEnemiesDead();
+            SoundManager.instance.PlayPlayerDamageSfx();
+            ReturnToPool();
+        }
+
+        death = true;
     }
 }

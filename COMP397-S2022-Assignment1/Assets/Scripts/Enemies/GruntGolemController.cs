@@ -25,10 +25,6 @@ public class GruntGolemController : EnemyBaseBehaviour
     {
         base.EnemyUpdateBehaviour();
         Walk(wayPoints[path]);
-
-        enemyData.health = healthDisplay.CurrentHealthValue;
-        enemyData.enemyPosition = transform.position;
-        enemyData.enemyRotation = transform.rotation;
     }
 
     protected override void ReturnToPool()

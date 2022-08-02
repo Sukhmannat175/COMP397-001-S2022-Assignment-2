@@ -43,11 +43,10 @@ public class TowerDestroyerController : EnemyBaseBehaviour
         }
     }
 
-    public override void Intialize(EnemyStaticData data)
+    public override void Intialize(EnemyStaticData data, Transform wayPointsContainer)
     {
-        base.Intialize(data);
+        base.Intialize(data, wayPointsContainer);
         damage = data.ap;
-
         projectile.Init(damage);
     }
 
@@ -82,10 +81,6 @@ public class TowerDestroyerController : EnemyBaseBehaviour
                 Debug.Log(state + " does not support by code.");
                 break;
         }
-
-        enemyData.health = healthDisplay.CurrentHealthValue;
-        enemyData.enemyPosition = transform.position;
-        enemyData.enemyRotation = transform.rotation;
     }
 
     protected override void ReturnToPool()

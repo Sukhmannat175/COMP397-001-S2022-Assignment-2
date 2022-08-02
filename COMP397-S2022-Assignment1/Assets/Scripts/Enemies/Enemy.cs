@@ -31,6 +31,9 @@ public abstract class Enemy : MonoBehaviour
         DIG = 2,
     }
 
+    [Tooltip("Updated by itself")]
+    [SerializeField] protected EnemyState state;
+
     [HideInInspector] public EnemyData enemyData;
     [HideInInspector] public string id;
 
@@ -49,11 +52,11 @@ public abstract class Enemy : MonoBehaviour
         EnemyOnEnableBehaviour();
     }
 
-    public abstract void Intialize(EnemyStaticData data);
+    public abstract void Intialize(EnemyStaticData data, Transform wayPointsContainer);
 
     protected abstract void RefreshEnemyData();
 
-    public abstract void SetWayPoints(Transform wayPointsContainer);
+    public void SetEnemyState(EnemyState state) { this.state = state; }
 
     public abstract float GetDistanceTravelled();
 

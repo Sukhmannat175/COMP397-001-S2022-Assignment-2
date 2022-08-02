@@ -12,8 +12,7 @@ public class EnemyPoolManager : PoolManager<Enemy>
     {
         var newEnemy = GetPooledObject(spawnPosition, false); // avoid update when waypoint is null
         newEnemy.transform.rotation = spawnRotation;
-        newEnemy.SetWayPoints(wayPointsContainer);
-        newEnemy.Intialize(enemyStaticData);
+        newEnemy.Intialize(enemyStaticData, wayPointsContainer);
         newEnemy.gameObject.SetActive(true);
         return newEnemy;
     }
