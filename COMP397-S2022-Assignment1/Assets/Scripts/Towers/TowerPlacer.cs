@@ -24,7 +24,7 @@ public class TowerPlacer : MonoBehaviour
 {
     [SerializeField] private bool isPreview = false;
     [SerializeField] private AudioClip placeSound;
-    [SerializeField] int towersPlaced;
+    public int towersPlaced;
     [SerializeField] int maxTowersToBePlaced = 10;
 
     [Header("Loaded from Resources")]

@@ -32,6 +32,7 @@ public class EnemyData
     public string enemyId;
     public int health;
     public Enemy.EnemyType enemyType;
+    public Enemy.EnemyState enemyState;
     public Vector3 enemyPosition;
     public Quaternion enemyRotation;
 }
@@ -49,4 +50,5 @@ public class PlayerData
     public int totalEnemiesDead = 0;
     public int enemiesKilled = 0;
     public int enemiesSpawned = 0;
+    public int towerPlaced = 0;
 }

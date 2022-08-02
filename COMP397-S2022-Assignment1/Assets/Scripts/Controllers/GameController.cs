@@ -61,7 +61,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private int totalEnemiesDead = 0;
     [SerializeField] private int totalEnemiesInTheLevel;
 
-    public static GameController instance;    
+    public static GameController instance;
+    private TowerPlacer towerPlacer;
     public SaveData current;
     private bool changeWaveOnLoad = true;
 
@@ -96,6 +97,8 @@ public class GameController : MonoBehaviour
 
         CalculateTotalEnemiesInTheLevel();
         spawnCoroutine = StartCoroutine(Spawn(0, 0));
+
+        towerPlacer = FindObjectOfType<TowerPlacer>();
     }
 
     private void CalculateTotalEnemiesInTheLevel()
@@ -158,9 +161,10 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void SpawnExistingEnemyOnLoad(Enemy.EnemyType type, Vector3 pos, Quaternion rot, int health)
+    private void SpawnExistingEnemyOnLoad(Enemy.EnemyType type, Vector3 pos, Quaternion rot, int health, Enemy.EnemyState state)
     {
         Enemy enemy = EnemyFactory.Instance.CreateEnemy(type, pos, rot, wayPointsContainer);
+        enemy.SetEnemyState(state);
         enemy.healthDisplay.SetHealthValue(health);
     }
 
@@ -201,6 +205,7 @@ public class GameController : MonoBehaviour
         this.current.playerData.totalEnemiesDead = totalEnemiesDead;
         this.current.playerData.enemiesKilled = enemiesKilled;
         this.current.playerData.enemiesSpawned = enemiesSpawned;
+        this.current.playerData.towerPlaced = towerPlacer.towersPlaced;
         this.current.playerData.gold = InventoryManager.instance.goldOnHand;
         this.current.playerData.stone = InventoryManager.instance.stoneOnHand;
         this.current.playerData.wood = InventoryManager.instance.woodOnHand;
@@ -262,11 +267,13 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < SaveData.current.enemies.Count; i++)
         {
             EnemyData currentEnemy = SaveData.current.enemies[i];
-            SpawnExistingEnemyOnLoad(currentEnemy.enemyType, currentEnemy.enemyPosition, currentEnemy.enemyRotation, currentEnemy.health);
+            SpawnExistingEnemyOnLoad(currentEnemy.enemyType, currentEnemy.enemyPosition, currentEnemy.enemyRotation, currentEnemy.health, currentEnemy.enemyState);
         }
 
         PlayerHealthBarController.instance.currentPlayerHealthValue = SaveData.current.playerData.health;
-        
+
+        towerPlacer.towersPlaced = SaveData.current.playerData.towerPlaced;
+
         score = SaveData.current.playerData.score;
         totalEnemiesInTheLevel = SaveData.current.playerData.totalEnemiesInTheLevel;
         totalEnemiesDead = SaveData.current.playerData.totalEnemiesDead;
