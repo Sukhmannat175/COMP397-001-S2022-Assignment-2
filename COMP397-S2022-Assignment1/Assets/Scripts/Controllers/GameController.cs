@@ -10,6 +10,7 @@
  *                      July 20, 2022 (Han Bi): Refactored code to work with EnemyFactory.cs.
  *                      July 22, 2022 (Sukhmannat Singh): Added Save/Load methods.
  *                      July 24, 2022 (Marcus Ngooi): Integrated Factory Design pattern with load system.
+ *                      August 1, 2022 (Yuk Yee Wong): Modified Spawn method, adapted object pooling.
  */
 
 using System.Collections;
@@ -33,7 +34,6 @@ public class GameController : MonoBehaviour
     [SerializeField] private Enemy resourcesStealerPrefab;
     [SerializeField] private Transform wayPointsContainer;
     [SerializeField] private Transform enemySpawnPoint;
-    [SerializeField] private Transform enemyContainer;
 
     [Header("UI")]
     [SerializeField] private GameOverScreen gameOverScreen;
@@ -51,20 +51,23 @@ public class GameController : MonoBehaviour
     [SerializeField] private EnemyStaticData stoneMonsterStaticData;
     [SerializeField] private EnemyStaticData resourcesStealerStaticData;
     [SerializeField] private TowerPlacer placer;
-    [SerializeField] private GameObject towers;
-    [SerializeField] private GameObject enemies;
 
     [Header("Debug")]
     [SerializeField] private int currentWave;
     [SerializeField] private int score = 0;
     [SerializeField] private int enemiesKilled = 0;
+    [SerializeField] private int enemiesSpawned = 0;
     [Tooltip("Include those killed by towers and self-destructed when reached the end of the path")]
     [SerializeField] private int totalEnemiesDead = 0;
     [SerializeField] private int totalEnemiesInTheLevel;
 
-    public static GameController instance;    
+    public static GameController instance;
+    private TowerPlacer towerPlacer;
     public SaveData current;
     private bool changeWaveOnLoad = true;
+
+    private Coroutine spawnCoroutine = null;
+
     private void Awake()
     {
         if (instance == null)
@@ -93,7 +96,9 @@ public class GameController : MonoBehaviour
         }
 
         CalculateTotalEnemiesInTheLevel();
-        StartCoroutine(Spawn());
+        spawnCoroutine = StartCoroutine(Spawn(0, 0));
+
+        towerPlacer = FindObjectOfType<TowerPlacer>();
     }
 
     private void CalculateTotalEnemiesInTheLevel()
@@ -110,123 +115,58 @@ public class GameController : MonoBehaviour
         waveLabel.text = string.Format(waveLabelFormat, currentWave, waveStaticData.Count);
     }
 
-    private IEnumerator Spawn()
+    private IEnumerator Spawn(int enemiesSpawnedBefore, int currentWaveBefore)
     {
-        while (changeWaveOnLoad)
+        changeWaveOnLoad = true;
+
+        if (enemiesSpawnedBefore == totalEnemiesInTheLevel)
         {
-            if (currentWave < 10)
+            enemiesSpawned = enemiesSpawnedBefore;
+            currentWave = currentWaveBefore;
+            UpdateWaveLabel();
+        }
+        else
+        {
+            enemiesSpawned = 0;
+            currentWave = 0;
+
+            while (changeWaveOnLoad)
             {
-                currentWave++;
-                UpdateWaveLabel();
-                foreach (Enemy.EnemyType type in waveStaticData[currentWave - 1].types)
+                if (waveStaticData.Count != 0)
                 {
-                    yield return new WaitForSeconds(spawnInterval);
+                    if (enemiesSpawned < totalEnemiesInTheLevel)
+                    {
+                        currentWave++;
+                        UpdateWaveLabel();
+                        foreach (Enemy.EnemyType type in waveStaticData[currentWave - 1].types)
+                        {
+                            if (enemiesSpawnedBefore == 0 || enemiesSpawned > enemiesSpawnedBefore)
+                            {
+                                yield return new WaitForSeconds(spawnInterval);
 
-                    Enemy enemy = null;
+                                Enemy enemy = EnemyFactory.Instance.CreateEnemy(type, enemySpawnPoint.position, gruntGolemPrefab.transform.rotation, wayPointsContainer);   // Using gruntGolemPrefab rotation for all since technically they all would have same rotation on start.
+                            }
+                            enemiesSpawned++;
+                        }
 
-                    enemy = EnemyFactory.instance.CreateEnemy(type, enemySpawnPoint.position, gruntGolemPrefab.transform.rotation);   // Using gruntGolemPrefab rotation for all since technically they all would have same rotation on start.
-                    enemy.transform.parent = enemyContainer;
-
-                    if (enemy != null)
-                        enemy.SetWayPoints(wayPointsContainer);
+                        if (enemiesSpawned > enemiesSpawnedBefore)
+                            yield return new WaitForSeconds(waveInterval);
+                    }
+                    else
+                    {
+                        changeWaveOnLoad = false;
+                    }
                 }
-
-                yield return new WaitForSeconds(waveInterval);
-            }
-            else
-            {
-                changeWaveOnLoad = false;
             }
         }
     }
 
-    private void SpawnOnLoad(Enemy.EnemyType type, Vector3 pos, Quaternion rot, int health)
+    private void SpawnExistingEnemyOnLoad(Enemy.EnemyType type, Vector3 pos, Quaternion rot, int health, Enemy.EnemyState state)
     {
-        Enemy enemy;
-        UpdateWaveLabel();
-
-        enemy = EnemyFactory.instance.CreateEnemy(type, pos, rot);
-        enemy.transform.parent = enemyContainer;
-        enemy.SetWayPoints(wayPointsContainer);
+        Enemy enemy = EnemyFactory.Instance.CreateEnemy(type, pos, rot, wayPointsContainer);
+        enemy.SetEnemyState(state);
         enemy.healthDisplay.SetHealthValue(health);
     }
-
-    //private IEnumerator Spawn()
-    //{
-    //    while (changeWaveOnLoad)
-    //    {
-    //        if (currentWave < 10)
-    //        {
-    //            currentWave++;
-    //            UpdateWaveLabel();
-    //            foreach (Enemy.EnemyType type in waveStaticData[currentWave - 1].types)
-    //            {
-    //                yield return new WaitForSeconds(spawnInterval);
-
-    //                Enemy enemy = null;
-
-    //                switch (type)
-    //                {
-    //                    case Enemy.EnemyType.GRUNTGOLEM:
-    //                        enemy = Instantiate(gruntGolemPrefab, enemySpawnPoint.position, gruntGolemPrefab.transform.rotation, enemyContainer);
-    //                        enemy.Intialize(gruntGolemStaticData);
-    //                        break;
-    //                    case Enemy.EnemyType.STONEMONSTER:
-    //                        enemy = Instantiate(stoneMonsterPrefab, enemySpawnPoint.position, stoneMonsterPrefab.transform.rotation, enemyContainer);
-    //                        enemy.Intialize(stoneMonsterStaticData);
-    //                        break;
-    //                    case Enemy.EnemyType.RESOURCESTEALER:
-    //                        enemy = Instantiate(resourcesStealerPrefab, enemySpawnPoint.position, resourcesStealerPrefab.transform.rotation, enemyContainer);
-    //                        enemy.Intialize(resourcesStealerStaticData);
-    //                        break;
-    //                    default:
-    //                        Debug.LogError(type + " is not yet defined in spawn method");
-    //                        break;
-    //                }
-
-    //                if (enemy != null)
-    //                    enemy.SetWayPoints(wayPointsContainer);
-    //            }
-
-    //            yield return new WaitForSeconds(waveInterval);
-    //        }
-    //        else
-    //        {
-    //            changeWaveOnLoad = false;
-    //        }
-    //    }
-    //}
-
-    //private void SpawnOnLoad(Enemy.EnemyType type, Vector3 pos, Quaternion rot, int health)
-    //{
-    //    Enemy enemy ;
-    //    UpdateWaveLabel();
-
-    //    switch (type)
-    //    {
-    //        case Enemy.EnemyType.GRUNTGOLEM:
-    //            enemy = Instantiate(gruntGolemPrefab, pos, rot, enemyContainer);
-    //            enemy.Intialize(gruntGolemStaticData);
-    //            enemy.SetWayPoints(wayPointsContainer);
-    //            enemy.healthDisplay.SetHealthValue(health);
-    //            break;
-    //        case Enemy.EnemyType.STONEMONSTER:
-    //            enemy = Instantiate(stoneMonsterPrefab, pos, rot, enemyContainer);
-    //            enemy.Intialize(stoneMonsterStaticData);
-    //            enemy.SetWayPoints(wayPointsContainer);
-    //            enemy.healthDisplay.SetHealthValue(health);
-    //            break;
-    //        case Enemy.EnemyType.RESOURCESTEALER:
-    //            enemy = Instantiate(resourcesStealerPrefab, pos, rot, enemyContainer);
-    //            enemy.Intialize(resourcesStealerStaticData);
-    //            enemy.SetWayPoints(wayPointsContainer);
-    //            enemy.healthDisplay.SetHealthValue(health);
-    //            break;
-    //        default:
-    //            Debug.LogError(type + " is not yet defined in spawn method");
-    //            break;
-    //    }
-    //}
 
     public void KillEnemey(int score)
     {
@@ -261,6 +201,11 @@ public class GameController : MonoBehaviour
         this.current.playerData.health = playerHpBarController.CurrentHealthValue;
         this.current.playerData.wave = currentWave;
         this.current.playerData.score = score;
+        this.current.playerData.totalEnemiesInTheLevel = totalEnemiesInTheLevel;
+        this.current.playerData.totalEnemiesDead = totalEnemiesDead;
+        this.current.playerData.enemiesKilled = enemiesKilled;
+        this.current.playerData.enemiesSpawned = enemiesSpawned;
+        this.current.playerData.towerPlaced = towerPlacer.towersPlaced;
         this.current.playerData.gold = InventoryManager.instance.goldOnHand;
         this.current.playerData.stone = InventoryManager.instance.stoneOnHand;
         this.current.playerData.wood = InventoryManager.instance.woodOnHand;
@@ -304,46 +249,43 @@ public class GameController : MonoBehaviour
 
     public void OnLoad(string saveName)
     {
-        int towerCount = towers.transform.childCount;
-        int enemyCount = enemies.transform.childCount;
+        if (spawnCoroutine != null)
+            StopCoroutine(spawnCoroutine);
 
-        if (towers.transform.childCount > 0)
-        {
-            for (int i = 0; i < towerCount; i++)
-            {
-                Destroy(towers.transform.GetChild(i).gameObject);
-            }
-        }
-
-        if (enemies.transform.childCount > 0)
-        {
-            for (int i = 0; i < enemyCount; i++)
-            {
-                Destroy(enemies.transform.GetChild(i).gameObject);
-            }
-        }
+        ProjectileFactory.Instance.ReturnAllProjectiles();
+        EnemyFactory.Instance.ReturnAllEnemies();
+        TowerFactory.Instance.ReturnAllTowers();
 
         SaveData.current = (SaveData)SerializationController.Load(Application.persistentDataPath + "/saves/" + saveName);
 
         for (int i = 0; i < SaveData.current.towers.Count; i++)
         {
             TowerData currentTower = SaveData.current.towers[i];
-            StartCoroutine(placer.PlaceTowerOnLoad(currentTower.towerType, currentTower.towerPosition, currentTower.towerRotation, currentTower.isBuilding, currentTower.health));
+            StartCoroutine(placer.PlaceTowerOnLoad(currentTower));
         }
 
         for (int i = 0; i < SaveData.current.enemies.Count; i++)
         {
             EnemyData currentEnemy = SaveData.current.enemies[i];
-            SpawnOnLoad(currentEnemy.enemyType, currentEnemy.enemyPosition, currentEnemy.enemyRotation, currentEnemy.health);
+            SpawnExistingEnemyOnLoad(currentEnemy.enemyType, currentEnemy.enemyPosition, currentEnemy.enemyRotation, currentEnemy.health, currentEnemy.enemyState);
         }
 
         PlayerHealthBarController.instance.currentPlayerHealthValue = SaveData.current.playerData.health;
-        currentWave = SaveData.current.playerData.wave;
+
+        towerPlacer.towersPlaced = SaveData.current.playerData.towerPlaced;
+
         score = SaveData.current.playerData.score;
+        totalEnemiesInTheLevel = SaveData.current.playerData.totalEnemiesInTheLevel;
+        totalEnemiesDead = SaveData.current.playerData.totalEnemiesDead;
+        enemiesKilled = SaveData.current.playerData.totalEnemiesDead;
+        // enemiesSpawned = SaveData.current.playerData.enemiesSpawned; // update using the spawn coroutine instead
+        // currentWave = SaveData.current.playerData.wave; // update using the spawn coroutine instead
+
         InventoryManager.instance.goldOnHand = SaveData.current.playerData.gold;
         InventoryManager.instance.stoneOnHand = SaveData.current.playerData.stone;
         InventoryManager.instance.woodOnHand = SaveData.current.playerData.wood;
-        UpdateWaveLabel();
         InventoryManager.instance.UpdateDisplay();
+
+        spawnCoroutine = StartCoroutine(Spawn(SaveData.current.playerData.enemiesSpawned, SaveData.current.playerData.wave));
     }
 }

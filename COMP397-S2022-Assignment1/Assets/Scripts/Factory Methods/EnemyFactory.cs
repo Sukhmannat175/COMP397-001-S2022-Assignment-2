@@ -1,9 +1,11 @@
 /*  Filename:           EnemyFactory.cs
  *  Author:             Han Bi (301176547)
  *                      Marcus Ngooi (301147411)
+ *                      Yuk Yee Wong (301234795)
  *  Description:        For creating enemy objects
  *  Revision History:   July 20, 2022 (Han Bi): Initial script.
  *                      July 24, 2022 (Marcus Ngooi): Added rotation as parameter to create functions.
+ *                      Auguest 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
  */
 
 using System.Collections;
@@ -13,21 +15,21 @@ using UnityEngine;
 public class EnemyFactory : MonoBehaviour
 {
     [Header("Enemies")]
-    [SerializeField] private Enemy gruntGolemPrefab;
-    [SerializeField] private Enemy stoneMonsterPrefab;
-    [SerializeField] private Enemy resourcesStealerPrefab;
+    [SerializeField] private EnemyPoolManager gruntGolemPoolManager;
+    [SerializeField] private EnemyPoolManager stoneMonsterPoolManager;
+    [SerializeField] private EnemyPoolManager resourcesStealerPoolManager;
 
     [Header("Loaded from Resources")]
     [SerializeField] private EnemyStaticData gruntGolemStaticData;
     [SerializeField] private EnemyStaticData stoneMonsterStaticData;
     [SerializeField] private EnemyStaticData resourcesStealerStaticData;
 
-    public static EnemyFactory instance;
+    public static EnemyFactory Instance;
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+            Instance = this;
         else
             Destroy(gameObject);
     }
@@ -47,22 +49,22 @@ public class EnemyFactory : MonoBehaviour
         }
     }
 
-    public Enemy CreateEnemy(Enemy.EnemyType enemyType, Vector3 position, Quaternion rotation)
+    public Enemy CreateEnemy(Enemy.EnemyType enemyType, Vector3 position, Quaternion rotation, Transform wayPointsContainer)
     {
         Enemy enemy;
 
         switch (enemyType)
         {
             case Enemy.EnemyType.GRUNTGOLEM:
-                enemy = CreateGruntGolem(position, rotation);
+                enemy = CreateGruntGolem(position, rotation, wayPointsContainer);
                 break;
 
             case Enemy.EnemyType.STONEMONSTER:
-                enemy = CreateStoneMonster(position, rotation);
+                enemy = CreateStoneMonster(position, rotation, wayPointsContainer);
                 break;
 
             case Enemy.EnemyType.RESOURCESTEALER:
-                enemy = CreateResourceStealer(position, rotation);
+                enemy = CreateResourceStealer(position, rotation, wayPointsContainer);
                 break;
 
             default:
@@ -75,79 +77,40 @@ public class EnemyFactory : MonoBehaviour
     }
 
     // helper functions and/or concrete creator functions
-    private Enemy CreateGruntGolem(Vector3 position, Quaternion rotation)
+    private Enemy CreateGruntGolem(Vector3 position, Quaternion rotation, Transform wayPointsContainer)
     {
-        Enemy enemy = Instantiate(gruntGolemPrefab, position, rotation);
-        enemy.Intialize(gruntGolemStaticData);
-
-        return enemy;
+        return gruntGolemPoolManager.GetPooledEnemy(position, rotation, wayPointsContainer, gruntGolemStaticData);
     }
 
-    private Enemy CreateStoneMonster(Vector3 position, Quaternion rotation)
+    private Enemy CreateStoneMonster(Vector3 position, Quaternion rotation, Transform wayPointsContainer)
     {
-        Enemy enemy = Instantiate(stoneMonsterPrefab, position, rotation);
-        enemy.Intialize(stoneMonsterStaticData);
-
-        return enemy;
+        return stoneMonsterPoolManager.GetPooledEnemy(position, rotation, wayPointsContainer, stoneMonsterStaticData);
     }
 
-    private Enemy CreateResourceStealer(Vector3 position, Quaternion rotation)
+    private Enemy CreateResourceStealer(Vector3 position, Quaternion rotation, Transform wayPointsContainer)
     {
-        Enemy enemy = Instantiate(resourcesStealerPrefab, position, rotation);
-        enemy.Intialize(resourcesStealerStaticData);
-
-        return enemy;
+        return resourcesStealerPoolManager.GetPooledEnemy(position, rotation, wayPointsContainer, resourcesStealerStaticData);
     }
 
-    //public Enemy CreateEnemy(Enemy.EnemyType enemyType, Vector3 position)
-    //{
-    //    Enemy enemy;
+    public void ReturnPooledGruntGolem(Enemy gruntGolem)
+    {
+        gruntGolemPoolManager.ReturnPooledEnemy(gruntGolem);
+    }
 
-    //    switch (enemyType)
-    //    {
-    //        case Enemy.EnemyType.GRUNTGOLEM:
-    //            enemy = CreateGruntGolem(position);
-    //            break;
+    public void ReturnPooledStoneMonster(Enemy stoneMonster)
+    {
+        stoneMonsterPoolManager.ReturnPooledEnemy(stoneMonster);
+    }
 
-    //        case Enemy.EnemyType.STONEMONSTER:
-    //            enemy = CreateStoneMonster(position);
-    //            break;
+    public void ReturnPooledResourceStealer(Enemy resourceStealer)
+    {
+        resourcesStealerPoolManager.ReturnPooledEnemy(resourceStealer);
+    }
 
-    //        case Enemy.EnemyType.RESOURCESTEALER:
-    //            enemy = CreateResourceStealer(position);
-    //            break;
-
-    //        default:
-    //            Debug.LogError(enemyType + " is not yet defined in spawn method");
-    //            enemy = null;
-    //            break;
-    //    }
-
-    //    return enemy;
-    //}
-
-    //// helper functions and/or concrete creator functions
-    //private Enemy CreateGruntGolem(Vector3 position)
-    //{
-    //    Enemy enemy = Instantiate(gruntGolemPrefab, position, gruntGolemPrefab.transform.rotation);
-    //    enemy.Intialize(gruntGolemStaticData);
-
-    //    return enemy;
-    //}
-
-    //private Enemy CreateStoneMonster(Vector3 position)
-    //{
-    //    Enemy enemy = Instantiate(stoneMonsterPrefab, position, gruntGolemPrefab.transform.rotation);
-    //    enemy.Intialize(stoneMonsterStaticData);
-
-    //    return enemy;
-    //}
-
-    //private Enemy CreateResourceStealer(Vector3 position)
-    //{
-    //    Enemy enemy = Instantiate(resourcesStealerPrefab, position, gruntGolemPrefab.transform.rotation);
-    //    enemy.Intialize(resourcesStealerStaticData);
-
-    //    return enemy;
-    //}
+    public void ReturnAllEnemies()
+    {
+        gruntGolemPoolManager.ReturnAllPooledObjects();
+        stoneMonsterPoolManager.ReturnAllPooledObjects();
+        resourcesStealerPoolManager.ReturnAllPooledObjects();
+    }
 }

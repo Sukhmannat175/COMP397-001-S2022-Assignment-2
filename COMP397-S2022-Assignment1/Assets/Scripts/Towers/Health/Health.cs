@@ -1,9 +1,11 @@
 /*  Filename:           Health.cs
  *  Author:             Han Bi (301176547)
+ *                      Yuk Yee Wong (301234795)
  *  Last Update:        June 26, 2022
  *  Description:        Health Script
  *  Revision History:   June 26, 2022 (Han Bi): Initial script. 
  *                      June 26, 2022 (Yuk Yee Wong): Added a SetMaxHealth function
+ *                      August 1, 2022 (Yuk Yee Wong): Updated builiding time from save data.
  */
 
 
@@ -23,10 +25,11 @@ public class Health : MonoBehaviour
     private float maxHealth = 100;
     public float currentHealth;
 
-
     private float buildingTime = 0;
     private bool showBuildingTime = false;
     private float BUILD_TIME;
+
+    public float BuildingTime { get { return buildingTime; } }
 
     //this will track when health is updated
     public event Action<float> OnHealthUpdated = delegate { };
@@ -60,15 +63,15 @@ public class Health : MonoBehaviour
 
     }
 
-    public void DisplayBuildTime(float BUILD_TIME)
+    public void DisplayBuildTime(float BUILD_TIME, float buildingTime)
     {
         showBuildingTime = true;
         this.BUILD_TIME = BUILD_TIME;
+        this.buildingTime = buildingTime;
     }
 
     private void UpdateBuildingTime()
     {
-
         buildingTime += Time.deltaTime / BUILD_TIME;
 
         if (buildingTime > 1)

@@ -1,60 +1,34 @@
 /*  Filename:           Cannonball.cs
  *  Author:             Ikamjot Hundal (301134374)
+ *                      Yuk Yee Wong (301234795)
  *  Last Update:        June 26, 2022
  *  Description:        Use for CannonTower's projectiles.
  *  Revision History:   June 26, 2022 (Ikamjot Hundal): Initial script.
  *                      June 26, 2022 (Yuk Yee Wong): Remove the damage float to Projectile.
+ *                      August 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
  */
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CannonBall : Projectile
+public class CannonBall : ProjectileBehaviour
 {
-    [SerializeField] float projectileSpeed = 10;
-    [SerializeField] float cannonBallRange = 2f;
-    Transform targetTransform;
-    Vector3 enemyPos;
-
-    [SerializeField] bool targetGone = false;
-    [SerializeField] AudioClip enemyDeathSound;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float cannonBallRange = 2f;
+    protected override void OnHit()
     {
-        target = GetComponentInParent<CannonTower>().GetFirstEnemy();
-        enemyPos = target.transform.position;
+        SplashDamageOccur();
+
+        ReturnToPool();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void ReturnToPool()
     {
-        float step = projectileSpeed * Time.deltaTime;
-
-
-        if (!targetGone)
-        {
-            try
-            {
-                enemyPos = target.transform.position;
-            }
-            catch
-            {
-                targetGone = true;
-            }
-        }
-
-        Vector3 targetDirection = enemyPos - transform.position;
-        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, step, 0.01f);
-        transform.rotation = Quaternion.LookRotation(newDirection);
-        transform.position = Vector3.MoveTowards(transform.position, enemyPos, step);
-
-        if (Vector3.Distance(transform.position, enemyPos) < 0.001f)
-        {
-
-            SplashDamageOccur();
+        // Object pooling
+        if (ProjectileFactory.Instance != null)
+            ProjectileFactory.Instance.ReturnPooledCannonBall(this);
+        else
             Destroy(gameObject);
-        }
     }
 
     private void SplashDamageOccur()
@@ -72,26 +46,17 @@ public class CannonBall : Projectile
             }
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
 
-            SoundManager.instance.PlaySFX(enemyDeathSound);
-            SplashDamageOccur();
-        }
-    }
+    /* public void StartSplashDamage()
+     {
+         StartCoroutine(SplashSequence());
+     }
 
-   /* public void StartSplashDamage()
-    {
-        StartCoroutine(SplashSequence());
-    } */
-
-    private IEnumerator SplashSequence()
-    {
-        yield return new WaitForSeconds(1f);
-        Destroy(gameObject);
-    }
+     private IEnumerator SplashSequence()
+     {
+         yield return new WaitForSeconds(1f);
+         Destroy(gameObject);
+     }*/
 
     private void OnDrawGizmos()
     {
@@ -108,5 +73,4 @@ public class CannonBall : Projectile
 
         Gizmos.color = Color.white;
     }
-
 }

@@ -1,9 +1,11 @@
 /*  Filename:           ResourseSteaerController.cs
  *  Author:             Sukhmannat Singh (301168420)
+ *                      Yuk Yee Wong (301234795)
  *  Last Update:        June 24, 2022
  *  Description:        Inventory Manager.
  *  Revision History:   June 26, 2022 (Sukhmannat Singh): Initial script.
  *                      June 26, 2022 (Sukhmannat Singh): Added logic to add data to save file
+ *                      Auguest 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -11,35 +13,42 @@ using UnityEngine;
 
 public class ResourseStealerController : EnemyBaseBehaviour
 {
-    [Header("Resource Stealer")]
+    [Header("Player resource decrement per steal")]
     [SerializeField] private int gold;
     [SerializeField] private int stone;
     [SerializeField] private int wood;
+
+    [Header("Animation Settings")]
     [SerializeField] private string animationStateParameterName;
-    [SerializeField] private int walkState;
-    [SerializeField] private int digState;
-    [SerializeField] private int actionDelay;
+    [SerializeField] private int walkAnimationState;
+    [SerializeField] private int digAnimationState;
+
+    [Header("Other Settings")]
     [SerializeField] private int stealTime;
-    [SerializeField] private int actionTime;
+    [SerializeField] private int actionDelay; // preparing to dig
+    [SerializeField] private int actionTime; // digging
+    [SerializeField] private SkinnedMeshRenderer meshRenderer;
 
     [Header("Debug")]
-    [SerializeField] private EnemyState state;
-
-    [HideInInspector] public EnemyData enemyData;
+    [SerializeField] private int remainingStealTimes;
 
     private Animator animator;
-    private int steal;
+    private Rigidbody rb;
+    
+    private Coroutine digCoroutine;
+    private Coroutine stealCoroutine;
 
     public IEnumerator Dig()
     {
+        state = EnemyState.WALK;
+
         while (true)
         {
             if (state == EnemyState.WALK)
             {
                 yield return new WaitForSeconds(actionDelay);
                 navMeshAgent.speed = 0;
-                animator.SetInteger(animationStateParameterName, digState);
-                yield return new WaitForSeconds(2);
+                animator.SetInteger(animationStateParameterName, digAnimationState);
                 state = EnemyState.DIG;
             }
             yield return null;
@@ -50,15 +59,15 @@ public class ResourseStealerController : EnemyBaseBehaviour
     {
         while (true)
         {
-            steal = stealTime;
-            while (steal > 0 && state == EnemyState.DIG)
+            remainingStealTimes = stealTime;
+            while (remainingStealTimes > 0 && state == EnemyState.DIG)
             {
                 yield return new WaitForSeconds(actionTime);
 
                 navMeshAgent.speed = speed;
                 InventoryManager.instance.DecreaseResources(gold, stone, wood);
-                steal--;
-                if (steal == 1)
+                remainingStealTimes--;
+                if (remainingStealTimes == 1)
                 {
                     state = EnemyState.WALK;
                 }
@@ -68,22 +77,37 @@ public class ResourseStealerController : EnemyBaseBehaviour
         }
     }
 
+    protected override string idPrefix { get { return "ResourceStealer"; } }
+
+    protected override EnemyType enemyType { get { return EnemyType.RESOURCESTEALER; } }
+
     public override void EnemyStartBehaviour()
     {
-        base.EnemyStartBehaviour();
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
+    }
 
-        id = "ResourceStealer" + Random.Range(0, int.MaxValue).ToString();
-
-        if (string.IsNullOrEmpty(enemyData.enemyId))
+    public override void EnemyOnEnableBehaviour()
+    {
+        if (digCoroutine != null)
         {
-            enemyData.enemyId = id;
-            enemyData.enemyType = EnemyType.RESOURCESTEALER;
-            GameController.instance.current.enemies.Add(enemyData);
+            StopCoroutine(digCoroutine);
         }
 
-        StartCoroutine(Dig());
-        StartCoroutine(StealResources());
+        if (stealCoroutine != null)
+        {
+            StopCoroutine(stealCoroutine);
+        }
+
+        if (wayPoints.Count > path)
+            Walk(wayPoints[path]);
+
+
+        if (gameObject.activeInHierarchy)
+        {
+            digCoroutine = StartCoroutine(Dig());
+            stealCoroutine = StartCoroutine(StealResources());
+        }
     }
 
     public override void EnemyUpdateBehaviour()
@@ -93,32 +117,38 @@ public class ResourseStealerController : EnemyBaseBehaviour
         switch (state)
         {
             case EnemyState.WALK:
-                
-                this.gameObject.transform.GetChild(1).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = true;
-                animator.SetInteger(animationStateParameterName, walkState);
+                meshRenderer.enabled = true;
+                animator.SetInteger(animationStateParameterName, walkAnimationState);
+                rb.detectCollisions = true;
                 Walk(wayPoints[path]);
-                
                 break;
 
             case EnemyState.DIG:
                 navMeshAgent.speed = speed;
-                this.gameObject.transform.GetChild(1).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
-                
+                meshRenderer.enabled = false;
+                rb.detectCollisions = false;
+                CheckPathEnd();
                 break;
 
             default:
                 Debug.Log(state + " does not support by code.");
                 break;
         }
-
-        enemyData.health = healthDisplay.CurrentHealthValue;
-        enemyData.enemyPosition = transform.position;
-        enemyData.enemyRotation = transform.rotation;
     }
 
-    public void DigDown()
+    // Without using walk method in dig state, the path number will not increase
+    // and the enemy cannot damage player at the end of the path
+    private void CheckPathEnd()
     {
-        
-        //this.gameObject.SetActive(false);
+        if (wayPoints.Count > 0
+            && Vector3.Distance(transform.position, wayPoints[wayPoints.Count - 1].position) < 1f)
+        {
+            PathEnd();
+        }
+    }
+
+    protected override void ReturnToPool()
+    {
+        EnemyFactory.Instance.ReturnPooledResourceStealer(this);
     }
 }

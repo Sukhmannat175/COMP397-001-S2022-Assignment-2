@@ -1,9 +1,11 @@
 /*  Filename:           Arrow.cs
  *  Author:             Han Bi (301176547)
+ *                      Yuk Yee Wong (301234795)
  *  Last Update:        June 26, 2022
  *  Description:        Use for arrow tower projectiles.
  *  Revision History:   June 7, 2022 (Han Bi): Initial script.
- *                      June 26, 2022 (Yuk Yee Wong): Remove the damage float to Projectile.
+ *                      June 26, 2022 (Yuk Yee Wong): Removed the damage float to Projectile.
+ *                      August 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
  */
 
 using System.Collections;
@@ -11,59 +13,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Arrow : Projectile
+public class Arrow : ProjectileBehaviour
 {
-    [SerializeField] float projectileSpeed = 20;
-    Transform targetTransform;
-    Vector3 enemyPos;
-
-    [SerializeField] bool targetGone = false;
-    [SerializeField] AudioClip enemyDeathSound;
-    // Start is called before the first frame update
-    void Start()
+    protected override void OnHit()
     {
-
-        target = GetComponentInParent<CrossbowTower>().GetFirstEnemy();
-        enemyPos = target.transform.position;
-
-
+        ReturnToPool();
     }
 
-    private void Update()
+    protected override void ReturnToPool()
     {
-        float step = projectileSpeed * Time.deltaTime;
-
-
-        if (!targetGone)
-        {
-            try
-            {
-                enemyPos = target.transform.position;
-            }
-            catch
-            {
-                targetGone = true;
-            }
-        }
-
-        Vector3 targetDirection = enemyPos - transform.position;
-        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, step, 0.01f);
-        transform.rotation = Quaternion.LookRotation(newDirection);
-        transform.position = Vector3.MoveTowards(transform.position, enemyPos, step);
-
-        if (Vector3.Distance(transform.position, enemyPos)< 0.001f)
-        {
+        // Object pooling
+        if (ProjectileFactory.Instance != null)
+            ProjectileFactory.Instance.ReturnPooledArrow(this);
+        else
             Destroy(gameObject);
-        }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            SoundManager.instance.PlaySFX(enemyDeathSound);
-            Destroy(gameObject);
-        }
-    }
-
 }

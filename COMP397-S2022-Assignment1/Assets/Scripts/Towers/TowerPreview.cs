@@ -1,8 +1,10 @@
 /*  Filename:           TowerPreview.cs
  *  Author:             Han Bi (301176547)
+ *                      Yuk Yee Wong (301234795)
  *  Last Update:        June 26, 2022
  *  Description:        Previewing the tower
  *  Revision History:   June 26, 2022 (Han Bi): Initial script.
+ *                      August 1, 2022 (Yuk Yee Wong): Reorganised the code.
  *                      
  */
 using System.Collections;
@@ -11,35 +13,16 @@ using UnityEngine;
 
 public class TowerPreview : MonoBehaviour
 {
-
     [SerializeField] GameObject TowerRange;
     [SerializeField] LayerMask invalidObjects;
     [SerializeField] Collider[] hitColliders;
     [SerializeField] bool isValidPosition = false;
-
-    TowerPlacer towerPlacer;
-
-    private void Start()
-    {
-
-    }
 
     private void FixedUpdate()
     {
         isValidPosition = isValid();
     }
 
-    private void Update()
-    {
-        //if (isValidPosition)
-        //{
-        //    ChangeRangeColor(new Color(1, 1, 1, 0.4f));
-        //}
-        //else
-        //{
-        //    ChangeRangeColor(new Color(1, 0, 0, 0.4f));
-        //}
-    }
     public void ChangeRangeColor(Color colour)
     {
         TowerRange.GetComponentInChildren<SpriteRenderer>().color = colour;
@@ -63,9 +46,6 @@ public class TowerPreview : MonoBehaviour
         {
             return true;
         }
-
-
-
     }
 
     //void OnDrawGizmos()

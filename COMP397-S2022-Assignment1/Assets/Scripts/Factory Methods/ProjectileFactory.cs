@@ -1,18 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
+/*  Filename:           ProjectileFactory.cs
+ *  Author:             Yuk Yee Wong (301234795)
+ *  Description:        For creating projectile objects
+ *  Revision History:   Auguest 1, 2022 (Yuk Yee Wong): Initial script.
+ */
+
 using UnityEngine;
 
 public class ProjectileFactory : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private ProjectilePoolManager arrowPoolManager;
+    [SerializeField] private ProjectilePoolManager cannonBallPoolManager;
+
+    public static ProjectileFactory Instance;
+    private void Awake()
     {
-        
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    public Projectile CreateArrow(Vector3 spawnPosition, int damage, GameObject target)
     {
-        
+        return arrowPoolManager.GetPooledProjectile(spawnPosition, damage, target);
+    }
+
+    public Projectile CreateCannonBall(Vector3 spawnPosition, int damage, GameObject target)
+    {
+        return cannonBallPoolManager.GetPooledProjectile(spawnPosition, damage, target);
+    }
+
+    public void ReturnPooledArrow(Projectile arrow)
+    {
+        arrowPoolManager.ReturnPooledProjectile(arrow);
+    }
+
+    public void ReturnPooledCannonBall(Projectile cannonBall)
+    {
+        cannonBallPoolManager.ReturnPooledProjectile(cannonBall);
+    }
+
+    public void ReturnAllProjectiles()
+    {
+        arrowPoolManager.ReturnAllPooledObjects();
+        cannonBallPoolManager.ReturnAllPooledObjects();
     }
 }
