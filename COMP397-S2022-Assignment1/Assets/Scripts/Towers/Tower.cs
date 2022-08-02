@@ -1,5 +1,7 @@
 /*  Filename:           Tower.cs
  *  Author:             Han Bi (301176547)
+ *                      Sukhmannat Singh (301168420)
+ *                      Yuk Yee Wong (301234795)
  *  Last Update:        June 26, 2022
  *  Description:        Base abstract class for all towers.
  *  Revision History:   June 8, 2022 (Han Bi): Initial script.
@@ -46,7 +48,13 @@ public abstract class Tower : MonoBehaviour
     [HideInInspector] public string id;
     public Health health;
 
+    [HideInInspector] public TowerData towerData; // Save Data
+
     private TowerData removeTower;
+
+    [Header("For Testing")]
+    //for testing
+    [SerializeField] protected bool coolingDown = false; //used to flag tower cooldown in Coroutine
 
     public enum TowerType
     {
@@ -56,14 +64,35 @@ public abstract class Tower : MonoBehaviour
     }
 
     private void Start()
-    {
-        //healthDisplay.Init(maxHealthValue);
-        isBuilding = true;
+    {       
         TowerStartBehaviour();
-        health = GetComponent<Health>();        
     }
 
-    protected abstract void TowerStartBehaviour();
+    protected abstract TowerType towerType { get; }
+
+    protected abstract string idPrefix { get; }
+
+    protected virtual void TowerStartBehaviour()
+    {
+    }
+
+    protected void RefreshEnemyData()
+    {
+        id = idPrefix + Random.Range(0, int.MaxValue).ToString();
+
+        if (string.IsNullOrEmpty(towerData.towerId))
+        {
+            towerData.towerId = id;
+            towerData.towerType = towerType;
+            towerData.towerPosition = transform.position;
+            towerData.towerRotation = transform.rotation;
+            towerData.isBuilding = GetIsBuilding();
+            towerData.buildingTime = GetBuildingTime();
+            GameController.instance.current.towers.Add(towerData);
+        }
+    }
+
+    protected abstract void ReturnToPool();
 
 
     private void Update()
@@ -72,6 +101,7 @@ public abstract class Tower : MonoBehaviour
         {
             TowerUpdateBehaviour();
         }
+
         //Debug only
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -87,28 +117,31 @@ public abstract class Tower : MonoBehaviour
 
     public void Intialize(TowerStaticData data)
     {
-        health = GetComponent<Health>();
+        if (health == null)
+            health = GetComponent<Health>();
 
         BUILD_TIME = data.buildTime;
         health.SetMaxHealth(data.hp);
         actionDelay = data.interval;
         damageToEnemy = data.damageToEnemy;
+
+        ResetTower();
+
+        RefreshEnemyData();
+    }
+
+    protected virtual void ResetTower()
+    {
+        coolingDown = false;
+        isBuilding = true;
     }
 
     protected abstract void TowerUpdateBehaviour();
 
     public void TakeDamage(int damage)
     {
-        //healthDisplay.TakeDamage(damage);
-        //if (healthDisplay.CurrentHealthValue == 0)
-        //{
-        //    SoundManager.instance.PlayTowerDestroySfx();
-        //    Destroy(gameObject);
-        //}
-
         if (!isBuilding)
         {
-            health = GetComponent<Health>();
             health.ChangeHealth(-damage);
 
             if (health.currentHealth <= 0)
@@ -124,7 +157,7 @@ public abstract class Tower : MonoBehaviour
                 }
                 GameController.instance.current.towers.Remove(removeTower);
 
-                Destroy(gameObject);
+                ReturnToPool();
             }
         }
         
@@ -142,22 +175,27 @@ public abstract class Tower : MonoBehaviour
     }
 
 
-    public void setIsBuilding(bool isBuilding)
+    public void SetIsBuilding(bool isBuilding)
     {
         this.isBuilding = isBuilding;
 
     }
 
-    public bool getIsBuilding()
+    public bool GetIsBuilding()
     {
         return isBuilding;
     }
 
+    public float GetBuildingTime()
+    {
+        return health.BuildingTime;
+    }
+
     public void CompleteBuilding()
     {
-        setIsBuilding(false);
+        SetIsBuilding(false);
         completeBuildButton.SetActive(false);
-        GetComponent<Health>().StopDisplayTime();
+        health.StopDisplayTime();
     }
 
     public void InstantComplete()
@@ -171,11 +209,11 @@ public abstract class Tower : MonoBehaviour
         
     }
 
-    public void StartBuilding()
+    public void StartBuilding(float buildingTime)
     {
-        setIsBuilding(true);
+        SetIsBuilding(true);
         completeBuildButton.SetActive(true);
-        GetComponent<Health>().DisplayBuildTime(GetBuildTime());
+        health.DisplayBuildTime(GetBuildTime(), buildingTime);
     }
 }
 

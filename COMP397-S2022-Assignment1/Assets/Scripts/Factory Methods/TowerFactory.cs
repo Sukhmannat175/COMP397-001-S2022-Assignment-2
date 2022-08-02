@@ -1,7 +1,9 @@
 /*  Filename:           TowerFactory.cs
  *  Author:             Han Bi (301176547)
+ *                      Yuk Yee Wong (301234795)
  *  Description:        For creating towers
  *  Revision History:   July 20, 2022 (Han Bi): Initial script.
+ *                      Auguest 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
  */
 
 using System.Collections;
@@ -11,32 +13,26 @@ using UnityEngine;
 public class TowerFactory : MonoBehaviour
 {
     // The working tower
-    [SerializeField]
-    private GameObject crossbowTower;
-    [SerializeField]
-    private GameObject cannonTower;
-    [SerializeField]
-    private GameObject resourceTower;
+    [SerializeField] private TowerPoolManager crossbowTowerPoolManager;
+    [SerializeField] private TowerPoolManager cannonTowerPoolManager;
+    [SerializeField] private TowerPoolManager resourceTowerPoolManager;
 
     // A dummy tower for display
-    [SerializeField]
-    private GameObject crossbowTowerPreview;
-    [SerializeField]
-    private GameObject cannonTowerPreview;
-    [SerializeField]
-    private GameObject resourceTowerPreview;
+    [SerializeField] private TowerPreview crossbowTowerPreview;
+    [SerializeField] private TowerPreview cannonTowerPreview;
+    [SerializeField] private TowerPreview resourceTowerPreview;
 
     [Header("Loaded from Resources")]
     [SerializeField] private TowerStaticData crossbowTowerStaticData;
     [SerializeField] private TowerStaticData cannonTowerStaticData;
     [SerializeField] private TowerStaticData resourceTowerStaticData;
 
-    public static TowerFactory instance;
+    public static TowerFactory Instance;
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+            Instance = this;
         else
             Destroy(gameObject);
     }
@@ -57,9 +53,9 @@ public class TowerFactory : MonoBehaviour
         }
     }
 
-    public GameObject CreateTower(Tower.TowerType towerType, Vector3 position, Quaternion rotation)
+    public Tower CreateTower(Tower.TowerType towerType, Vector3 position, Quaternion rotation)
     {
-        GameObject tower = null;
+        Tower tower = null;
 
         switch (towerType)
         {
@@ -83,74 +79,81 @@ public class TowerFactory : MonoBehaviour
         return tower;
     }
 
-    public GameObject CreateTowerPreview(Tower.TowerType towerType)
+    public TowerPreview CreateTowerPreview(Tower.TowerType towerType)
     {
-        GameObject tower;
+        TowerPreview towerPreview;
 
         switch (towerType)
         {
             case Tower.TowerType.CrossbowTower:
-                tower = CreateCrossbowTowerPreview();
+                towerPreview = CreateCrossbowTowerPreview();
                 break;
 
             case Tower.TowerType.CannonTower:
-                tower = CreateCannonTowerPreview();
+                towerPreview = CreateCannonTowerPreview();
                 break;
 
             case Tower.TowerType.ResourceTower:
-                tower = CreateResourceTowerPreview();
+                towerPreview = CreateResourceTowerPreview();
                 break;
 
             default:
-                tower = null;
+                towerPreview = null;
                 break;
         }
 
-        return tower;
+        return towerPreview;
     }
 
     // Helper functions
-    private GameObject CreateCrossbowTower(Vector3 position, Quaternion rotation)
+    private Tower CreateCrossbowTower(Vector3 position, Quaternion rotation)
     {
-        GameObject tower = Instantiate(crossbowTower, position, rotation);
-        tower.GetComponent<Tower>().Intialize(crossbowTowerStaticData);
-
-        return tower;
+        return crossbowTowerPoolManager.GetPooledTower(position, rotation, crossbowTowerStaticData);
     }
 
-    private GameObject CreateCannonTower(Vector3 position, Quaternion rotation)
+    private Tower CreateCannonTower(Vector3 position, Quaternion rotation)
     {
-        GameObject tower = Instantiate(crossbowTower, position, rotation);
-        tower.GetComponent<Tower>().Intialize(cannonTowerStaticData);
-
-        return tower;
+        return cannonTowerPoolManager.GetPooledTower(position, rotation, cannonTowerStaticData);
     }
-    private GameObject CreateResourceTower(Vector3 position, Quaternion rotation)
+    private Tower CreateResourceTower(Vector3 position, Quaternion rotation)
     {
-        GameObject tower = Instantiate(crossbowTower, position, rotation);
-        tower.GetComponent<Tower>().Intialize(resourceTowerStaticData);
-
-        return tower;
+        return resourceTowerPoolManager.GetPooledTower(position, rotation, resourceTowerStaticData);
     }
 
-    private GameObject CreateCrossbowTowerPreview()
+    public void ReturnPooledCrossbowTower(Tower crossbowTower)
     {
-        GameObject tower = Instantiate(crossbowTowerPreview);
-
-        return tower;
+        crossbowTowerPoolManager.ReturnPooledTower(crossbowTower);
     }
 
-    private GameObject CreateCannonTowerPreview()
+    public void ReturnPooledCannonTower(Tower cannonTower)
     {
-        GameObject tower = Instantiate(cannonTowerPreview);
-
-        return tower;
+        cannonTowerPoolManager.ReturnPooledTower(cannonTower);
     }
 
-    private GameObject CreateResourceTowerPreview()
+    public void ReturnPooledResourceTower(Tower resourceTower)
     {
-        GameObject tower = Instantiate(resourceTowerPreview);
+        resourceTowerPoolManager.ReturnPooledTower(resourceTower);
+    }
 
-        return tower;
+    public void ReturnAllTowers()
+    {
+        crossbowTowerPoolManager.ReturnAllPooledObjects();
+        cannonTowerPoolManager.ReturnAllPooledObjects();
+        resourceTowerPoolManager.ReturnAllPooledObjects();
+    }
+
+    private TowerPreview CreateCrossbowTowerPreview()
+    {
+        return Instantiate(crossbowTowerPreview);
+    }
+
+    private TowerPreview CreateCannonTowerPreview()
+    {
+        return Instantiate(cannonTowerPreview);
+    }
+
+    private TowerPreview CreateResourceTowerPreview()
+    {
+        return Instantiate(resourceTowerPreview);
     }
 }
