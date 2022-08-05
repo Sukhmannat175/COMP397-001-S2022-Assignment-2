@@ -416,13 +416,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthDisplay: {fileID: 5777982512202237343}
+  state: 0
+  enemyData:
+    enemyId: 
+    health: 0
+    enemyType: 0
+    enemyState: 0
+    enemyPosition: {x: 0, y: 0, z: 0}
+    enemyRotation: {x: 0, y: 0, z: 0, w: 0}
+  id: 
   maxHealth: 5
   goldPerHead: 30
-  enemyType: 1
   enemyDamage: 1
   playerDamage: 1
   scorePerEnemyKilled: 10
+  speed: 0
   path: 0
+  distanceTravelled: 0
+  death: 0
   wayPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -431,8 +442,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  speed: 0
-  distanceTravelled: 0
 --- !u!136 &6918927713761669298
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1094,6 +1103,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 733464912275620386, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
       propertyPath: m_Value
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 733464912275620386, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
+      propertyPath: m_MaxValue
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5502234197803816847, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
