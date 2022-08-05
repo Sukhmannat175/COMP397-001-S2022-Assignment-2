@@ -172,10 +172,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthDisplay: {fileID: 3286374405252737953, guid: c4c7902b8e04a8748ba5175f6c12ec76, type: 3}
+  state: 0
   enemyData:
     enemyId: 
     health: 0
     enemyType: 0
+    enemyState: 0
     enemyPosition: {x: 0, y: 0, z: 0}
     enemyRotation: {x: 0, y: 0, z: 0, w: 0}
   id: 
@@ -189,20 +191,17 @@ MonoBehaviour:
   distanceTravelled: 0
   death: 0
   wayPoints: []
-  state: 0
-  gold: 2
-  stone: 2
-  wood: 2
+  gold: 1
+  stone: 1
+  wood: 1
   animationStateParameterName: Dig
   walkAnimationState: 0
   digAnimationState: 2
   stealTime: 4
-  actionDelay: 3
-  actionTime: 5
-  body: {fileID: 3996341154372314207}
+  actionDelay: 10
+  actionTime: 3
   meshRenderer: {fileID: 137931848350886072}
   remainingStealTimes: 0
-  actionTimePassed: 0
 --- !u!54 &-166960586641160253
 Rigidbody:
   m_ObjectHideFlags: 0

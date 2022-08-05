@@ -16,7 +16,7 @@ MonoBehaviour:
   spawnInterval: 0.5
   waveStaticData:
   - types: 03000000
-  - types: 030000000300000003000000
+  - types: 010000000100000001000000
   - types: 010000000100000001000000010000000100000001000000
   - types: 02000000020000000200000002000000
   - types: 010000000200000002000000020000000200000002000000
@@ -41,7 +41,7 @@ MonoBehaviour:
     scorePerHead: 20
     stoppingDistance: 1
   - enemy: 3
-    hp: 8
+    hp: 4
     ap: 1
     speed: 2
     goldPerHead: 20
