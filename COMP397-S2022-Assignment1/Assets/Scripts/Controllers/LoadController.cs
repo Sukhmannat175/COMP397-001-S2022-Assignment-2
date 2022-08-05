@@ -12,7 +12,7 @@ public class LoadController : MonoBehaviour
     [SerializeField] private GameObject loadDataButton2;
 
     private string fileName;
-    private bool sceneChange = true;
+    private bool sceneChange = false;
     void Update()
     {
         DontDestroyOnLoad(gameObject);
@@ -54,6 +54,7 @@ public class LoadController : MonoBehaviour
 
     public void OnLoad(string file)
     {
+        sceneChange = true;
         fileName = file;
         Debug.Log(fileName);
     }
