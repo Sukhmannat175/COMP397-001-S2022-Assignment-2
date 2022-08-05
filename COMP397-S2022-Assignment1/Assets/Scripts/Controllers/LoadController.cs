@@ -1,3 +1,10 @@
+/*  Filename:           LoadController.cs
+ *  Author:             Sukhmannat Singh (301168420)
+ *  Last Update:        August 05, 2022
+ *  Description:        Controls loading of the game from main menu
+ *  Revision History:   August 05, 2022 (Sukhmannat Singh): Initial script.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
