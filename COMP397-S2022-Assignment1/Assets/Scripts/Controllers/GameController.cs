@@ -3,7 +3,7 @@
  *                      Yuk Yee Wong (301234795)
  *                      Han Bi (301176547)
  *                      Marcus Ngooi (301147411)
- *  Last Update:        June 26, 2022
+ *  Last Update:        August 5, 2022
  *  Description:        Controls aspects of the game including spawning enemy waves, ending the game, keeping track of vital statistics.
  *  Revision History:   June 11, 2022 (Sukhmannat Singh): Initial script.
  *                      June 26, 2022 (Yuk Yee Wong): Adding wave management scripts.
@@ -11,6 +11,7 @@
  *                      July 22, 2022 (Sukhmannat Singh): Added Save/Load methods.
  *                      July 24, 2022 (Marcus Ngooi): Integrated Factory Design pattern with load system.
  *                      August 1, 2022 (Yuk Yee Wong): Modified Spawn method, adapted object pooling.
+ *                      August 5, 2022 (Marcus Ngooi): Moved towersPlaced and maxTowersToBePlaced variables from TowerPlacer to GameController.
  */
 
 using System.Collections;
@@ -34,6 +35,10 @@ public class GameController : MonoBehaviour
     [SerializeField] private Enemy resourcesStealerPrefab;
     [SerializeField] private Transform wayPointsContainer;
     [SerializeField] private Transform enemySpawnPoint;
+
+    [Header("Towers")]
+    [SerializeField] private int maxTowersToBePlaced = 10;
+    [SerializeField] private int towersPlaced = 0;
 
     [Header("UI")]
     [SerializeField] private GameOverScreen gameOverScreen;
@@ -61,12 +66,17 @@ public class GameController : MonoBehaviour
     [SerializeField] private int totalEnemiesDead = 0;
     [SerializeField] private int totalEnemiesInTheLevel;
 
+    // Properties
+    public int TowersPlaced { get { return towersPlaced; } set { towersPlaced = value; } }
+    public int MaxTowersToBePlaced { get { return maxTowersToBePlaced; } }
+
     public static GameController instance;
     private TowerPlacer towerPlacer;
     public SaveData current;
     private bool changeWaveOnLoad = true;
 
     private Coroutine spawnCoroutine = null;
+
 
     private void Awake()
     {
@@ -205,7 +215,7 @@ public class GameController : MonoBehaviour
         this.current.playerData.totalEnemiesDead = totalEnemiesDead;
         this.current.playerData.enemiesKilled = enemiesKilled;
         this.current.playerData.enemiesSpawned = enemiesSpawned;
-        this.current.playerData.towerPlaced = towerPlacer.towersPlaced;
+        this.current.playerData.towerPlaced = towersPlaced;
         this.current.playerData.gold = InventoryManager.instance.goldOnHand;
         this.current.playerData.stone = InventoryManager.instance.stoneOnHand;
         this.current.playerData.wood = InventoryManager.instance.woodOnHand;
@@ -272,7 +282,7 @@ public class GameController : MonoBehaviour
 
         PlayerHealthBarController.instance.currentPlayerHealthValue = SaveData.current.playerData.health;
 
-        towerPlacer.towersPlaced = SaveData.current.playerData.towerPlaced;
+        towersPlaced = SaveData.current.playerData.towerPlaced;
 
         score = SaveData.current.playerData.score;
         totalEnemiesInTheLevel = SaveData.current.playerData.totalEnemiesInTheLevel;

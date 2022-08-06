@@ -2,12 +2,14 @@
  *  Author:             Han Bi (301176547)
  *                      Sukhmannat Singh (301168420)
  *                      Yuk Yee Wong (301234795)
- *  Last Update:        June 26, 2022
+ *                      Marcus Ngooi (301147411)
+ *  Last Update:        August 5, 2022
  *  Description:        Base abstract class for all towers.
  *  Revision History:   June 8, 2022 (Han Bi): Initial script.
  *                      June 26, 2022 (Sukhmannat Singh): Added logic for deleting destroyed objects from save file 
  *                      June 26, 2022 (Han Bi): Added tower building time functionality
  *                      June 26, 2022 (Yuk Yee Wong): Added initialize function by using tower static data
+ *                      August 5, 2022 (Marcus Ngooi): Decrement down towersPlaced variable from GameController when tower is destroyed.
  */
 
 using System.Collections;
@@ -147,6 +149,7 @@ public abstract class Tower : MonoBehaviour
             if (health.currentHealth <= 0)
             {
                 SoundManager.instance.PlayTowerDestroySfx();
+                GameController.instance.TowersPlaced--;
 
                 foreach (TowerData towerData in GameController.instance.current.towers)
                 {

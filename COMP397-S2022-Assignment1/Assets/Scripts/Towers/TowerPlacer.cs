@@ -4,7 +4,7 @@
  *                      Ikamjot Hundal (301134374)
  *                      Yuk Yee Wong (301234795)
  *                      Sukhmannat Singh (301168420)
- *  Last Update:        July 24, 2022
+ *  Last Update:        August 5, 2022
  *  Description:        For placing towers.
  *  Revision History:   June 7, 2022 (Han Bi): Initial script.
  *                      June 26, 2022 (Marcus Ngooi): Adding resource tower to TowerPlacer.
@@ -14,6 +14,7 @@
  *                      July 22, 2022 (Sukhmannat Singh): Added method to spawn towers on load.
  *                      July 24, 2022 (Marcus Ngooi): Integrated Factory Design pattern to work with load system.
  *                      August 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
+ *                      August 5, 2022 (Marcus Ngooi): Moved towersPlaced and maxTowersToBePlaced variables from TowerPlacer to GameController.
  */
 
 using System.Collections;
@@ -24,8 +25,8 @@ public class TowerPlacer : MonoBehaviour
 {
     [SerializeField] private bool isPreview = false;
     [SerializeField] private AudioClip placeSound;
-    public int towersPlaced;
-    [SerializeField] int maxTowersToBePlaced = 10;
+    //public int towersPlaced;
+    //[SerializeField] int maxTowersToBePlaced = 10;
 
     [Header("Loaded from Resources")]
     [SerializeField] private TowerStaticData crossbowTowerStaticData;
@@ -45,7 +46,6 @@ public class TowerPlacer : MonoBehaviour
 
     private void Start()
     {
-        towersPlaced = 0;
         // Load data from scriptable object
         TowerPlacerStaticData towerPlacerStaticData = Resources.Load<TowerPlacerStaticData>("ScriptableObjects/TowerPlacerStaticData");
         if (towerPlacerStaticData != null)
@@ -77,14 +77,15 @@ public class TowerPlacer : MonoBehaviour
 
             towerPreview.transform.position = worldPos;
 
-            if (towerPreview.GetIsValidPosition() && InventoryManager.instance.EnoughResources(goldCost, stoneCost, woodCost) && towersPlaced < maxTowersToBePlaced)
+            if (towerPreview.GetIsValidPosition() && InventoryManager.instance.EnoughResources(goldCost, stoneCost, woodCost) 
+                && GameController.instance.TowersPlaced < GameController.instance.MaxTowersToBePlaced)
             {
                 towerPreview.ChangeRangeColor(new Color(1, 1, 1, 0.4f));
 
                 if (Input.GetMouseButtonDown(0))
                 {
                     InventoryManager.instance.BuyTower(goldCost, stoneCost, woodCost);
-                    towersPlaced++;
+                    GameController.instance.TowersPlaced++;
                     StartCoroutine(PlaceTower(currentType));
                 }
             }
