@@ -1,6 +1,6 @@
 /*  Filename:           PlayerHealthBarController.cs
  *  Author:             Marcus Ngooi (301147411)
- *  Last Update:        June 11, 2022
+ *  Last Update:        July 22, 2022
  *  Description:        Controls player's health bar.
  *  Revision History:   June 11, 2022 (Marcus Ngooi): Initial script.
  *                      June 18, 2022 (Yuk Yee Wong): Rename the script, add static instance, add get value methods, inherit the HealthDisplay

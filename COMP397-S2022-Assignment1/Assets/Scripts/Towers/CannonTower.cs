@@ -2,7 +2,7 @@
  *  Author:             Ikamjot Hundal (301134374)
  *                      Yuk Yee Wong (301234795)
  *                      Sukhmannat Singh (301168420)
- *  Last Update:        June 26, 2022
+ *  Last Update:        August 1, 2022
  *  Description:        Use for Cannonball tower projectiles.
  *  Revision History:   June 26, 2022 (Ikamjot Hundal): Initial script.
  *                      June 26, 2022 (Yuk Yee Wong): Setting projectile damage in CannonTower.

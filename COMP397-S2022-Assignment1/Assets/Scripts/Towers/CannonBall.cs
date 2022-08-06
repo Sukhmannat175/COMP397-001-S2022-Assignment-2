@@ -1,7 +1,7 @@
 /*  Filename:           Cannonball.cs
  *  Author:             Ikamjot Hundal (301134374)
  *                      Yuk Yee Wong (301234795)
- *  Last Update:        June 26, 2022
+ *  Last Update:        August 1, 2022
  *  Description:        Use for CannonTower's projectiles.
  *  Revision History:   June 26, 2022 (Ikamjot Hundal): Initial script.
  *                      June 26, 2022 (Yuk Yee Wong): Remove the damage float to Projectile.

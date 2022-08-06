@@ -1,6 +1,6 @@
 /*  Filename:           SaveData.cs
  *  Author:             Sukhmannat Singh (301168420)
- *  Last Update:        June 26, 2022
+ *  Last Update:        July 20, 2022
  *  Description:        Save Data class, for save functionality
  *  Revision History:   June 26, 2022 (Sukhmannat Singh): Initial script.
  *                      July 20, 2022 (Sukhmannat Singh): Added player data.

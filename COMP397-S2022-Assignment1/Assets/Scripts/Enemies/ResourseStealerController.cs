@@ -1,11 +1,11 @@
 /*  Filename:           ResourseSteaerController.cs
  *  Author:             Sukhmannat Singh (301168420)
  *                      Yuk Yee Wong (301234795)
- *  Last Update:        June 24, 2022
+ *  Last Update:        August 1, 2022
  *  Description:        Inventory Manager.
  *  Revision History:   June 26, 2022 (Sukhmannat Singh): Initial script.
  *                      June 26, 2022 (Sukhmannat Singh): Added logic to add data to save file
- *                      Auguest 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
+ *                      August 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
  */
 using System.Collections;
 using System.Collections.Generic;

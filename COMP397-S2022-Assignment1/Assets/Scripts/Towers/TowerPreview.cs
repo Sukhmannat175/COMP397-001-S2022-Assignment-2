@@ -1,7 +1,7 @@
 /*  Filename:           TowerPreview.cs
  *  Author:             Han Bi (301176547)
  *                      Yuk Yee Wong (301234795)
- *  Last Update:        June 26, 2022
+ *  Last Update:        August 1, 2022
  *  Description:        Previewing the tower
  *  Revision History:   June 26, 2022 (Han Bi): Initial script.
  *                      August 1, 2022 (Yuk Yee Wong): Reorganised the code.

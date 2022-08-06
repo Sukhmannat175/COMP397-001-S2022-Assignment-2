@@ -11,7 +11,7 @@
  *                      July 22, 2022 (Sukhmannat Singh): Added Save/Load methods.
  *                      July 24, 2022 (Marcus Ngooi): Integrated Factory Design pattern with load system.
  *                      August 1, 2022 (Yuk Yee Wong): Modified Spawn method, adapted object pooling.
- *                      August 5, 2022 (Marcus Ngooi): Moved towersPlaced and maxTowersToBePlaced variables from TowerPlacer to GameController.
+ *                      August 5, 2022 (Marcus Ngooi): Moved towersPlaced and maxTowersToBePlaced variables from TowerPlacer to GameController. Organized variables.
  */
 
 using System.Collections;
@@ -23,6 +23,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    // "Public" variables
     [Header("Enemy Waves")]
     [SerializeField] private Text waveLabel;
     [SerializeField] private string waveLabelFormat;
@@ -66,17 +67,18 @@ public class GameController : MonoBehaviour
     [SerializeField] private int totalEnemiesDead = 0;
     [SerializeField] private int totalEnemiesInTheLevel;
 
+    // Public variables
+    public static GameController instance;   // Singleton
+    public SaveData current;
+
+    // Private variables
+    private TowerPlacer towerPlacer;
+    private bool changeWaveOnLoad = true;
+    private Coroutine spawnCoroutine = null;
+
     // Properties
     public int TowersPlaced { get { return towersPlaced; } set { towersPlaced = value; } }
     public int MaxTowersToBePlaced { get { return maxTowersToBePlaced; } }
-
-    public static GameController instance;
-    private TowerPlacer towerPlacer;
-    public SaveData current;
-    private bool changeWaveOnLoad = true;
-
-    private Coroutine spawnCoroutine = null;
-
 
     private void Awake()
     {
@@ -193,6 +195,8 @@ public class GameController : MonoBehaviour
 
     public void CheckGameState()
     {
+        //Debug.Log("Total enemies in level: " + totalEnemiesInTheLevel);
+        //Debug.Log("Total enemies dead: " + totalEnemiesDead);
         if (totalEnemiesInTheLevel == totalEnemiesDead)
         {
             gameOverScreen.Open(GameOverScreen.GameEndState.VICTORY, score, enemiesKilled);

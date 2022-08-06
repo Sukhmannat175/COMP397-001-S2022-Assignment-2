@@ -1,12 +1,12 @@
 /*  Filename:           EnemyBaseBehaviour.cs
  *  Author:             Yuk Yee Wong (301234795)
  *                      Sukhmannat Singh (301168420)
- *  Last Update:        June 26, 2022
+ *  Last Update:        August 1, 2022
  *  Description:        Abstract Enemy Base Behaviour Class for all enemies.
  *  Revision History:   June 18, 2022 (Yuk Yee Wong): Initial script extracted from GruntGolemController with modifications on health, projectile, enemy damage etc.
  *                      June 24, 2022 (Sukhmannat Singh): Added logic for deleting destroyed objects from save file 
  *                      June 26, 2022 (Yuk Yee Wong): Adding initialize function using enemy static data and fix bug by adding a death boolean for checking
- *                      Auguest 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
+ *                      August 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
  */
 
 using System.Collections.Generic;

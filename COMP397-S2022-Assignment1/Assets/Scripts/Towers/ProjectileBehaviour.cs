@@ -1,6 +1,6 @@
 /*  Filename:           ProjectileBehaviour.cs
  *  Author:             Yuk Yee Wong (301234795)
- *  Last Update:        June 26, 2022
+ *  Last Update:        August 1, 2022
  *  Description:        Abstract class for projectile behaviour.
  *  Revision History:   August 1, 2022 (Yuk Yee Wong): Initial script.
  */

@@ -1,9 +1,10 @@
 /*  Filename:           TowerFactory.cs
  *  Author:             Han Bi (301176547)
  *                      Yuk Yee Wong (301234795)
+ *  Last Update:        August 1, 2022
  *  Description:        For creating towers
  *  Revision History:   July 20, 2022 (Han Bi): Initial script.
- *                      Auguest 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
+ *                      August 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
  */
 
 using System.Collections;

@@ -2,10 +2,11 @@
  *  Author:             Han Bi (301176547)
  *                      Marcus Ngooi (301147411)
  *                      Yuk Yee Wong (301234795)
+ *  Last Update:        August 1, 2022
  *  Description:        For creating enemy objects
  *  Revision History:   July 20, 2022 (Han Bi): Initial script.
  *                      July 24, 2022 (Marcus Ngooi): Added rotation as parameter to create functions.
- *                      Auguest 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
+ *                      August 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
  */
 
 using System.Collections;

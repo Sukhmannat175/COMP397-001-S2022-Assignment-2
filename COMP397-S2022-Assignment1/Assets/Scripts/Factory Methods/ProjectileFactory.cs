@@ -1,7 +1,8 @@
 /*  Filename:           ProjectileFactory.cs
  *  Author:             Yuk Yee Wong (301234795)
+ *  Last Update:        August 1, 2022
  *  Description:        For creating projectile objects
- *  Revision History:   Auguest 1, 2022 (Yuk Yee Wong): Initial script.
+ *  Revision History:   August 1, 2022 (Yuk Yee Wong): Initial script.
  */
 
 using UnityEngine;
