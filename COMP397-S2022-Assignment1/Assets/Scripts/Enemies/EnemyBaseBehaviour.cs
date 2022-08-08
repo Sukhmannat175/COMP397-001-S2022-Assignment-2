@@ -7,8 +7,10 @@
  *                      June 24, 2022 (Sukhmannat Singh): Added logic for deleting destroyed objects from save file 
  *                      June 26, 2022 (Yuk Yee Wong): Adding initialize function using enemy static data and fix bug by adding a death boolean for checking
  *                      August 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
+ *                      August 8, 2022 (Han Bi): Added event and invokes for achievement system
  */
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -38,6 +40,9 @@ public abstract class EnemyBaseBehaviour : Enemy
     private EnemyData removeEnemy;
     protected NavMeshAgent navMeshAgent;
 
+    //for achievement system
+    public static Action EnemyKilled = delegate { };
+
     protected void SetSpeed(float speed)
     {
         this.speed = speed;
@@ -53,6 +58,8 @@ public abstract class EnemyBaseBehaviour : Enemy
             GameController.instance.KillEnemey(scorePerEnemyKilled);
             InventoryManager.instance.CollectResources(goldPerHead, 0, 0);
             SoundManager.instance.PlayEnemyDeathSfx();
+            //For achievement system
+            EnemyKilled.Invoke();
             
             foreach (EnemyData enemyData in GameController.instance.current.enemies)
             {
@@ -107,7 +114,7 @@ public abstract class EnemyBaseBehaviour : Enemy
 
     protected override void RefreshEnemyData()
     {
-        id = idPrefix + Random.Range(0, int.MaxValue).ToString();
+        id = idPrefix + UnityEngine.Random.Range(0, int.MaxValue).ToString();
         enemyData.enemyId = id;
         enemyData.enemyType = enemyType;
         enemyData.enemyState = EnemyState.WALK;
