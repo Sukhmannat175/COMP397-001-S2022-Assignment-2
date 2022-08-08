@@ -15,14 +15,20 @@
  *                      July 24, 2022 (Marcus Ngooi): Integrated Factory Design pattern to work with load system.
  *                      August 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
  *                      August 5, 2022 (Marcus Ngooi): Moved towersPlaced and maxTowersToBePlaced variables from TowerPlacer to GameController.
+ *                      August 8, 2022 (Han Bi): Added events and invoke for achievement system.
  */
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerPlacer : MonoBehaviour
 {
+    //creates an event here when the first tower is built
+    public static event Action FirstTowerBuilt = delegate { };
+    public static event Action LastTowerBuilt = delegate { };
+
     [SerializeField] private bool isPreview = false;
     [SerializeField] private AudioClip placeSound;
     //public int towersPlaced;
@@ -43,6 +49,8 @@ public class TowerPlacer : MonoBehaviour
     int goldCost;
     int stoneCost;
     int woodCost;
+
+
 
     private void Start()
     {
@@ -86,6 +94,17 @@ public class TowerPlacer : MonoBehaviour
                 {
                     InventoryManager.instance.BuyTower(goldCost, stoneCost, woodCost);
                     GameController.instance.TowersPlaced++;
+
+                    if(GameController.instance.TowersPlaced == 1)
+                    {
+                        FirstTowerBuilt.Invoke();
+
+                    }else if(GameController.instance.TowersPlaced == GameController.instance.MaxTowersToBePlaced)
+                    {
+                        //
+                        LastTowerBuilt.Invoke();
+                    }
+
                     StartCoroutine(PlaceTower(currentType));
                 }
             }
@@ -134,6 +153,8 @@ public class TowerPlacer : MonoBehaviour
         {
             tower.CompleteBuilding();
         }
+
+        //for achievement system
     }
 
     public IEnumerator PlaceTowerOnLoad(TowerData towerData)
