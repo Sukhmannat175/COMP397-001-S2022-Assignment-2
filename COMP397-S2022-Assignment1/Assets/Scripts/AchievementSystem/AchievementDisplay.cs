@@ -37,6 +37,8 @@ public class AchievementDisplay : MonoBehaviour
 
     [SerializeField]
     List<Texture> achievementIcon = new List<Texture>();
+
+    [SerializeField] private AudioClip playSound;
     // Start is called before the first frame update
 
     public static AchievementDisplay instance;
@@ -64,6 +66,7 @@ public class AchievementDisplay : MonoBehaviour
 
     public void ShowPopup(AchievementManager.Achievement achievement)
     {
+        SoundManager.instance.PlaySFX(playSound);
         StartCoroutine(CustomizePopup(achievement));
     }
 
