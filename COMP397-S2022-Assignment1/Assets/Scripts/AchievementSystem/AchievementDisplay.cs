@@ -87,20 +87,20 @@ public class AchievementDisplay : MonoBehaviour
                 break;
 
             case AchievementManager.Achievement.LastTower:
-                popupTitle.GetComponent<TextMesh>().text = achievementTitle[1];
-                popupDesc.GetComponent<TextMesh>().text = achievementDesc[1];
+                popupTitle.GetComponent<TMPro.TextMeshProUGUI>().text = achievementTitle[1];
+                popupDesc.GetComponent<TMPro.TextMeshProUGUI>().text = achievementDesc[1];
                 popupImage.GetComponent<RawImage>().texture = achievementIcon[1];
                 break;
 
             case AchievementManager.Achievement.FirstBlood:
-                popupTitle.GetComponent<TextMesh>().text = achievementTitle[2];
-                popupDesc.GetComponent<TextMesh>().text = achievementDesc[2];
+                popupTitle.GetComponent<TMPro.TextMeshProUGUI>().text = achievementTitle[2];
+                popupDesc.GetComponent<TMPro.TextMeshProUGUI>().text = achievementDesc[2];
                 popupImage.GetComponent<RawImage>().texture = achievementIcon[2];
                 break;
 
             case AchievementManager.Achievement.Bloodbath:
-                popupTitle.GetComponent<TextMesh>().text = achievementTitle[3];
-                popupDesc.GetComponent<TextMesh>().text = achievementDesc[3];
+                popupTitle.GetComponent<TMPro.TextMeshProUGUI>().text = achievementTitle[3];
+                popupDesc.GetComponent<TMPro.TextMeshProUGUI>().text = achievementDesc[3];
                 popupImage.GetComponent<RawImage>().texture = achievementIcon[3];
                 break;
 
