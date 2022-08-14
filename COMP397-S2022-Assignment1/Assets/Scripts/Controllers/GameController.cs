@@ -3,7 +3,7 @@
  *                      Yuk Yee Wong (301234795)
  *                      Han Bi (301176547)
  *                      Marcus Ngooi (301147411)
- *  Last Update:        August 5, 2022
+ *  Last Update:        August 13, 2022
  *  Description:        Controls aspects of the game including spawning enemy waves, ending the game, keeping track of vital statistics.
  *  Revision History:   June 11, 2022 (Sukhmannat Singh): Initial script.
  *                      June 26, 2022 (Yuk Yee Wong): Adding wave management scripts.
@@ -12,6 +12,7 @@
  *                      July 24, 2022 (Marcus Ngooi): Integrated Factory Design pattern with load system.
  *                      August 1, 2022 (Yuk Yee Wong): Modified Spawn method, adapted object pooling.
  *                      August 5, 2022 (Marcus Ngooi): Moved towersPlaced and maxTowersToBePlaced variables from TowerPlacer to GameController. Organized variables.
+ *                      August 13, 2022 (Marcus Ngooi): Updated save and load function to save and load achievements.
  */
 
 using System.Collections;
@@ -79,6 +80,7 @@ public class GameController : MonoBehaviour
     // Properties
     public int TowersPlaced { get { return towersPlaced; } set { towersPlaced = value; } }
     public int MaxTowersToBePlaced { get { return maxTowersToBePlaced; } }
+    public int EnemiesKilled { get { return enemiesKilled; } }
 
     private void Awake()
     {
@@ -223,6 +225,10 @@ public class GameController : MonoBehaviour
         this.current.playerData.gold = InventoryManager.instance.goldOnHand;
         this.current.playerData.stone = InventoryManager.instance.stoneOnHand;
         this.current.playerData.wood = InventoryManager.instance.woodOnHand;
+        this.current.playerData.firstBlood = AchievementManager.instance.FirstBlood;
+        this.current.playerData.bloodbath = AchievementManager.instance.Bloodbath;
+        this.current.playerData.firstTower = AchievementManager.instance.FirstTower;
+        this.current.playerData.lastTower = AchievementManager.instance.LastTower;
 
         SerializationController.Save(saveName, this.current);
     }
@@ -299,6 +305,12 @@ public class GameController : MonoBehaviour
         InventoryManager.instance.stoneOnHand = SaveData.current.playerData.stone;
         InventoryManager.instance.woodOnHand = SaveData.current.playerData.wood;
         InventoryManager.instance.UpdateDisplay();
+
+        // Load Achievements
+        AchievementManager.instance.FirstBlood = SaveData.current.playerData.firstBlood;
+        AchievementManager.instance.Bloodbath = SaveData.current.playerData.bloodbath;
+        AchievementManager.instance.FirstTower = SaveData.current.playerData.firstTower;
+        AchievementManager.instance.LastTower = SaveData.current.playerData.lastTower;
 
         spawnCoroutine = StartCoroutine(Spawn(SaveData.current.playerData.enemiesSpawned, SaveData.current.playerData.wave));
     }

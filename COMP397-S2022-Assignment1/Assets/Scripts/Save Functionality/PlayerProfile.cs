@@ -1,17 +1,18 @@
 /*  Filename:           PlayerProfile.cs
  *  Author:             Sukhmannat Singh (301168420)
  *                      Yuk Yee Wong (301234795)
- *  Last Update:        August 1, 2022
+ *                      Marcus Ngooi (301147411)
+ *  Last Update:        August 13, 2022
  *  Description:        PlayerProfile for save functionality
  *  Revision History:   June 26, 2022 (Sukhmannat Singh): Initial script.
  *                      July 20, 2022 (Sukhmannat Singh): Added player data.
  *                      August 1, 2022 (Yuk Yee Wong): Added player data variables and TowerData variable.
+ *                      August 13, 2022 (Marcus Ngooi): Added achievement variables.
  */
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using System.Xml.Serialization;
 
 [System.Serializable]
@@ -51,4 +52,9 @@ public class PlayerData
     public int enemiesKilled = 0;
     public int enemiesSpawned = 0;
     public int towerPlaced = 0;
+    // Achievements
+    public bool firstBlood = false;
+    public bool bloodbath = false;
+    public bool firstTower = false;
+    public bool lastTower = false;
 }

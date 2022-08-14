@@ -1,9 +1,9 @@
 /*  Filename:           AchievementManager.cs
  *  Author:             Han Bi (301176547)
- *  Last Update:        August 8, 2022
- *  Description:        For placing towers.
+ *  Last Update:        August 13, 2022
+ *  Description:        For achievements.
  *  Revision History:   August 8, 2022 (Han Bi): Initial script.
- *  
+ *                      August 13, 2022 (Marcus Ngooi): Made properties for achievement fields allowing access from GameController script to save and load. Changed enemiesKilled to the same variable tracked in the GameController.
  */
 
 using System.Collections;
@@ -40,8 +40,11 @@ public class AchievementManager : MonoBehaviour
 
     public static AchievementManager instance;
 
-    int enemiesDestroyed = 0;
-
+    // Properties
+    public bool FirstTower { get { return firstTower; } set { firstTower = value; } }
+    public bool LastTower { get { return lastTower; } set { lastTower = value; } }
+    public bool FirstBlood { get { return firstBlood; } set { firstBlood = value; } }
+    public bool Bloodbath { get { return bloodbath; } set { bloodbath = value; } }
 
     private void Awake()
     {
@@ -99,8 +102,7 @@ public class AchievementManager : MonoBehaviour
     {
         if (!bloodbath)
         {
-            enemiesDestroyed++;
-            if(enemiesDestroyed >= 10)
+            if(GameController.instance.EnemiesKilled >= 10)
             {
                 bloodbath = true;
                 EnemyBaseBehaviour.EnemyKilled -= CheckBloodbathAchievement;
