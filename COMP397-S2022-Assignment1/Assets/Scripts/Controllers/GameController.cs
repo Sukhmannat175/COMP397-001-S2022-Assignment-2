@@ -197,8 +197,6 @@ public class GameController : MonoBehaviour
 
     public void CheckGameState()
     {
-        //Debug.Log("Total enemies in level: " + totalEnemiesInTheLevel);
-        //Debug.Log("Total enemies dead: " + totalEnemiesDead);
         if (totalEnemiesInTheLevel == totalEnemiesDead)
         {
             gameOverScreen.Open(GameOverScreen.GameEndState.VICTORY, score, enemiesKilled);
