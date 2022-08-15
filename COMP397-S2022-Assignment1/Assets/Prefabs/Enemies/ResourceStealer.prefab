@@ -198,7 +198,7 @@ MonoBehaviour:
   walkAnimationState: 0
   digAnimationState: 2
   stealTime: 4
-  actionDelay: 10
+  actionDelay: 8
   actionTime: 3
   meshRenderer: {fileID: 137931848350886072}
   remainingStealTimes: 0
