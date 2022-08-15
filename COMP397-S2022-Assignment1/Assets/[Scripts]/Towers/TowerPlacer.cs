@@ -80,7 +80,7 @@ public class TowerPlacer : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, 100, ground))
             {
                 worldPos = hit.transform.position;
-                worldPos.y += 1;
+                worldPos.y += 0.5f;
             }
 
             towerPreview.transform.position = worldPos;
