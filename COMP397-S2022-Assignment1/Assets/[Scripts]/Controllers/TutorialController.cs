@@ -17,6 +17,7 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private Image imgArrow;
     [SerializeField] private AudioClip playClip;
     [SerializeField] private CollapseButton collapseButton;
+    [SerializeField] private ShopItemButton shopItemButton;
 
     public static TutorialController instance;
     
@@ -135,9 +136,11 @@ public class TutorialController : MonoBehaviour
                 break;
 
             case 5:
+                this.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(1001, -100, 0);
                 imgArrow.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(-110, -108, 0);
                 txtInstructions.text = "...The Crossbow Tower shoots a single target with high attack speed...";
                 SoundManager.instance.PlaySFX(playClip);
+                collapseButton.OnButtonClick();
                 currentStep = step;
                 nextStep = 6;
                 break;
@@ -160,9 +163,7 @@ public class TutorialController : MonoBehaviour
 
             case 8:
                 imgArrow.gameObject.SetActive(false);
-                this.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(1001, -100, 0);
-                txtInstructions.text = "Tip: Start with a Crossbow Tower and then a Resource Tower.";
-                collapseButton.OnButtonClick();
+                txtInstructions.text = "Tip: Start with a Crossbow Tower and then a Resource Tower.";                
                 SoundManager.instance.PlaySFX(playClip);
                 currentStep = step;
                 continueGame = true;
