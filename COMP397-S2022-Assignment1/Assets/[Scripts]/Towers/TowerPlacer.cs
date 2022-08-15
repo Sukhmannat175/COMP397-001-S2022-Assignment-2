@@ -16,6 +16,7 @@
  *                      August 1, 2022 (Yuk Yee Wong): Reorganised the code and adapted object pooling.
  *                      August 5, 2022 (Marcus Ngooi): Moved towersPlaced and maxTowersToBePlaced variables from TowerPlacer to GameController.
  *                      August 8, 2022 (Han Bi): Added events and invoke for achievement system.
+ *                      August 15, 2022 (Yuk Yee Wong): Fixed world position on y-axis
  */
 
 using System;

@@ -7,6 +7,7 @@
  *  Revision History:   June 6, 2022 (Yuk Yee Wong): Initial script including tower preview and purchase script.
  *                      June 25, 2022 (Marcus Ngooi): Added resource tower logic on lines 24-25.
  *                      June 26, 2022 (Ikamjot Hundal): Added Cannon Tower variables && logics on lins 30-31.  
+ *                      August 15, 2022 (Yuk Yee Wong): Fixed negative resources by using math max.
  */
 
 using UnityEngine;
