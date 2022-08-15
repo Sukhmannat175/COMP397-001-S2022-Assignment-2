@@ -19,7 +19,9 @@ public class TutorialController : MonoBehaviour
     public static TutorialController instance;
     
     public TutorialState state;
-
+    private bool continueGame = false;
+    private int currentStep = 1;
+    private int nextStep = 0;
     public enum TutorialState
     {
         TUTORIAL,
@@ -29,17 +31,68 @@ public class TutorialController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        state = TutorialState.TUTORIAL;   
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameController.instance.EnemiesSpawned == 3 && currentStep == 1 && Time.timeScale == 1)
+        {
+            if (state == TutorialState.TUTORIAL)
+            {
+                PlayTowerSelectTutorial(currentStep);
+            }
+        }
     }
 
-    public void PlayTowerSelectTutorial()
+    public void OnBtnClickContinue()
     {
+        if (continueGame == true)
+        {
+            this.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(0, 580, 0);
+            continueGame = false;
+            Time.timeScale = 1;
+        }
+        else
+        {
+            PlayTowerSelectTutorial(nextStep);
+        }
+    }
 
+    public void PlayTowerSelectTutorial(int step)
+    {
+        switch (step)
+        {
+            case 1:
+                imgArrow.gameObject.GetComponent<RectTransform>().localRotation = new Quaternion(0, 0, 90, 90);
+                imgArrow.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(0, 108, 0);
+                this.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(585, 80, 0);
+                txtInstructions.text = "Enemies are spawned in waves and every wave is unique...";
+                nextStep = 2;
+                currentStep = step;
+                Time.timeScale = 0;
+                break;
+
+            case 2:
+                imgArrow.gameObject.GetComponent<RectTransform>().localRotation = new Quaternion(0, 0, 90, 90);
+                imgArrow.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(0, 108, 0);
+                this.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(585, 80, 0);
+                txtInstructions.text = "...This is the Grunt Golem. It will keep walking until it reaches the end of the path.";
+                currentStep = step;
+                continueGame = true;
+                Time.timeScale = 0;
+                break;
+
+            case 3:
+                this.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(1001, -100, 0);
+                txtInstructions.text = "You can Select any Tower from this window";
+                Time.timeScale = 0;
+                break;
+
+            case 4:
+                break;
+        }
+        
     }
 }

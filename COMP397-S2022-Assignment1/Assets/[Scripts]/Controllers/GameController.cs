@@ -101,6 +101,8 @@ public class GameController : MonoBehaviour
     public int TowersPlaced { get { return towersPlaced; } set { towersPlaced = value; } }
     public int MaxTowersToBePlaced { get { return maxTowersToBePlaced; } }
     public int EnemiesKilled { get { return enemiesKilled; } }
+    public int CurrentWave { get { return currentWave; } }
+    public int EnemiesSpawned { get { return enemiesSpawned; } }
     // Player events
     public bool FirstTower { get { return firstTower; } set { firstTower = value; } }
     public bool LastTower { get { return lastTower; } set { lastTower = value; } }
