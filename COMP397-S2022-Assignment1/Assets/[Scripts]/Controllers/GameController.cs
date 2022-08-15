@@ -66,7 +66,10 @@ public class GameController : MonoBehaviour
     [SerializeField] private EnemyStaticData gruntGolemStaticData;
     [SerializeField] private EnemyStaticData stoneMonsterStaticData;
     [SerializeField] private EnemyStaticData resourcesStealerStaticData;
+
+    [Header("Loaded on start")]
     [SerializeField] private TowerPlacer placer;
+    [SerializeField] private QuestManager questManager;
 
     [Header("Player Events")]
     [SerializeField] private bool firstTower = false;
@@ -134,6 +137,7 @@ public class GameController : MonoBehaviour
         spawnCoroutine = StartCoroutine(Spawn(0, 0));
 
         towerPlacer = FindObjectOfType<TowerPlacer>();
+        questManager = FindObjectOfType<QuestManager>();
     }
 
     private void CalculateTotalEnemiesInTheLevel()
@@ -330,6 +334,8 @@ public class GameController : MonoBehaviour
         Bloodbath = SaveData.current.playerData.bloodbath;
         FirstTower = SaveData.current.playerData.firstTower;
         LastTower = SaveData.current.playerData.lastTower;
+
+        questManager.RefreshQuestStatus();
 
         spawnCoroutine = StartCoroutine(Spawn(SaveData.current.playerData.enemiesSpawned, SaveData.current.playerData.wave));
     }

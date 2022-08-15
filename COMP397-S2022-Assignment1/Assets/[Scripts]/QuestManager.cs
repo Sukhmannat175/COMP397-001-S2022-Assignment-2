@@ -35,6 +35,14 @@ public class QuestManager : MonoBehaviour
         EnemyBaseBehaviour.EnemyKilled += CheckBloodbathQuest;
     }
 
+    public void RefreshQuestStatus()
+    {
+        CheckFirstTowerQuest();
+        CheckLastTowerQuest();
+        CheckFirstBloodQuest();
+        CheckBloodbathQuest();
+    }
+
     private void CheckFirstTowerQuest()
     {
         if (GameController.instance.FirstTower)
