@@ -12,8 +12,8 @@ using UnityEngine;
 public class MiniMapController : MonoBehaviour
 {
     [SerializeField] private Transform playerCamera;
-    [SerializeField] private float zOffset = 10.0f;
-    [SerializeField] private float xOffset = 10.0f;
+    [SerializeField] private float zOffset = 35.0f;
+    [SerializeField] private float xOffset = 0.0f;
 
     // Start is called before the first frame update
     void Start()

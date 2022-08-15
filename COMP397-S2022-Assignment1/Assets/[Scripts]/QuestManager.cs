@@ -39,6 +39,7 @@ public class QuestManager : MonoBehaviour
     {
         if (!GameController.instance.FirstTower)
         {
+            
             GameController.instance.FirstTower = true;
             //unsubscribe from this so that we don't need to keep listening for it
             TowerPlacer.FirstTowerBuilt -= CheckFirstTowerQuest;

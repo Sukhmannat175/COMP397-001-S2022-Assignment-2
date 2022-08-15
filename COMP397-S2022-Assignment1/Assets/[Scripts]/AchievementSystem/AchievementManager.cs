@@ -13,39 +13,13 @@ using UnityEngine;
 
 public class AchievementManager : MonoBehaviour
 {
-    /// <summary>
-    /// List of Achievements
-    /// firstTower - build a tower for the first time
-    /// tenthTower - build max(10) towers for the first time
-    /// firstBlood - kill a monster for the first time
-    /// bloodbath - kill 10 monsters
-    /// </summary>
-    /// 
-
-    //public enum Achievement
-    //{
-    //    FirstTower,
-    //    LastTower,
-    //    FirstBlood,
-    //    Bloodbath
-    //}
-
-    //[SerializeField]
-    //private bool firstTower = false;
-    //[SerializeField]
-    //private bool lastTower = false;
-    //[SerializeField]
-    //private bool firstBlood = false;
-    //[SerializeField]
-    //private bool bloodbath = false;
-
+    // Singleton
     public static AchievementManager instance;
 
-    //// Properties
-    //public bool FirstTower { get { return firstTower; } set { firstTower = value; } }
-    //public bool LastTower { get { return lastTower; } set { lastTower = value; } }
-    //public bool FirstBlood { get { return firstBlood; } set { firstBlood = value; } }
-    //public bool Bloodbath { get { return bloodbath; } set { bloodbath = value; } }
+    // Private variables
+    [SerializeField] private bool firstTower = false;
+
+    // Properties
 
     private void Awake()
     {
