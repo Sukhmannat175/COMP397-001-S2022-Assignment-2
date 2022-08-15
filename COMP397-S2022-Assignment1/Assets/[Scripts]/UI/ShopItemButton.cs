@@ -39,6 +39,11 @@ public class ShopItemButton : MonoBehaviour
 
     void OnButtonClick()
     {
+        if (TutorialController.instance.state == TutorialController.TutorialState.TUTORIAL)
+        {
+            TutorialController.instance.PlayTowerSelectTutorial();
+        }
+
         shopItemDisplay.UpdateDisplay(towerName, towerDescription, goldNeeded, stoneNeeded, woodNeeded);
         FindObjectOfType<TowerPlacer>().PreviewTower(towerName, goldNeeded, stoneNeeded, woodNeeded);
     }
