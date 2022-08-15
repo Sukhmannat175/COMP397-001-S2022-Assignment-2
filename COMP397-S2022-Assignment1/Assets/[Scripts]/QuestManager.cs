@@ -37,9 +37,8 @@ public class QuestManager : MonoBehaviour
 
     private void CheckFirstTowerQuest()
     {
-        if (!GameController.instance.FirstTower)
-        {
-            
+        if (GameController.instance.FirstTower)
+        {            
             GameController.instance.FirstTower = true;
             //unsubscribe from this so that we don't need to keep listening for it
             TowerPlacer.FirstTowerBuilt -= CheckFirstTowerQuest;
@@ -49,7 +48,7 @@ public class QuestManager : MonoBehaviour
 
     private void CheckLastTowerQuest()
     {
-        if (!GameController.instance.LastTower)
+        if (GameController.instance.LastTower)
         {
             GameController.instance.LastTower = true;
             TowerPlacer.LastTowerBuilt -= CheckLastTowerQuest;
@@ -59,7 +58,7 @@ public class QuestManager : MonoBehaviour
 
     private void CheckFirstBloodQuest()
     {
-        if (!GameController.instance.FirstBlood)
+        if (GameController.instance.FirstBlood)
         {
             GameController.instance.FirstBlood = true;
             EnemyBaseBehaviour.EnemyKilled -= CheckFirstBloodQuest;
@@ -69,7 +68,7 @@ public class QuestManager : MonoBehaviour
 
     private void CheckBloodbathQuest()
     {
-        if (!GameController.instance.Bloodbath)
+        if (GameController.instance.Bloodbath)
         {
             if (GameController.instance.EnemiesKilled >= 10)
             {
