@@ -14,6 +14,7 @@
  *                      August 5, 2022 (Marcus Ngooi): Moved towersPlaced and maxTowersToBePlaced variables from TowerPlacer to GameController. Organized variables.
  *                      August 13, 2022 (Marcus Ngooi): Updated save and load function to save and load achievements.
  *                      August 14, 2022 (Marcus Ngooi): Updated save and load function to save and load player events for achievements, quests, and tutorial.
+ *                      August 15, 2022 (Yuk Yee Wong): Called refresh quest status on load
  */
 
 using System.Collections;

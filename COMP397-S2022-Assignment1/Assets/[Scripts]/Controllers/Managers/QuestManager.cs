@@ -3,6 +3,7 @@
  *  Last Update:        August 14, 2022
  *  Description:        For quests.
  *  Revision History:   August 14, 2022 (Marcus ngooi): Initial script.
+ *                      August 15, 2022 (Yuk Yee Wong): Added a refresh quest status method and fixed the bug of changing font style.
  */
 
 using System.Collections;
