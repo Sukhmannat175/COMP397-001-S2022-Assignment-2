@@ -96,9 +96,10 @@ public class InventoryManager : MonoBehaviour
     {
         if (!freeToBuild)
         {
-            goldOnHand -= gold;
-            stoneOnHand -= stone;
-            woodOnHand -= wood;
+            goldOnHand = Mathf.Max(goldOnHand - gold, 0);
+            stoneOnHand = Mathf.Max(stoneOnHand - stone, 0);
+            woodOnHand = Mathf.Max(woodOnHand - wood, 0);
+
             UpdateDisplay();
         }
     }
