@@ -166,24 +166,28 @@ MonoBehaviour:
   BUILD_TIME: 50
   completeBuildButton: {fileID: 5487999560462864047}
   btnPositionOffset: 0
-  instantCompleteGoldCost: 50
+  instantCompleteGoldCost: 100
   instantCompleteStoneCost: 0
   instantCompleteWoodCost: 0
   maxHealthValue: 0
   healthDisplay: {fileID: 0}
-  actionDelay: 10
+  actionDelay: 15
   id: 
-  coolingDown: 0
-  collectSound: {fileID: 0}
-  goldIncrease: 0
-  stoneIncrease: 50
-  woodIncrease: 25
-  type: 0
+  health: {fileID: 0}
   towerData:
     towerId: 
+    isBuilding: 0
+    buildingTime: 0
+    health: 0
     towerType: 0
     towerPosition: {x: 0, y: 0, z: 0}
     towerRotation: {x: 0, y: 0, z: 0, w: 0}
+  coolingDown: 0
+  collectSound: {fileID: 0}
+  goldIncrease: 0
+  stoneIncrease: 15
+  woodIncrease: 15
+  type: 0
 --- !u!114 &4080414177327354617
 MonoBehaviour:
   m_ObjectHideFlags: 0

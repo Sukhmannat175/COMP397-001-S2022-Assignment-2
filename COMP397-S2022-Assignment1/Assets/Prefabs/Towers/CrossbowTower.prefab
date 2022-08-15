@@ -201,7 +201,7 @@ MonoBehaviour:
   BUILD_TIME: 20
   completeBuildButton: {fileID: 3237061064917321248}
   btnPositionOffset: 0
-  instantCompleteGoldCost: 50
+  instantCompleteGoldCost: 100
   instantCompleteStoneCost: 0
   instantCompleteWoodCost: 0
   maxHealthValue: 0

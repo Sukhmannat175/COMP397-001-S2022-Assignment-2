@@ -30,20 +30,20 @@ MonoBehaviour:
     hp: 5
     ap: 1
     speed: 3
-    goldPerHead: 30
+    goldPerHead: 10
     scorePerHead: 10
     stoppingDistance: 1
   - enemy: 2
-    hp: 10
+    hp: 12
     ap: 1
     speed: 1
-    goldPerHead: 50
-    scorePerHead: 20
+    goldPerHead: 15
+    scorePerHead: 15
     stoppingDistance: 1
   - enemy: 3
-    hp: 5
+    hp: 7
     ap: 1
     speed: 2
     goldPerHead: 20
-    scorePerHead: 15
+    scorePerHead: 20
     stoppingDistance: 1

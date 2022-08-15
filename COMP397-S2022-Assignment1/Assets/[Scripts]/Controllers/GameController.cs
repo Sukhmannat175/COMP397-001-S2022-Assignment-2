@@ -322,7 +322,7 @@ public class GameController : MonoBehaviour
 
         score = SaveData.current.playerData.score;
         totalEnemiesInTheLevel = SaveData.current.playerData.totalEnemiesInTheLevel;
-        totalEnemiesDead = SaveData.current.playerData.totalEnemiesDead;
+        totalEnemiesDead = SaveData.current.playerData.totalEnemiesDead + 1;
         enemiesKilled = SaveData.current.playerData.totalEnemiesDead;
         // enemiesSpawned = SaveData.current.playerData.enemiesSpawned; // update using the spawn coroutine instead
         // currentWave = SaveData.current.playerData.wave; // update using the spawn coroutine instead
