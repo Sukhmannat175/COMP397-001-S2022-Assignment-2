@@ -3,6 +3,7 @@
  *  Last Update:        August 1, 2022
  *  Description:        Controls the tutorial window.
  *  Revision History:   June 11, 2022 (Sukhmannat Singh): Initial script.
+ *                      August 5, 2022 (Yuk Yee Wong): Fix position.
  */
 
 using System.Collections;
