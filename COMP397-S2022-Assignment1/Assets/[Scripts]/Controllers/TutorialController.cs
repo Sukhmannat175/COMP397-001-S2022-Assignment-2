@@ -14,10 +14,17 @@ using TMPro;
 public class TutorialController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI txtInstructions;
-    [SerializeField] private Image imgArrow;
+    [SerializeField] private GameObject upArrow;
+    [SerializeField] private GameObject downArrow;
     [SerializeField] private AudioClip playClip;
     [SerializeField] private CollapseButton collapseButton;
-    [SerializeField] private ShopItemButton shopItemButton;
+    [SerializeField] private GameObject container;
+
+    [Header("Positions")]
+    [SerializeField] private GameObject centerUpPosition;
+    [SerializeField] private GameObject shopCollapsedPosition;
+    [SerializeField] private GameObject shopExpandedPosition;
+    [SerializeField] private GameObject enemyTilePosition;
 
     public static TutorialController instance;
     
@@ -26,10 +33,18 @@ public class TutorialController : MonoBehaviour
     private bool towerPlaced = true;
     private int currentStep = 1;
     private int nextStep = 0;
+
     public enum TutorialState
     {
         TUTORIAL,
         GAMEPLAY,
+    }
+
+    private enum ArrowState
+    {
+        DISABLE = 0,
+        UP = 1,
+        DOWN = 2,
     }
 
     // Update is called once per frame
@@ -65,8 +80,7 @@ public class TutorialController : MonoBehaviour
     {
         if (continueGame == true)
         {
-            this.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(0, 700, 0);
-            imgArrow.gameObject.SetActive(true);
+            container.SetActive(false);
             continueGame = false;
             Time.timeScale = 1;
         }
@@ -76,20 +90,41 @@ public class TutorialController : MonoBehaviour
         }
     }
 
+    private void RepositionWithinScreenBound()
+    {
+        if (base.transform.position.x > Screen.width - 250f)
+        {
+            base.transform.position = new Vector3(Screen.width - 250f, base.transform.position.y, base.transform.position.z);
+        }
+
+        if (base.transform.position.y > Screen.height - 100f)
+        {
+            base.transform.position = new Vector3(base.transform.position.x, Screen.height - 100f, base.transform.position.z);
+        }
+    }
+
+    private void ShowArrow(ArrowState state)
+    {
+        upArrow.SetActive(state == ArrowState.UP);
+        downArrow.SetActive(state == ArrowState.DOWN);
+    }
+
     public void OnBtnClickSkip()
     {
-        this.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(0, 600, 0);
+        container.SetActive(false);
         state = TutorialState.GAMEPLAY;
         Time.timeScale = 1;
     }
 
     public void PlayTowerSelectTutorial(int step)
     {
+        container.SetActive(true);
+
         switch (step)
         {
             case 0:
-                imgArrow.gameObject.SetActive(false);
-                this.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(0, -455, 0);
+                ShowArrow(ArrowState.DISABLE);
+                transform.position = centerUpPosition.transform.position;
                 txtInstructions.text = "Click on the complete button to finish the tower immediately for 50 gold";
                 SoundManager.instance.PlaySFX(playClip);
                 continueGame = true;
@@ -98,9 +133,8 @@ public class TutorialController : MonoBehaviour
                 break;
 
             case 1:
-                imgArrow.gameObject.GetComponent<RectTransform>().localRotation = Quaternion.Euler(0, 0, 90);
-                imgArrow.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(0, 108, 0);
-                this.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(560, -555, 0);
+                ShowArrow(ArrowState.UP);
+                transform.position = Camera.main.WorldToScreenPoint(enemyTilePosition.transform.position);
                 txtInstructions.text = "Enemies are spawned in waves and every wave is unique...";
                 SoundManager.instance.PlaySFX(playClip);
                 nextStep = 2;
@@ -116,34 +150,17 @@ public class TutorialController : MonoBehaviour
                 break;
 
             case 3:
-                if (KeyBindingManager.instance.SelectedNormalLayout)
-                {
-                    imgArrow.gameObject.GetComponent<RectTransform>().localRotation = Quaternion.Euler(0, 0, 270);
-                    imgArrow.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(0, -108, 0);
-                    this.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(750, -785, 0);
-                    txtInstructions.text = "Towers kill enemies and prevent them from reaching the end. Select towers from this window...";
-                    SoundManager.instance.PlaySFX(playClip);
-                    nextStep = 4;
-                    currentStep = step;
-                    Time.timeScale = 0;
-                    break;
-                }
-                else
-                {
-                    imgArrow.gameObject.GetComponent<RectTransform>().localRotation = Quaternion.Euler(0, 0, 270);
-                    imgArrow.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(0, -108, 0);
-                    this.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(-825, -830, 0);
-                    txtInstructions.text = "Towers kill enemies and prevent them from reaching the end. Select towers from this window...";
-                    SoundManager.instance.PlaySFX(playClip);
-                    nextStep = 4;
-                    currentStep = step;
-                    Time.timeScale = 0;
-                    break;
-                }
-                
+                ShowArrow(ArrowState.DOWN);
+                transform.position = shopCollapsedPosition.transform.position;
+                txtInstructions.text = "Towers kill enemies and prevent them from reaching the end. Select towers from this window...";
+                SoundManager.instance.PlaySFX(playClip);
+                nextStep = 4;
+                currentStep = step;
+                Time.timeScale = 0;
+                break;
 
             case 4:
-                this.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(825, -705, 0);
+                transform.position = shopExpandedPosition.transform.position;
                 txtInstructions.text = "...The dropdown button reveals the name, cost, and description of the tower...";
                 collapseButton.OnButtonClick();
                 SoundManager.instance.PlaySFX(playClip);
@@ -152,8 +169,7 @@ public class TutorialController : MonoBehaviour
                 break;
 
             case 5:
-                this.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(825, -830, 0);
-                imgArrow.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(-110, -108, 0);
+                transform.position = shopCollapsedPosition.transform.position;
                 txtInstructions.text = "...The Crossbow Tower shoots a single target with high attack speed...";
                 SoundManager.instance.PlaySFX(playClip);
                 collapseButton.OnButtonClick();
@@ -162,7 +178,7 @@ public class TutorialController : MonoBehaviour
                 break;
 
             case 6:
-                imgArrow.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(10, -108, 0);
+                transform.position = shopCollapsedPosition.transform.position;
                 txtInstructions.text = "...The Cannon Tower does splash damage with low attack speed...";
                 SoundManager.instance.PlaySFX(playClip);
                 currentStep = step;
@@ -170,7 +186,7 @@ public class TutorialController : MonoBehaviour
                 break;
 
             case 7:
-                imgArrow.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(125, -108, 0);
+                transform.position = shopCollapsedPosition.transform.position;
                 txtInstructions.text = "...The Resource Tower does not attack enemies, instead it gives you Stone and Wood...";
                 SoundManager.instance.PlaySFX(playClip);
                 currentStep = step;
@@ -178,7 +194,8 @@ public class TutorialController : MonoBehaviour
                 break;
 
             case 8:
-                imgArrow.gameObject.SetActive(false);
+                transform.position = shopCollapsedPosition.transform.position;
+                ShowArrow(ArrowState.DISABLE);
                 txtInstructions.text = "Tip: Start with a Crossbow Tower and then a Resource Tower.";                
                 SoundManager.instance.PlaySFX(playClip);
                 currentStep = step;
@@ -186,9 +203,8 @@ public class TutorialController : MonoBehaviour
                 break;
 
             case 9:
-                imgArrow.gameObject.GetComponent<RectTransform>().localRotation = Quaternion.Euler(0, 0, 90);
-                imgArrow.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(0, 108, 0);
-                this.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(560, -555, 0);
+                ShowArrow(ArrowState.UP);
+                transform.position = Camera.main.WorldToScreenPoint(enemyTilePosition.transform.position);
                 txtInstructions.text = "This is the Resource Stealer. It can go invincible periodically and steal resources...";
                 SoundManager.instance.PlaySFX(playClip);
                 nextStep = 10;
@@ -204,9 +220,8 @@ public class TutorialController : MonoBehaviour
                 break;
 
             case 11:
-                imgArrow.gameObject.GetComponent<RectTransform>().localRotation = Quaternion.Euler(0, 0, 90);
-                imgArrow.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(0, 108, 0);
-                this.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(560, -555, 0);
+                ShowArrow(ArrowState.UP);
+                transform.position = Camera.main.WorldToScreenPoint(enemyTilePosition.transform.position);
                 txtInstructions.text = "This is the Tower Destroyer. It will attack towers until they are destroyed...";
                 SoundManager.instance.PlaySFX(playClip);
                 nextStep = 12;
@@ -215,8 +230,8 @@ public class TutorialController : MonoBehaviour
                 break;
 
             case 12:
-                imgArrow.gameObject.SetActive(false);
-                this.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(0, -455, 0);
+                ShowArrow(ArrowState.DISABLE);
+                transform.position = centerUpPosition.transform.position;
                 txtInstructions.text = "Killing enemies gives you gold. You can also move the camera around using WASD keys...";
                 SoundManager.instance.PlaySFX(playClip);
                 nextStep = 13;
