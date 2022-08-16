@@ -126,7 +126,7 @@ public class TutorialController : MonoBehaviour
             case 0:
                 ShowArrow(ArrowState.DISABLE);
                 transform.position = centerUpPosition.transform.position;
-                txtInstructions.text = "Click on the complete button to finish the tower immediately for 50 gold";
+                txtInstructions.text = "Click on the complete button to finish the tower immediately for 100 gold";
                 SoundManager.instance.PlaySFX(playClip);
                 continueGame = true;
                 towerPlaced = false;
