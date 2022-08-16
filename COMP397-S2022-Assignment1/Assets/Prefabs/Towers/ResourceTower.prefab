@@ -171,7 +171,7 @@ MonoBehaviour:
   instantCompleteWoodCost: 0
   maxHealthValue: 0
   healthDisplay: {fileID: 0}
-  actionDelay: 15
+  actionDelay: 10
   id: 
   health: {fileID: 0}
   towerData:
@@ -185,8 +185,8 @@ MonoBehaviour:
   coolingDown: 0
   collectSound: {fileID: 0}
   goldIncrease: 0
-  stoneIncrease: 15
-  woodIncrease: 15
+  stoneIncrease: 25
+  woodIncrease: 25
   type: 0
 --- !u!114 &4080414177327354617
 MonoBehaviour:

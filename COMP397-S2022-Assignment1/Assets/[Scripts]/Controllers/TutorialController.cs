@@ -195,7 +195,7 @@ public class TutorialController : MonoBehaviour
                 break;
 
             case 8:
-                transform.position = shopCollapsedPosition.transform.position;
+                transform.position = centerUpPosition.transform.position;
                 ShowArrow(ArrowState.DISABLE);
                 txtInstructions.text = "Tip: Start with a Crossbow Tower and then a Resource Tower.";                
                 SoundManager.instance.PlaySFX(playClip);
@@ -233,7 +233,7 @@ public class TutorialController : MonoBehaviour
             case 12:
                 ShowArrow(ArrowState.DISABLE);
                 transform.position = centerUpPosition.transform.position;
-                txtInstructions.text = "Killing enemies gives you gold. You can also move the camera around using WASD keys...";
+                txtInstructions.text = "Killing enemies gives you gold. You can also move the camera around using the Joystick/WASD keys...";
                 SoundManager.instance.PlaySFX(playClip);
                 nextStep = 13;
                 currentStep = step;                

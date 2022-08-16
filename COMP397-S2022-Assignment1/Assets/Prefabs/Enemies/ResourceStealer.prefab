@@ -191,7 +191,7 @@ MonoBehaviour:
   distanceTravelled: 0
   death: 0
   wayPoints: []
-  gold: 1
+  gold: 0
   stone: 1
   wood: 1
   animationStateParameterName: Dig
